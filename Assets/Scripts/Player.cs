@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speed = 3.5f;
     [SerializeField]
+    private float _boost = 8.5f;
+    [SerializeField]
     private GameObject _laserPrefab;
     [SerializeField]    
     private GameObject _tripleShotPrefab;
@@ -17,13 +19,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
     private SpawnManager _spawnManager;
-
     [SerializeField]
     private bool _isTripleShotActive = false;
-    //variable for is TripleShotActive
-
-
-    // Start is called before the first frame update
+    private bool _isSpeedBoostActive = false;
+    private bool _isShieldActive = false;
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
@@ -34,9 +33,6 @@ public class Player : MonoBehaviour
             Debug.LogError("The Spawn Manager is NULL");
         }    
     }
-
-    
-    // Update is called once per frame
     void Update()
     {
         CalculateMovement();
@@ -45,18 +41,32 @@ public class Player : MonoBehaviour
         {
             FireLaser();
         }
-
     }
-
     void CalculateMovement()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-      
-        transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);
 
-        transform.Translate(Vector3.up * verticalInput * _speed * Time.deltaTime);
+        if (_isSpeedBoostActive == true)
+        {
+            transform.Translate(Vector3.right * horizontalInput * _boost * Time.deltaTime);
+            transform.Translate(Vector3.up * verticalInput * _boost * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);
+            transform.Translate(Vector3.up * verticalInput * _speed * Time.deltaTime);
+        }
+        
 
+        
+        //speed powerup collected
+        //increase speed to 8.5
+        //do i need to create a switch statement - if so i need to assign ID for each 
+
+
+
+        
         if (transform.position.y >= 0)
         {
             transform.position = new Vector3(transform.position.x, 0, 0);
@@ -65,7 +75,6 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, -3.8f, 0);
         }
-
         if (transform.position.x >= 11.3f)
         {
             transform.position = new Vector3(-11.3f, transform.position.y, 0);
@@ -74,6 +83,7 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(11.3f, transform.position.y, 0);
         }
+
     }
     void FireLaser()
     {
@@ -87,19 +97,7 @@ public class Player : MonoBehaviour
         {
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.75f, 0), Quaternion.identity);
         }
-
-
-        //if space key press, 
-        //if tripleshotActive is true
-        //fire 3 lasers (triple shot prefab)
-
-        //else fire 1 laser
-
-        //instantiate 3 lasers (triple shot prefab)
     }
-    
-
-
     public void Damage()
     {
         _lives --;    
@@ -107,10 +105,32 @@ public class Player : MonoBehaviour
         if (_lives <1)
         {
             _spawnManager.OnPlayerDeath();
-            
-                      
             Destroy(this.gameObject);
         }
     }
+    //shield power up coroutine
+    public void SpeedBoostActive() 
+    {
+        _isSpeedBoostActive = true;
+        StartCoroutine(SpeedBoostPowerDownRoutine());
+    }
 
+    public void TripleShotActive()
+    {
+        _isTripleShotActive = true;
+        StartCoroutine(TripleShotPowerDownRoutine());
+    }
+    
+   //shield power up cooldown
+    IEnumerator TripleShotPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isTripleShotActive = false;
+    }
+    IEnumerator SpeedBoostPowerDownRoutine() 
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isSpeedBoostActive = false;
+    
+    }
 }
