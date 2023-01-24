@@ -5,15 +5,13 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 3.0f;
- 
-    [SerializeField] //0 = triple shot 1 = speed 2 = shields
+    private float _speed = 3.0f; 
+    [SerializeField] //0 = triple shot 1 = speed 2 = shield
     private int powerupID;
 
     void Update()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
-
         if (transform.position.y < -4.5f)
         {
             Destroy(this.gameObject);
@@ -35,16 +33,13 @@ public class PowerUp : MonoBehaviour
                         player.SpeedBoostActive();
                         break;
                     case 2:
-                        Debug.Log("Collected Shields");
+                        player.ShieldActive();
                         break;
                     default:
                         Debug.Log("Default Value");
                         break;
                 }
             }
-
-
-
             Destroy(this.gameObject);
         }  
     }

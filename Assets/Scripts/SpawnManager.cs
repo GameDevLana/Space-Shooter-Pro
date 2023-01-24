@@ -10,16 +10,13 @@ public class SpawnManager : MonoBehaviour
     private GameObject _enemyContainer;
     [SerializeField]    
     private GameObject[] powerups;
-
     private bool _stopSpawning = false;
 
     void Start()
     {
         StartCoroutine(SpawnEnemyRoutine());
-        StartCoroutine(SpawnPowerupRoutine());
-       
-    }
-    
+        StartCoroutine(SpawnPowerupRoutine());      
+    }    
     IEnumerator SpawnEnemyRoutine()
     {
         while (_stopSpawning == false)
