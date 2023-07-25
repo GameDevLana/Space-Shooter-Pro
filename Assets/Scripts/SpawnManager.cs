@@ -6,21 +6,28 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject _enemyPrefab;
+    
     [SerializeField]
     private GameObject _enemyContainer;
+    
     [SerializeField]    
     private GameObject[] powerups;
+    
     private bool _stopSpawning = false;
+
 
     void Start()
     {
             
     } 
+    
+    
     public void StartSpawning()
     {
         StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());
     }
+    
     IEnumerator SpawnEnemyRoutine()
     {
         yield return new WaitForSeconds(2.0f);
@@ -32,6 +39,7 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(5.0F);
         }
     }
+    
     IEnumerator SpawnPowerupRoutine()
     {
         yield return new WaitForSeconds(2.0f);
@@ -45,6 +53,8 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
     }
+    
+    
     public void OnPlayerDeath()
     {
         _stopSpawning = true;

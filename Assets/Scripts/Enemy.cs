@@ -6,11 +6,16 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 4f;
+    
     [SerializeField]
     private GameObject _laserPrefab;
+   
     private Player _player;
+    
     private Animator _anim;
+    
     private AudioSource _audioSource;
+   
     private float _fireRate = 3.0f;
     private float _canFire = -1;
 
@@ -51,6 +56,7 @@ public class Enemy : MonoBehaviour
         }
     }  
     
+
     void CalculateMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
@@ -62,11 +68,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D other)   
     {
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
+            
             if (player != null)
             {
                 player.Damage();
@@ -76,6 +84,7 @@ public class Enemy : MonoBehaviour
             _speed = 0;
 
             _audioSource.Play();
+            
             Destroy(this.gameObject, 2.5f);
             }
        
@@ -92,6 +101,7 @@ public class Enemy : MonoBehaviour
             _speed = 0;
 
             _audioSource.Play();
+            
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.5f);
         }

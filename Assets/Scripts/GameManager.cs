@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private bool _isGameOver;
 
+
     private void Update()
     {
         //if the r key was pressed
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
     public void GameOver()
     {
         _isGameOver = true;

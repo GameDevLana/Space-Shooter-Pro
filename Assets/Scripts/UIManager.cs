@@ -8,16 +8,21 @@ public class UIManager : MonoBehaviour
     //handle to text
     [SerializeField]
     private Text _scoreText;
+    
     [SerializeField]
     private Image _livesImg;
+    
     [SerializeField]
     private Sprite[] _liveSprites;
+    
     [SerializeField]
     private Text _gameOverText;
+    
     [SerializeField]
     private Text _restartText;
 
     private GameManager _gameManager;
+
 
     void Start()
     {
@@ -30,11 +35,14 @@ public class UIManager : MonoBehaviour
             Debug.LogError("GameManager is NULL.");
         }
     }
-        public void UpdateScore(int playerScore)
+  
+    
+    public void UpdateScore(int playerScore)
     {
         _scoreText.text = "Score: " + playerScore.ToString();
     }
 
+    
     public void UpdateLives(int currentLives)
     {
         _livesImg.sprite = _liveSprites[currentLives];
@@ -45,6 +53,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    
     void GameOverSequence()
     {
         _gameManager.GameOver();
@@ -52,7 +61,6 @@ public class UIManager : MonoBehaviour
         _restartText.gameObject.SetActive(true);
         StartCoroutine(GameOverFlickerRoutine());
     }
-
 
     IEnumerator GameOverFlickerRoutine()
     {
@@ -65,5 +73,3 @@ public class UIManager : MonoBehaviour
         }
     } 
 }
-
-
