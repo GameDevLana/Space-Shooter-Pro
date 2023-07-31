@@ -7,46 +7,51 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 3.5f;
-    
+
     [SerializeField]
     private float _boost = 8.5f;
 
     [SerializeField]
     private float _thrust = 1.5f;
-    
+
     [SerializeField]
     private GameObject _laserPrefab;
-    
-    [SerializeField]    
+
+    [SerializeField]
     private GameObject _tripleShotPrefab;
-    
+
     [SerializeField]
     private float _fireRate = 0.5f;
     private float _canfire = -1f;
-    
+
     [SerializeField]
     private int _lives = 3;
 
-    //variable for strength = 3
-    [SerializeField]
-    private int _strength = 3;
-    
     private SpawnManager _spawnManager;
     private bool _isTripleShotActive = false;
     private bool _isSpeedBoostActive = false;
     private bool _isShieldActive = false;
-    
+
     [SerializeField]
     private GameObject _shieldVisualizer;
-    
+
+    [SerializeField]
+    private int _spriteRenderer = 3;
+    private SpriteRenderer _sprite;
+    [SerializeField]
+    private Color _shieldColorOne;
+    [SerializeField]
+    private Color _shieldColorTwo;
+
+
     [SerializeField]
     private GameObject _rightEngine, _leftEngine;
-    
+
     [SerializeField]
     private int _score;
-    
+
     private UIManager _uiManager;
-    
+
     [SerializeField]
     private AudioClip _laserSoundClip;
     private AudioSource _audioSource;
@@ -59,12 +64,15 @@ public class Player : MonoBehaviour
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
 
+        _sprite = _shieldVisualizer.GetComponent<SpriteRenderer>();
+
+
         if (_spawnManager == null)
         {
             Debug.LogError("The Spawn Manager is NULL");
-        }    
+        }
         if (_uiManager == null)
-        { 
+        {
             Debug.LogError("The UI Manager is NULL");
         }
         if (_audioSource == null)
@@ -92,7 +100,7 @@ public class Player : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        
+
         if (_isSpeedBoostActive == true)
         {
             transform.Translate(Vector3.right * horizontalInput * _boost * Time.deltaTime);
@@ -102,14 +110,14 @@ public class Player : MonoBehaviour
         {
             transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);
             transform.Translate(Vector3.up * verticalInput * _speed * Time.deltaTime);
-        }         
-        
+        }
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             transform.Translate(Vector3.right * horizontalInput * _speed * _thrust * Time.deltaTime);
             transform.Translate(Vector3.up * verticalInput * _speed * _thrust * Time.deltaTime);
-        }           
-                
+        }
+
         if (transform.position.y >= 0)
         {
             transform.position = new Vector3(transform.position.x, 0, 0);
@@ -118,7 +126,7 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, -3.8f, 0);
         }
-        
+
         if (transform.position.x >= 11.3f)
         {
             transform.position = new Vector3(-11.3f, transform.position.y, 0);
@@ -133,7 +141,7 @@ public class Player : MonoBehaviour
     void FireLaser()
     {
         _canfire = Time.time + _fireRate;
-        
+
         if (_isTripleShotActive == true)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
@@ -148,31 +156,36 @@ public class Player : MonoBehaviour
 
 
     public void Damage()
-    {        
-        
+    {
+
         if (_isShieldActive == true)
         {
-        _strength--;
-        }
-            if (_strength == 2)
-        {
-            //change color
-            GetComponent<SpriteRenderer>().color = new Color(222,75,222);
-        }
-                else if (_strength == 1)
-        {
-            //change color
-            GetComponent<SpriteRenderer>().color = new Color(222,75,75);
-        }
-       
-        if (_strength <1)
-        {
-            _isShieldActive = false;
-            _shieldVisualizer.SetActive(false);
+            _spriteRenderer--;
+        
+            if (_spriteRenderer == 2)
+            {
+                //change color
+                _sprite.color = _shieldColorOne;
+            }
+            else if (_spriteRenderer == 1)
+            {
+                //change color
+                _sprite.color = _shieldColorTwo;
+            }
+
+
+            if (_spriteRenderer < 1)
+            {
+                _isShieldActive = false;
+                _shieldVisualizer.SetActive(false);
+                _sprite.color = Color.white;
+                _spriteRenderer = 3;
+            }
+            
             return;
         }
-       
-        
+
+  
         _lives --;
 
         if (_lives == 2)
@@ -197,7 +210,7 @@ public class Player : MonoBehaviour
     {
         _isShieldActive = true;
         _shieldVisualizer.SetActive(true);
-        StartCoroutine(ShieldPowerDownRoutine());  
+       // StartCoroutine(ShieldPowerDownRoutine());  
     }   
     
 
@@ -214,11 +227,11 @@ public class Player : MonoBehaviour
         StartCoroutine(TripleShotPowerDownRoutine());
     }
     
-    IEnumerator ShieldPowerDownRoutine()
-    {
-        yield return new WaitForSeconds(15.0f);
-        _isShieldActive = false;
-    }
+   // IEnumerator ShieldPowerDownRoutine()
+    //{
+      //  yield return new WaitForSeconds(15.0f);
+       // _isShieldActive = false;
+    //}
     
     IEnumerator TripleShotPowerDownRoutine()
     {

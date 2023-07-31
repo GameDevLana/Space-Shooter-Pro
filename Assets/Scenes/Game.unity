@@ -511,8 +511,10 @@ MonoBehaviour:
   _tripleShotPrefab: {fileID: 2554530824444112010, guid: 88727198a15edfd4e905974ee5a0e327, type: 3}
   _fireRate: 0.15
   _lives: 3
-  _strength: 3
   _shieldVisualizer: {fileID: 994103381}
+  _spriteRenderer: 3
+  _shieldColorOne: {r: 0.92173254, g: 0.93333334, b: 0.12549019, a: 1}
+  _shieldColorTwo: {r: 0.9150943, g: 0.09927912, b: 0.09927912, a: 1}
   _rightEngine: {fileID: 1253040212}
   _leftEngine: {fileID: 1172854266}
   _score: 0
@@ -559,7 +561,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1b4a8fdd39d3a45d0a9ee484ad6800ec, type: 3}
-  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1057,7 +1059,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 333b0196b7a764df5a7768ead9b69dbc, type: 3}
-  m_Color: {r: 0.87058824, g: 0.29411766, b: 0.29411766, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
