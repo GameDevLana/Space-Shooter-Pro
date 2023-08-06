@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     
     private void Start()
     {
-        _player = GameObject.Find("Player").GetComponent< Player > ();
+        _player = GameObject.Find("Player").GetComponent<Player>();
         _audioSource = GetComponent<AudioSource>();
 
         if (_player == null)
@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(other.gameObject);
 
-            if (_player != null)
+           if (_player != null)
             {
                 _player.AddScore(10);
             }
@@ -104,6 +104,8 @@ public class Enemy : MonoBehaviour
             
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.5f);
+
+            //communicate with UI to update score
         }
     }
 }

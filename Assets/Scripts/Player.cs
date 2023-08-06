@@ -24,6 +24,12 @@ public class Player : MonoBehaviour
     private float _fireRate = 0.5f;
     private float _canfire = -1f;
 
+
+    [SerializeField]
+    private int _maxAmmo = 15;
+    //private int _currentAmmo;
+
+
     [SerializeField]
     private int _lives = 3;
 
@@ -55,17 +61,18 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioClip _laserSoundClip;
     private AudioSource _audioSource;
+    //private no ammo click when press space bar 
 
 
     void Start()
     {
         transform.position = new Vector3(0, 0, 0);
+
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
-
         _sprite = _shieldVisualizer.GetComponent<SpriteRenderer>();
-
+        
 
         if (_spawnManager == null)
         {
@@ -145,13 +152,30 @@ public class Player : MonoBehaviour
         if (_isTripleShotActive == true)
         {
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+            _audioSource.Play();
+            //UI - NO AMMO - false
         }
-        else
+        
+        else if (_maxAmmo > 0)
         {
+          //  _ = _maxAmmo > 0;
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.75f, 0), Quaternion.identity);
+            _audioSource.Play();
+            _maxAmmo--;
+            _uiManager.UpdateAmmo(_maxAmmo);
         }
+        
+        // if (_maxAmmo < 4)
+        // {
+        //UI flash current ammo count
+        //UI play warning alarm
+        //}
+        //if (_maxAmmo <= 0)
+        // {
+        //play empty ammo noise
+        //UI - NO AMMO = true
+        //}
 
-        _audioSource.Play();
     }
 
 
@@ -164,12 +188,10 @@ public class Player : MonoBehaviour
         
             if (_spriteRenderer == 2)
             {
-                //change color
                 _sprite.color = _shieldColorOne;
             }
             else if (_spriteRenderer == 1)
             {
-                //change color
                 _sprite.color = _shieldColorTwo;
             }
 
@@ -184,7 +206,6 @@ public class Player : MonoBehaviour
             
             return;
         }
-
   
         _lives --;
 
@@ -205,7 +226,6 @@ public class Player : MonoBehaviour
         }
     }  
     
-
     public void ShieldActive()
     {
         _isShieldActive = true;
@@ -229,9 +249,15 @@ public class Player : MonoBehaviour
     
    // IEnumerator ShieldPowerDownRoutine()
     //{
-      //  yield return new WaitForSeconds(15.0f);
-       // _isShieldActive = false;
+        //yield return new WaitForSeconds(15.0f);
+       //_isShieldActive = false;
     //}
+
+    //method to add 10 to the score
+    //communicate with the UI to update score
+
+    //method to decremate ammo by one
+    //communicate with the UI to update amm
     
     IEnumerator TripleShotPowerDownRoutine()
     {
@@ -245,10 +271,11 @@ public class Player : MonoBehaviour
         _isSpeedBoostActive = false;    
     }
 
-
+    //flash current ammo count when it become <5
+    //flash NO AMMO when current ammo = 0
     public void AddScore(int points) 
     {
-        _score += points;        
+        _score += points;
+        _uiManager.UpdateScore(_score);
     }
-
 }
