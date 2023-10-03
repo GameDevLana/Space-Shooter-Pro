@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    //handle to text
     [SerializeField]
     private Text _scoreText;
 
@@ -20,17 +19,17 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private Text _restartText;
-    //handle to text
+
     [SerializeField]
     private Text _ammoText;
 
+    [SerializeField]
+    private Slider _thrustGauge;
+
+
     private GameManager _gameManager;
-    //create a handle to text (score)
-    //create a handle to text (ammo)
 
     void Start()
-        //assign text component to the handle (score)
-        //assign text component to the handle (ammo)
     {
         _scoreText.text = "Score: " + 0;
 
@@ -46,8 +45,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //method to update score 
-    //method to update ammo
     public void UpdateScore(int playerScore)
     {
         _scoreText.text = "Score: " + playerScore.ToString();
@@ -67,7 +64,12 @@ public class UIManager : MonoBehaviour
     { 
         _ammoText.text = "Ammo Count: " + currentAmmo.ToString();
     }
-    
+
+    public void UpdateThrusterCharge(float value)
+    {
+        _thrustGauge.value = value;
+    }
+
     void GameOverSequence()
     {
         _gameManager.GameOver();
@@ -75,6 +77,8 @@ public class UIManager : MonoBehaviour
         _restartText.gameObject.SetActive(true);
         StartCoroutine(GameOverFlickerRoutine());
     }
+
+
 
     IEnumerator GameOverFlickerRoutine()
     {

@@ -104,8 +104,8 @@ public class Enemy : MonoBehaviour
             
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.5f);
-
-            //communicate with UI to update score
         }
+
     }
+
 }
