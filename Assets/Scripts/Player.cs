@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 
 
@@ -17,6 +16,7 @@ public class Player : MonoBehaviour
 
     //variable for thruster max/min time
     //variable for current thruster time
+
     [SerializeField]
     private float _maxThrust = 100;
     private float _currentThrust;
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private int _lives = 3;
-    
+
 
     private SpawnManager _spawnManager;
 
@@ -48,8 +48,8 @@ public class Player : MonoBehaviour
     private bool _isSpeedBoostActive = false;
     private bool _isShieldActive = false;
     private bool _isStopFireActive = false;
-    private bool _isThrusterActive = false;
-
+    //private bool _isThrusterActive = false;
+    private bool _isInvulnerable = false;
 
     [SerializeField]
     private GameObject _shieldVisualizer;
@@ -87,6 +87,8 @@ public class Player : MonoBehaviour
         
 
         _currentAmmo = _maxAmmo;
+
+
         _currentThrust = _maxThrust;
 
         if (_spawnManager == null)
@@ -116,7 +118,7 @@ public class Player : MonoBehaviour
             FireLaser();
         }
 
-        
+
 
     }
     void CalculateMovement()
@@ -129,7 +131,7 @@ public class Player : MonoBehaviour
             transform.Translate(Vector3.right * horizontalInput * _boost * Time.deltaTime);
             transform.Translate(Vector3.up * verticalInput * _boost * Time.deltaTime);
         }
-        
+
         else
         {
             transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);
@@ -140,21 +142,15 @@ public class Player : MonoBehaviour
         {
             transform.Translate(Vector3.right * horizontalInput * _speed * _thrust * Time.deltaTime);
             transform.Translate(Vector3.up * verticalInput * _speed * _thrust * Time.deltaTime);
-            
+            StopCoroutine(ThrustRechargeRoutine());
+
             ThrusterActive();
 
 
-        
 
-            //ThrustActive();
-            //default value of thrust is full 
-            // (speed boost powerup not active) but left shift down & charge > 0
-            // thruster speed active 
-            // slider charge drains at a rate
-            //update slider UI
 
-            //charge <=0 , charge =0 
-            //update slider UI
+
+
 
             //charge is <100 and leftshift up (*opt -wait 5 seconds) refill at a rate
             //update slider UI
@@ -194,6 +190,7 @@ public class Player : MonoBehaviour
             Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
             _audioSource.Play();
             //UI - NO AMMO - false
+            //ammo --3
         }
 
         else if (_currentAmmo > 0 && _isStopFireActive == false)
@@ -205,8 +202,8 @@ public class Player : MonoBehaviour
         }
 
     }
-     
-        public void Damage()
+
+    public void Damage()
     {
 
         if (_isShieldActive == true)
@@ -233,6 +230,10 @@ public class Player : MonoBehaviour
         }
 
         _lives--;
+        if (_isInvulnerable == false)
+        {
+            StartCoroutine("OnInvulnerable");
+        }
 
         if (_lives == 2)
         {
@@ -305,11 +306,11 @@ public class Player : MonoBehaviour
     }
 
     public void BombActive()
-    { 
+    {
         {
-        _isStopFireActive = true;
+            _isStopFireActive = true;
         }
-        
+
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
@@ -319,73 +320,75 @@ public class Player : MonoBehaviour
         StartCoroutine(StopFireCooldownRoutine());
     }
 
-    
+
     public void ThrusterActive()
     {
-       _isThrusterActive = true;
-           
+        //_isThrusterActive = true;
+
         if (_currentThrust > 0)
         {
-           // _thrustGauge.SetActive(true);
+
             _currentThrust -= 15 * 2 * Time.deltaTime;
             _uiManager.UpdateThrusterCharge(_currentThrust);
         }
-        
-        /*else if (_currentThrust <= 0)
+
+        else if (_currentThrust <= 0)
         {
             //_thrustGauge.SetActive(false);
             _currentThrust = 0.0f;
             _uiManager.UpdateThrusterCharge(_currentThrust);
-        }*/
 
-        StartCoroutine(ThrustRechargeRoutine());
-    }
-    
-
-    IEnumerator TripleShotPowerDownRoutine()
-    {
-        yield return new WaitForSeconds(6.0f);
-        _isTripleShotActive = false;
-    }
-
-    IEnumerator SpeedBoostPowerDownRoutine() 
-    {
-        yield return new WaitForSeconds(5.0f);
-        _isSpeedBoostActive = false;  
-    }
-
-    IEnumerator StopFireCooldownRoutine()
-    {
-        yield return new WaitForSeconds(5.0f);
-        _isStopFireActive = false;
-    }
-
-    IEnumerator ThrustRechargeRoutine()
-    {
-        _isThrusterActive = true;
-        
-        while (_currentThrust != 100)
-        {
-            yield return new WaitForSeconds(1.0f);
-            _currentThrust -= 15 * 2 * Time.deltaTime;
-            _uiManager.UpdateThrusterCharge(_currentThrust);
-            
-            if (_currentThrust >= 100)
-            {
-                _currentThrust = 100;
-                _uiManager.UpdateThrusterCharge(_currentThrust);
-                break;
-            }
+            StartCoroutine(ThrustRechargeRoutine());
         }
     }
+        IEnumerator TripleShotPowerDownRoutine()
+        {
+            yield return new WaitForSeconds(6.0f); 
+            _isTripleShotActive = false;
+        }
+
+        IEnumerator SpeedBoostPowerDownRoutine()
+        {
+            yield return new WaitForSeconds(5.0f);
+            _isSpeedBoostActive = false;
+        }
+
+        IEnumerator StopFireCooldownRoutine()
+        {
+            yield return new WaitForSeconds(5.0f);
+            _isStopFireActive = false;
+        }
+
+        IEnumerator ThrustRechargeRoutine()
+        {
+            //_isThrusterActive = true;
+            while (_currentThrust <= 100 /*_isThrusterActive == false*/)
+            {
+                yield return new WaitForSeconds(1.0f);
+                _currentThrust += 15 * 2 * Time.deltaTime;
+                _uiManager.UpdateThrusterCharge(_currentThrust);
+
+                if (_currentThrust >= 100)
+                {
+                    _currentThrust = 100;
+                    _uiManager.UpdateThrusterCharge(_currentThrust);
+
+                    break;
+                }
+            }
+        }
 
 
-    //flash current ammo count when it become <5
-    //flash NO AMMO when current ammo = 0
+        //flash current ammo count when it become <5
+        //flash NO AMMO when current ammo = 0
 
-    public void AddScore(int points) 
-    {
-        _score += points;
-        _uiManager.UpdateScore(_score);
-    }
+        public void AddScore(int points)
+        {
+            _score += points;
+            _uiManager.UpdateScore(_score);
+        }
+
+    
 }
+    
+

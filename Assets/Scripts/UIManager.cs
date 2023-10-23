@@ -39,6 +39,9 @@ public class UIManager : MonoBehaviour
 
         _ammoText.text = "Ammo Count: " + 15;
 
+
+
+
         if (_gameManager == null)
         {
             Debug.LogError("GameManager is NULL.");
