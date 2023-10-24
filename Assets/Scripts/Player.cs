@@ -11,14 +11,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _boost = 8.5f;
 
-    [SerializeField]
-    private float _thrust = 1.5f;
-
     //variable for thruster max/min time
     //variable for current thruster time
 
+
+
+    [SerializeField]
+    private float _thrust = 1.5f;
     [SerializeField]
     private float _maxThrust = 100;
+    [SerializeField]
     private float _currentThrust;
 
 
@@ -48,7 +50,6 @@ public class Player : MonoBehaviour
     private bool _isSpeedBoostActive = false;
     private bool _isShieldActive = false;
     private bool _isStopFireActive = false;
-    //private bool _isThrusterActive = false;
     private bool _isInvulnerable = false;
 
     [SerializeField]
@@ -73,7 +74,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioClip _laserSoundClip;
     private AudioSource _audioSource;
-    //private no ammo click when press space bar 
+    //private no ammo audio - click when press space bar 
 
 
     void Start()
@@ -142,7 +143,7 @@ public class Player : MonoBehaviour
         {
             transform.Translate(Vector3.right * horizontalInput * _speed * _thrust * Time.deltaTime);
             transform.Translate(Vector3.up * verticalInput * _speed * _thrust * Time.deltaTime);
-            StopCoroutine(ThrustRechargeRoutine());
+            
 
             ThrusterActive();
 
@@ -154,11 +155,10 @@ public class Player : MonoBehaviour
 
             //charge is <100 and leftshift up (*opt -wait 5 seconds) refill at a rate
             //update slider UI
-
-
             //**update UI (UpdateThrusterCharge) while draining and filling
-
             //*Adding extra UI for Charge (*opt UI level indicator could include text of %) 
+
+
 
         }
         if (transform.position.y >= 0)
@@ -323,23 +323,19 @@ public class Player : MonoBehaviour
 
     public void ThrusterActive()
     {
-        //_isThrusterActive = true;
-
-        if (_currentThrust > 0)
+        
+        //if (_currentThrust > 0)
         {
 
-            _currentThrust -= 15 * 2 * Time.deltaTime;
-            _uiManager.UpdateThrusterCharge(_currentThrust);
-        }
-
-        else if (_currentThrust <= 0)
-        {
-            //_thrustGauge.SetActive(false);
-            _currentThrust = 0.0f;
+            _currentThrust -=_speed * _thrust * Time.deltaTime;
+            //needs to stop at 0 - it currently goes to negative number
             _uiManager.UpdateThrusterCharge(_currentThrust);
 
             StartCoroutine(ThrustRechargeRoutine());
+            
         }
+
+        
     }
         IEnumerator TripleShotPowerDownRoutine()
         {
@@ -361,12 +357,15 @@ public class Player : MonoBehaviour
 
         IEnumerator ThrustRechargeRoutine()
         {
-            //_isThrusterActive = true;
-            while (_currentThrust <= 100 /*_isThrusterActive == false*/)
+            yield return new WaitForSeconds(5.0f);
+
+            while (_currentThrust <= 100)
             {
-                yield return new WaitForSeconds(1.0f);
-                _currentThrust += 15 * 2 * Time.deltaTime;
+                
+                _currentThrust +=_thrust * Time.deltaTime;
                 _uiManager.UpdateThrusterCharge(_currentThrust);
+
+                yield return null;
 
                 if (_currentThrust >= 100)
                 {
