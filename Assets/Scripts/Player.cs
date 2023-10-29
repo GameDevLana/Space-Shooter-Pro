@@ -152,8 +152,6 @@ public class Player : MonoBehaviour
         }
 
 
-        //set._thruster.Active 
-        //charge is <100 and leftshift up (*opt -wait 5 seconds) refill at a rate
         //*Adding extra UI for Charge (*opt UI level indicator could include text of %) 
 
 
@@ -187,7 +185,7 @@ public class Player : MonoBehaviour
             _audioSource.Play();
 
             //UI - NO AMMO - false
-            //ammo --3
+            //ammo --3 for triple shot
         }
 
         else if (_currentAmmo > 0 && _isStopFireActive == false)
@@ -228,10 +226,21 @@ public class Player : MonoBehaviour
 
         _lives--;
 
+
+        //call camera shake coroutines
+        //create a handle to the camera
+
+
+
+
+
+
+
         //if (_isInvulnerable == false)
         //{
         //   StartCoroutine("OnInvulnerable");
         //}
+
 
         if (_lives == 2)
         {
@@ -365,6 +374,8 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+
         //flash current ammo count when it become <5
         //flash NO AMMO when current ammo = 0
 
