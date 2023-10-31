@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
         _sprite = _shieldVisualizer.GetComponent<SpriteRenderer>();
-        
+        _cameraTransform = Camera;
 
         _currentAmmo = _maxAmmo;
 
