@@ -5,16 +5,10 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     //camera shake variables
-    [SerializeField]
     public float _shakeDuration = 0f;
-    [SerializeField]
     public float _shakeMagnitude= 0.2f;
 
     private Vector3 _originalPosition;
-
-
-
-
 
 
 
@@ -46,11 +40,8 @@ public class CameraManager : MonoBehaviour
         }
 
     }
-    
+
+
+    //IEnumerator CameraShakeRoutine
+
 }
-
-+
-     
-
-//IEnumerator CameraShakeRoutine
-//{}
