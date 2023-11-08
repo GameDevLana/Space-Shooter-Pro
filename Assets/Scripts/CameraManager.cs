@@ -16,19 +16,19 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        _mainCamera = Camera.main;
-       
-     /*if (cameraTransform == null)
+
+        if (_mainCamera == null)
         {
-            cameraTransform = Camera.main.transform
-        }*/
+            _mainCamera = Camera.main.transform
+
+           }
     }
 
 
-    /*public void ShakeCamera()
+    public void ShakeCamera()
     {
-        _originalPosition = cameraTransform.position;
-    }*/
+        _originalPosition = _mainCamera.position;
+    }
 
     void Update()
     {
