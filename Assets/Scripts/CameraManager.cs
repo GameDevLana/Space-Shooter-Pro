@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+
+    private Camera _mainCamera;
     //camera shake variables
     public float _shakeDuration = 0f;
     public float _shakeMagnitude= 0.2f;
@@ -13,12 +15,14 @@ public class CameraManager : MonoBehaviour
 
 
     void Start()
-    /*{
-     if (cameraTransform == null)
+    {
+        _mainCamera = Camera.main;
+       
+     /*if (cameraTransform == null)
         {
             cameraTransform = Camera.main.transform
-        }
-    }*/
+        }*/
+    }
 
 
     /*public void ShakeCamera()
