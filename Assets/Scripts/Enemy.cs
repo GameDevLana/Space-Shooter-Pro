@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
 
 
     private void OnTriggerEnter2D(Collider2D other)   
-    {*--------------------------------------------------------------////////++++++++++++9*************************
+    {
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
