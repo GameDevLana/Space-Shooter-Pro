@@ -36,13 +36,13 @@ public class CameraManager : MonoBehaviour
     {
         if (_shakeDuration > 0)
         {
-            //cameraTransform.position = _originalPosition + Random.insideUnitCircle * _shakeMagnitude;
+            _mainCamera.transform.position = _originalPosition + (Random.insideUnitCircle * _shakeMagnitude);
             _shakeDuration -= Time.deltaTime;
         }
         else
         {
             _shakeDuration = 0f;
-          //  cameraTransform.position = _originalPosition;
+            _mainCamera.transform.position = _originalPosition;
         }
 
     }
