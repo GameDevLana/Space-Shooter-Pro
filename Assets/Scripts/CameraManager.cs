@@ -12,7 +12,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     public float _shakeMagnitude= 0.2f;
 
-    private Vector3 _originalPosition;
+    private Vector2 _originalPosition;
 
 
 
@@ -22,10 +22,8 @@ public class CameraManager : MonoBehaviour
         if (_mainCamera == null)
         {
             _mainCamera = Camera.main;
-
         }
     }
-
 
     public void ShakeCamera()
     {
