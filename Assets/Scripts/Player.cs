@@ -74,7 +74,10 @@ public class Player : MonoBehaviour
     private AudioClip _laserSoundClip;
     private AudioSource _audioSource;
 
-    //private no ammo audio - click when press space bar 
+
+
+
+    //private no ammo audio - click when press space bar                                                                                                                                                                                    
 
     void Start()
     {
@@ -84,7 +87,7 @@ public class Player : MonoBehaviour
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
         _sprite = _shieldVisualizer.GetComponent<SpriteRenderer>();
-        _cameraHolder = GameObject.Find("Camera+_Holder").GetComponent<CameraShake>();
+    
 
         _currentAmmo = _maxAmmo;
 
