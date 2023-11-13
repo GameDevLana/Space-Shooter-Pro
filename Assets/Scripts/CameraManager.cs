@@ -8,11 +8,11 @@ public class CameraManager : MonoBehaviour
     private Camera _mainCamera;
     //camera shake variables
     [SerializeField]
-    public float _shakeDuration = 1.0f;
+    private float _shakeDuration = 1.0f;
     [SerializeField]
-    public float _shakeMagnitude= 0.2f;
+    private float _shakeMagnitude= 0.2f;
 
-    private Vector2 _originalPosition;
+    private Vector3 _originalPosition;
 
 
 
@@ -23,29 +23,33 @@ public class CameraManager : MonoBehaviour
         {
             _mainCamera = Camera.main;
         }
+        _originalPosition = _mainCamera.transform.localPosition;
+
+
     }
 
     public void ShakeCamera()
     {
-        _originalPosition = _mainCamera.transform.position;
+        StartCoroutine(CameraShakeRoutine());
     }
 
-    void Update()
+
+
+    IEnumerator CameraShakeRoutine()
     {
-        if (_shakeDuration > 0)
+        float duration = _shakeDuration;
+        while (duration > 0)
         {
-            _mainCamera.transform.position = _originalPosition + (Random.insideUnitCircle * _shakeMagnitude);
-            _shakeDuration -= Time.deltaTime;
+            Vector2 shake = Random.insideUnitCircle * _shakeMagnitude;
+            Vector3 newpos = new Vector3(shake.x, shake.y, _originalPosition.z);
+            _mainCamera.transform.localPosition = newpos;
+            duration -= Time.deltaTime;
+            yield return null;
         }
-        else
-        {
-            _shakeDuration = 0f;
-            _mainCamera.transform.position = _originalPosition;
-        }
+
+        _mainCamera.transform.localPosition = _originalPosition;
 
     }
 
-
-    //IEnumerator CameraShakeRoutine
 
 }

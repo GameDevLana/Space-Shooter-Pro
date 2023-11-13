@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
         _sprite = _shieldVisualizer.GetComponent<SpriteRenderer>();
-        _cameraHolder = GameObject.Find("Camera_Holder").GetComponent<CameraManager>();
+        _cameraHolder = GameObject.Find("Main Camera").GetComponent<CameraManager>();
 
         _currentAmmo = _maxAmmo;
 
@@ -109,7 +109,12 @@ public class Player : MonoBehaviour
         {
             _audioSource.clip = _laserSoundClip;
         }
-    
+        if (_cameraHolder == null)
+        {
+            Debug.LogError("The CameraManager is NULL");
+        }
+
+
     }
 
 
@@ -204,7 +209,7 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
-        
+        _cameraHolder.ShakeCamera();
 
         if (_isShieldActive == true)
         {
