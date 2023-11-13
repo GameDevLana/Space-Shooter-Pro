@@ -49,7 +49,6 @@ public class Player : MonoBehaviour
     private bool _isShieldActive = false;
     private bool _isStopFireActive = false;
 
-    //private bool _isInvulnerable = false;
 
     [SerializeField]
     private GameObject _shieldVisualizer;
@@ -74,7 +73,7 @@ public class Player : MonoBehaviour
     private AudioClip _laserSoundClip;
     private AudioSource _audioSource;
 
-
+    private CameraManager _cameraHolder;
 
 
     //private no ammo audio - click when press space bar                                                                                                                                                                                    
@@ -87,7 +86,7 @@ public class Player : MonoBehaviour
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         _audioSource = GetComponent<AudioSource>();
         _sprite = _shieldVisualizer.GetComponent<SpriteRenderer>();
-    
+        _cameraHolder = GameObject.Find("Camera_Holder").GetComponent<CameraManager>();
 
         _currentAmmo = _maxAmmo;
 
@@ -110,7 +109,9 @@ public class Player : MonoBehaviour
         {
             _audioSource.clip = _laserSoundClip;
         }
+    
     }
+
 
 
     void Update()
@@ -203,6 +204,7 @@ public class Player : MonoBehaviour
 
     public void Damage()
     {
+        
 
         if (_isShieldActive == true)
         {
@@ -232,17 +234,6 @@ public class Player : MonoBehaviour
 
         //call camera shake coroutines
         //create a handle to the camera
-
-
-
-
-
-
-
-        //if (_isInvulnerable == false)
-        //{
-        //   StartCoroutine("OnInvulnerable");
-        //}
 
 
         if (_lives == 2)

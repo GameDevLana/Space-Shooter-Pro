@@ -8,7 +8,7 @@ public class CameraManager : MonoBehaviour
     private Camera _mainCamera;
     //camera shake variables
     [SerializeField]
-    public float _shakeDuration = 0f;
+    public float _shakeDuration = 1.0f;
     [SerializeField]
     public float _shakeMagnitude= 0.2f;
 
