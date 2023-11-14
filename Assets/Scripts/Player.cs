@@ -90,8 +90,8 @@ public class Player : MonoBehaviour
 
         _currentAmmo = _maxAmmo;
 
-
         _currentThrust = _maxThrust;
+
 
         if (_spawnManager == null)
         {
