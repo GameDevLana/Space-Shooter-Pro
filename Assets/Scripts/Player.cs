@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private AudioClip _laserSoundClip;
+    private AudioClip _explodeSoundClip;
     private AudioSource _audioSource;
 
     private CameraManager _cameraHolder;
@@ -254,6 +255,7 @@ public class Player : MonoBehaviour
         if (_lives < 1)
         {
             _spawnManager.OnPlayerDeath();
+            _audioSource.Play();
             Destroy(this.gameObject);
         }
         _uiManager.UpdateLives(_lives);
@@ -320,6 +322,7 @@ public class Player : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
+            _audioSource.Play();
             Destroy(enemy);
         }
 
