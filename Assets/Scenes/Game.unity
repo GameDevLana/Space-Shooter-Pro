@@ -639,6 +639,7 @@ MonoBehaviour:
   _leftEngine: {fileID: 1172854266}
   _score: 0
   _laserSoundClip: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
+  _explodeSoundClip: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
 --- !u!212 &527533185
 SpriteRenderer:
   m_ObjectHideFlags: 0

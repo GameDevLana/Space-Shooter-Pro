@@ -71,6 +71,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private AudioClip _laserSoundClip;
+    [SerializeField]
     private AudioClip _explodeSoundClip;
     private AudioSource _audioSource;
 
@@ -255,7 +256,7 @@ public class Player : MonoBehaviour
         if (_lives < 1)
         {
             _spawnManager.OnPlayerDeath();
-            _audioSource.Play();
+            AudioSource.PlayClipAtPoint(_explodeSoundClip, transform.position);
             Destroy(this.gameObject);
         }
         _uiManager.UpdateLives(_lives);
