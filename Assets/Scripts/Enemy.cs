@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
     
 
     void CalculateMovement()
-    {
+   /* {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
         if (transform.position.y < -5f)
@@ -66,8 +66,18 @@ public class Enemy : MonoBehaviour
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
         }
-    }
+    }*/
 
+    {
+        transform.Translate(new Vector3(1, -1, 0).normalized * _speed * Time.deltaTime);
+    
+
+        if (transform.position.y< -5f)
+        {
+            float randomX = Random.Range(-8f, 8f);
+            transform.position = new Vector3(randomX, 7, 0);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)   
     {
