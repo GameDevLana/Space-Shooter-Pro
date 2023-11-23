@@ -6,6 +6,18 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
+    private int _maxWaves;
+    private int _currentWave;
+
+    [SerializeField]
+    private int _enemiesPerWave;
+    private int _currentEnemies;
+
+    private UIManager _uiManaager;
+    private SpawnManager _spawnManager;
+       
+    
+    [SerializeField]
     private bool _isGameOver;
 
 
@@ -26,6 +38,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void DestroyEnemies()
+    {
+        _currentEnemies--;
+        
+        if(_currentEnemies == 0 && _currentWave < _maxWaves)
+        {
+            StartCoroutine(NewWave());
+        }
+    }
+
+
+    public IEnumerator NewWave()
+    {
+        _currentWave++;
+        _currentEnemies = _enemiesPerWave * _currentWave;
+
+        yield return new WaitForSeconds(2f);
+
+        float delayOfSpawn = 2f / (float)_currentWave;
+        _spawnManager.StartSpawning(_currentEnemies, delayOfSpawn);
+    }
     
     public void GameOver()
     {

@@ -2014,6 +2014,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63feb42bef3b4574083ae062a6af46cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxWaves: 5
+  _enemiesPerWave: 5
   _isGameOver: 0
 --- !u!4 &1699784910
 Transform:

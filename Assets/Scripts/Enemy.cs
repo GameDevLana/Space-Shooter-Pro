@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour
     }*/
 
     {
-        transform.Translate(new Vector3(1, -1, 0).normalized * _speed * Time.deltaTime);
+        transform.Translate(new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
     
 
         if (transform.position.y< -5f)
