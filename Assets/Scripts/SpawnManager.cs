@@ -39,8 +39,13 @@ public class SpawnManager : MonoBehaviour
     {
         StartCoroutine(SpawnEnemyRoutine(num, delay));
         StartCoroutine(SpawnPowerupRoutine());
-    
-    
+        //yield return StartCoroutine (WaveOneRoutine());
+        //yield return StartCoroutine (WaveTwoRoutine());
+        //yield return StartCoroutine (WaveThreeRoutine());
+        //yield return StartCoroutine (WaveFourRoutine());
+        //yield return StartCoroutine (WaveFiveRoutine());
+
+
         IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn)
         {
             yield return new WaitForSeconds(2.0f);
@@ -54,6 +59,7 @@ public class SpawnManager : MonoBehaviour
         }
     
         IEnumerator SpawnPowerupRoutine()
+        //IEnumerator WaveOneRoutine()
         {
             yield return new WaitForSeconds(2.0f);
             while (_stopSpawning == false)
@@ -64,12 +70,60 @@ public class SpawnManager : MonoBehaviour
                 yield return new WaitForSeconds(Random.Range(3, 8));
             }
         }
-    }
-    
 
+        //IEnumerator WaveTwoRoutine()
+/*      {
+            yield return new WaitForSeconds(2.0f);
+            while (_stopSpawning == false)
+           {
+                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+                int randomPowerUp = Random.Range(0, 6);
+                Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
+                yield return new WaitForSeconds(Random.Range(3, 8));
+           }
+        }
+
+        //IEnumerator WaveThreeRoutine()
+        {
+            yield return new WaitForSeconds(2.0f);
+            while (_stopSpawning == false)
+            {
+                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+                int randomPowerUp = Random.Range(0, 6);
+                Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
+                yield return new WaitForSeconds(Random.Range(3, 8));
+            }
+         }
+
+        //IEnumerator WaveFourRoutine()
+        {
+            yield return new WaitForSeconds(2.0f);
+            while (_stopSpawning == false)
+            {
+                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+                int randomPowerUp = Random.Range(0, 6);
+                Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
+                yield return new WaitForSeconds(Random.Range(3, 8));
+            }
+         }
+
+
+        //IEnumerator WaveFiveRoutine()
+        {
+            yield return new WaitForSeconds(2.0f);
+            while (_stopSpawning == false)
+            {
+                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+                int randomPowerUp = Random.Range(0, 6);
+                Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
+                yield return new WaitForSeconds(Random.Range(3, 8));
+            }
+         }  */
+
+    } 
 
     public void OnPlayerDeath()
-    { 
-        _stopSpawning = true;
-    }
+{ 
+    _stopSpawning = true;
 }
+    }
