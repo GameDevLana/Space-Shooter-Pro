@@ -40,13 +40,26 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnEnemyRoutine(num, delay));
         StartCoroutine(SpawnPowerupRoutine());
         //yield return StartCoroutine (WaveOneRoutine());
+
+
+
         //yield return StartCoroutine (WaveTwoRoutine());
+        
+        
         //yield return StartCoroutine (WaveThreeRoutine());
+        
+        
         //yield return StartCoroutine (WaveFourRoutine());
+        
+        
         //yield return StartCoroutine (WaveFiveRoutine());
 
 
+
         IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn)
+        //IEnumerator WaveOneRoutine()
+
+
         {
             yield return new WaitForSeconds(2.0f);
             while (enemies > 0 && !_stopSpawning == false)
@@ -59,7 +72,6 @@ public class SpawnManager : MonoBehaviour
         }
     
         IEnumerator SpawnPowerupRoutine()
-        //IEnumerator WaveOneRoutine()
         {
             yield return new WaitForSeconds(2.0f);
             while (_stopSpawning == false)

@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     private float _canFire = -1;
 
     
+    
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
