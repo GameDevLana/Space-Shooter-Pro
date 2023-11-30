@@ -35,28 +35,20 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-    public void StartSpawning(int num, float delay)
+    public void StartSpawning(int num, float delay) //(num, delay)
     {
-        StartCoroutine(SpawnEnemyRoutine(num, delay));
+        StartCoroutine(SpawnEnemyRoutine(num, delay)); //(num, delay)
+        //possible multiple coroutines 
+        //
+         
         StartCoroutine(SpawnPowerupRoutine());
-        //yield return StartCoroutine (WaveOneRoutine());
+       
+        
+        
 
 
 
-        //yield return StartCoroutine (WaveTwoRoutine());
-        
-        
-        //yield return StartCoroutine (WaveThreeRoutine());
-        
-        
-        //yield return StartCoroutine (WaveFourRoutine());
-        
-        
-        //yield return StartCoroutine (WaveFiveRoutine());
-
-
-
-        IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn)
+        IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) //(int enemies, float delaytospawn)
         //IEnumerator WaveOneRoutine()
 
 
@@ -70,6 +62,29 @@ public class SpawnManager : MonoBehaviour
                 yield return new WaitForSeconds(delayToSpawn);
             }
         }
+
+
+        //spawn enemies - 5 with delay between each spawn
+        //wait
+        //spawn enemies - 10 with delay between each spawn
+        //wait
+        //spawn enemies - 15 with delay between each spawn
+        //wait
+        //spawn enemies - 20 with delay between each spawn
+        //wait
+        //spawn enemies - infinite with delay between each spawn. CURRENT SPAWN BEHAVIOR 
+        //stop spawning at player death
+
+
+        
+
+
+
+
+
+
+
+
     
         IEnumerator SpawnPowerupRoutine()
         {
@@ -83,54 +98,6 @@ public class SpawnManager : MonoBehaviour
             }
         }
 
-        //IEnumerator WaveTwoRoutine()
-/*      {
-            yield return new WaitForSeconds(2.0f);
-            while (_stopSpawning == false)
-           {
-                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                int randomPowerUp = Random.Range(0, 6);
-                Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
-                yield return new WaitForSeconds(Random.Range(3, 8));
-           }
-        }
-
-        //IEnumerator WaveThreeRoutine()
-        {
-            yield return new WaitForSeconds(2.0f);
-            while (_stopSpawning == false)
-            {
-                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                int randomPowerUp = Random.Range(0, 6);
-                Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
-                yield return new WaitForSeconds(Random.Range(3, 8));
-            }
-         }
-
-        //IEnumerator WaveFourRoutine()
-        {
-            yield return new WaitForSeconds(2.0f);
-            while (_stopSpawning == false)
-            {
-                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                int randomPowerUp = Random.Range(0, 6);
-                Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
-                yield return new WaitForSeconds(Random.Range(3, 8));
-            }
-         }
-
-
-        //IEnumerator WaveFiveRoutine()
-        {
-            yield return new WaitForSeconds(2.0f);
-            while (_stopSpawning == false)
-            {
-                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                int randomPowerUp = Random.Range(0, 6);
-                Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
-                yield return new WaitForSeconds(Random.Range(3, 8));
-            }
-         }  */
 
     } 
 
