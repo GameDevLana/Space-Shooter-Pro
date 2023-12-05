@@ -37,7 +37,7 @@ public class SpawnManager : MonoBehaviour
 
     public void StartSpawning(int num, float delay) 
     {
-        StartCoroutine(SpawnEnemyRoutine(num, delay));
+        StartCoroutine(SpawnEnemyRoutine(10, 3.0f));
        //possible multiple coroutines 
 
       //IEnumerator WaveTwoRoutine()
@@ -111,7 +111,7 @@ public class SpawnManager : MonoBehaviour
 
         {
             yield return new WaitForSeconds(2.0f);
-            while (enemies > 0 && !_stopSpawning == false)
+            while (enemies > 0 && _stopSpawning == false)
             {
                 Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
                 GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
