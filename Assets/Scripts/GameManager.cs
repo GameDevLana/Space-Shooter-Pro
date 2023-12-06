@@ -42,14 +42,14 @@ public class GameManager : MonoBehaviour
     {
         _currentEnemies--;
         
-        if(_currentEnemies == 0 && _currentWave < _maxWaves)
+       /* if(_currentEnemies == 0 && _currentWave < _maxWaves)
         {
             StartCoroutine(NewWave());
-        }
+        }*/
     }
 
 
-    public IEnumerator NewWave()
+    /*public IEnumerator NewWave()
     {
         _currentWave++;
         _currentEnemies = _enemiesPerWave * _currentWave;
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
         float delayOfSpawn = 2f / (float)_currentWave;
         _spawnManager.StartSpawning(_currentEnemies, delayOfSpawn);
-    }
+    }*/
     
     public void GameOver()
     {
