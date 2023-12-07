@@ -37,85 +37,86 @@ public class SpawnManager : MonoBehaviour
 
     public void StartSpawning()
     {
-        StartCoroutine(SpawnEnemyRoutine(10, 3.0f));
-        yield return StartCoroutine (WaveTwoRoutine());
-        yield return StartCoroutine (WaveThreeRoutine());
-        yield return StartCoroutine (WaveFourRoutine());
-        yield return StartCoroutine (WaveFiveRoutine());
+        StartCoroutine(SpawnEnemyRoutine(10, 5.0f));
+       // yield return new WaitForSeconds(5.0f);
 
         StartCoroutine(SpawnPowerupRoutine());
     }
 
     //possible multiple coroutines 
 
-    IEnumerator WaveTwoRoutine()
+
+    IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) //(int enemies, float delaytospawn)
+                                                                   //IEnumerator WaveOneRoutine()
+    {
+        yield return new WaitForSeconds(2.0f);
+        while (enemies > 0 && _stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+            GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
+            newEnemy.transform.parent = _enemyContainer.transform;
+            enemies--;
+            yield return new WaitForSeconds(delayToSpawn);
+        }
+        yield return StartCoroutine(WaveTwoRoutine(15, 3f));
+        yield return StartCoroutine(WaveThreeRoutine(20, 3f));
+        yield return StartCoroutine(WaveFourRoutine(25, 3f));
+        yield return StartCoroutine(WaveFiveRoutine(30, 3f));
+    }
+
+
+    IEnumerator WaveTwoRoutine(int enemies, float delayToSpawn)
     {
         yield return new WaitForSeconds(2.0f);
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            int randomPowerUp = Random.Range(0, 6);
-            Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(3, 8));
+            GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
+            newEnemy.transform.parent = _enemyContainer.transform;
+            enemies--;
+            yield return new WaitForSeconds(delayToSpawn);
         }
     }
 
-    IEnumerator WaveThreeRoutine()
+    IEnumerator WaveThreeRoutine(int enemies, float delayToSpawn)
     {
         yield return new WaitForSeconds(2.0f);
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            int randomPowerUp = Random.Range(0, 6);
-            Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(3, 8));
+            GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
+            newEnemy.transform.parent = _enemyContainer.transform;
+            enemies--;
+            yield return new WaitForSeconds(delayToSpawn);
         }
     }
 
-    IEnumerator WaveFourRoutine()
+    IEnumerator WaveFourRoutine(int enemies, float delayToSpawn)
     {
         yield return new WaitForSeconds(2.0f);
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            int randomPowerUp = Random.Range(0, 6);
-            Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(3, 8));
+            GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
+            newEnemy.transform.parent = _enemyContainer.transform;
+            enemies--;
+            yield return new WaitForSeconds(delayToSpawn);
         }
        }
 
 
-    IEnumerator WaveFiveRoutine()
+    IEnumerator WaveFiveRoutine(int enemies, float delayToSpawn)
     {
         yield return new WaitForSeconds(2.0f);
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            int randomPowerUp = Random.Range(0, 6);
-            Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(3, 8));
-          }
-    }  
-
-
-            
-
-
-
-        IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) //(int enemies, float delaytospawn)
-        //IEnumerator WaveOneRoutine()
-        {
-            yield return new WaitForSeconds(2.0f);
-            while (enemies > 0 && _stopSpawning == false)
-            {
-                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
-                newEnemy.transform.parent = _enemyContainer.transform;
-                enemies--;
-                yield return new WaitForSeconds(delayToSpawn);
-            }
+            GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
+            newEnemy.transform.parent = _enemyContainer.transform;
+            enemies--;
+            yield return new WaitForSeconds(delayToSpawn);
         }
-
+    }  
 
         //spawn enemies - 10 with delay between each spawn
         //wait
