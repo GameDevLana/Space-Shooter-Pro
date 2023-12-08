@@ -59,6 +59,8 @@ public class Enemy : MonoBehaviour
     
 
     void CalculateMovement()
+
+        //Enemy One
    /* {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
@@ -68,7 +70,7 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
     }*/
-
+        //Enemy Two
     {
         transform.Translate(new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
     

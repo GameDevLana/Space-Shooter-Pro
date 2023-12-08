@@ -48,7 +48,8 @@ public class Player : MonoBehaviour
     private bool _isSpeedBoostActive = false;
     private bool _isShieldActive = false;
     private bool _isStopFireActive = false;
-
+    
+    //private bool _isMisfireActive = false;
 
     [SerializeField]
     private GameObject _shieldVisualizer;
@@ -126,6 +127,7 @@ public class Player : MonoBehaviour
         CalculateMovement();
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canfire)
         {
+            
             FireLaser();
         }
     }
@@ -198,6 +200,8 @@ public class Player : MonoBehaviour
             //UI - NO AMMO - false
             //ammo --3 for triple shot
         }
+        
+
 
         else if (_currentAmmo > 0 && _isStopFireActive == false)
         {
@@ -341,23 +345,32 @@ public class Player : MonoBehaviour
         }
 
     }
+
+  /*public void MisfireActive()
+    {
+        _isMisfireActive = true;
+        StartCoroutine(MisfireCooldownRoutine());
+    }
+  */
+
+
     IEnumerator TripleShotPowerDownRoutine()
-        {
-            yield return new WaitForSeconds(6.0f); 
-            _isTripleShotActive = false;
-        }
+    {
+        yield return new WaitForSeconds(6.0f); 
+        _isTripleShotActive = false;
+    }
 
-        IEnumerator SpeedBoostPowerDownRoutine()
-        {
-            yield return new WaitForSeconds(5.0f);
-            _isSpeedBoostActive = false;
-        }
+    IEnumerator SpeedBoostPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isSpeedBoostActive = false;
+    }
 
-        IEnumerator StopFireCooldownRoutine()
-        {
-            yield return new WaitForSeconds(5.0f);
-            _isStopFireActive = false;
-        }
+    IEnumerator StopFireCooldownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _isStopFireActive = false;
+    }
 
     IEnumerator ThrustRechargeRoutine()
     {
@@ -378,15 +391,20 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    /*IEnumerator MisfireCooldownRoutine()
+     {
+        yield return new WaitForSeconds(5.0f);
+        _isMisfireActive = false;
+     }
+    */
         //flash current ammo count when it become <5
-        //flash NO AMMO when current ammo = 0
+       //flash NO AMMO when current ammo = 0
 
-        public void AddScore(int points)
-        {
-            _score += points;
-            _uiManager.UpdateScore(_score);
-        }
+    public void AddScore(int points)
+    {
+        _score += points;
+        _uiManager.UpdateScore(_score);
+    }
 
     
 }

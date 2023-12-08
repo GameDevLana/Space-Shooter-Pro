@@ -7,7 +7,7 @@ public class PowerUp : MonoBehaviour
     [SerializeField]
     private float _speed = 3.0f; 
     
-    [SerializeField] //0 = triple shot 1 = speed 2 = shield 3 = ammo 4 = health 5 = bomb
+    [SerializeField] //0 = triple shot 1 = speed 2 = shield 3 = ammo 4 = health 5 = bomb  6 = misfire  
     private int powerupID;
     
     [SerializeField]
@@ -54,12 +54,14 @@ public class PowerUp : MonoBehaviour
                     case 5:
                         player.BombActive();
                         break;
+                    //case 6:
+                        //player.MisfireActive();
+                        //break;
                     default:
                         Debug.Log("Default Value");
                         break;
                 }
             }
-
             Destroy(this.gameObject);
         }  
     }

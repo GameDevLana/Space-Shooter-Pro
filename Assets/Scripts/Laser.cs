@@ -24,7 +24,20 @@ public class Laser : MonoBehaviour
 
     void MoveUP()
     {
-        transform.Translate(Vector3.up * _speed * Time.deltaTime);
+
+      /*if (_isMisfireActive = true)
+        {
+            transform.Translate (new Vector3(.5, 4, 0).normalized * _speed * Time.deltaTime); //Weapon Misfire PU - Causes the player's weapons to misfire randomly, reducing accuracy 
+            transform.Translate (new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector3.up * _speed * Time.deltaTime);
+        }
+        */
+
+
+
 
         if (transform.position.y > 8f)
         {
