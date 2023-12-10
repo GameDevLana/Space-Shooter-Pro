@@ -68,7 +68,7 @@ public class SpawnManager : MonoBehaviour
     IEnumerator WaveTwoRoutine(int enemies, float delayToSpawn)
     {
         yield return new WaitForSeconds(2.0f);
-        while (_stopSpawning == false)
+        while (enemies < 0 && _stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
@@ -81,7 +81,7 @@ public class SpawnManager : MonoBehaviour
     IEnumerator WaveThreeRoutine(int enemies, float delayToSpawn)
     {
         yield return new WaitForSeconds(2.0f);
-        while (_stopSpawning == false)
+        while (enemies < 0 && _stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
@@ -94,7 +94,7 @@ public class SpawnManager : MonoBehaviour
     IEnumerator WaveFourRoutine(int enemies, float delayToSpawn)
     {
         yield return new WaitForSeconds(2.0f);
-        while (_stopSpawning == false)
+        while (enemies < 0 && _stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
@@ -108,7 +108,7 @@ public class SpawnManager : MonoBehaviour
     IEnumerator WaveFiveRoutine(int enemies, float delayToSpawn)
     {
         yield return new WaitForSeconds(2.0f);
-        while (_stopSpawning == false)
+        while (enemies < 0 && _stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
