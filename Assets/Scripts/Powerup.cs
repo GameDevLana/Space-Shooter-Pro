@@ -54,9 +54,9 @@ public class PowerUp : MonoBehaviour
                     case 5:
                         player.BombActive();
                         break;
-                    //case 6:
-                        //player.MisfireActive();
-                        //break;
+                    case 6:
+                        player.MisfireActive();
+                        break;
                     default:
                         Debug.Log("Default Value");
                         break;
