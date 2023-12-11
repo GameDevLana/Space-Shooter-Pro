@@ -48,8 +48,8 @@ public class Player : MonoBehaviour
     private bool _isSpeedBoostActive = false;
     private bool _isShieldActive = false;
     private bool _isStopFireActive = false;
-    
-    //private bool _isMisfireActive = false;
+     
+    private bool _isMisfireActive = false;
 
     [SerializeField]
     private GameObject _shieldVisualizer;
