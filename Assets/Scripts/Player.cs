@@ -48,8 +48,7 @@ public class Player : MonoBehaviour
     private bool _isSpeedBoostActive = false;
     private bool _isShieldActive = false;
     private bool _isStopFireActive = false;
-     
-   // private bool _isMisfireActive = false;
+    private bool _isMisfireActive = false;
 
     [SerializeField]
     private GameObject _shieldVisualizer;
@@ -200,8 +199,17 @@ public class Player : MonoBehaviour
             //UI - NO AMMO - false
             //ammo --3 for triple shot
         }
-        
+        if (_isMisfireActive == true && _isStopFireActive == false && _currentAmmo > 0)
+        {
 
+           Quaternion laserRotation = Quaternion.Euler(0, 0, 5);
+           Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.75f, 0), laserRotation);
+
+           //Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.75f, 0), Quaternion.identity);
+           _audioSource.Play();
+           _currentAmmo--;
+           _uiManager.UpdateAmmo(_currentAmmo);
+        }
 
         else if (_currentAmmo > 0 && _isStopFireActive == false)
         {
@@ -346,13 +354,11 @@ public class Player : MonoBehaviour
 
     }
 
-  /*public void MisfireActive()
+  public void MisfireActive()
     {
         _isMisfireActive = true;
         StartCoroutine(MisfireCooldownRoutine());
     }
-  */
-
 
     IEnumerator TripleShotPowerDownRoutine()
     {
@@ -368,7 +374,7 @@ public class Player : MonoBehaviour
 
     IEnumerator StopFireCooldownRoutine()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(3.0f);
         _isStopFireActive = false;
     }
 
@@ -391,12 +397,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    /*IEnumerator MisfireCooldownRoutine()
+    IEnumerator MisfireCooldownRoutine()
      {
         yield return new WaitForSeconds(5.0f);
         _isMisfireActive = false;
      }
-    */
+    
         //flash current ammo count when it become <5
        //flash NO AMMO when current ammo = 0
 

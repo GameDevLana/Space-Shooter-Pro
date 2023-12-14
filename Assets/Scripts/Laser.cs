@@ -8,7 +8,6 @@ public class Laser : MonoBehaviour
     private float _speed = 8.0f;
     private bool _isEnemyLaser = false;
 
-
     void Update()
     {     
         if (_isEnemyLaser == false)
@@ -25,17 +24,17 @@ public class Laser : MonoBehaviour
     void MoveUP()
     {
 
-      /*if (_isMisfireActive = true)
+       /* if (_isMisfireActive == false)
         {
-            transform.Translate (new Vector3(.5, 4, 0).normalized * _speed * Time.deltaTime); //Weapon Misfire PU - Causes the player's weapons to misfire randomly, reducing accuracy 
-            transform.Translate (new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
+            transform.Translate (new Vector3(1, 4, 0).normalized * _speed * Time.deltaTime); //Weapon Misfire PU - Causes the player's weapons to misfire randomly, reducing accuracy 
+            //transform.Translate (new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
         }
         else
         {
             transform.Translate(Vector3.up * _speed * Time.deltaTime);
-        }
-        */
+        }*/
 
+        
 
 
 
