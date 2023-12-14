@@ -871,6 +871,7 @@ MonoBehaviour:
   - {fileID: 271119891805479884, guid: 9e6704dd7649bb74bb12063c0c8812d8, type: 3}
   - {fileID: 1764165088960849764, guid: 6f361810346d5334daf04857bb7d2dab, type: 3}
   - {fileID: 4824065421104812852, guid: ac1c0dd56a30b38458867e06b3a024d9, type: 3}
+  - {fileID: 4643122918281000387, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
   powers:
   - {fileID: 6222416863793497046, guid: dc3b8512f35afa34981ccf995a9d9738, type: 3}
   - {fileID: 2337466045033826627, guid: ec9b728cf227d864995d6b3ec7572024, type: 3}
@@ -878,7 +879,8 @@ MonoBehaviour:
   - {fileID: 271119891805479884, guid: 9e6704dd7649bb74bb12063c0c8812d8, type: 3}
   - {fileID: 1764165088960849764, guid: 6f361810346d5334daf04857bb7d2dab, type: 3}
   - {fileID: 4824065421104812852, guid: ac1c0dd56a30b38458867e06b3a024d9, type: 3}
-  table: 130000001300000013000000130000001300000005000000
+  - {fileID: 4643122918281000387, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
+  table: 130000001300000013000000130000000a0000000500000005000000
   total: 0
   randomNumber: 0
 --- !u!4 &546276147
@@ -2439,60 +2441,3 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1001 &7014428342501240685
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4209067534304321519, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209067534304321519, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209067534304321519, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209067534304321519, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209067534304321519, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209067534304321519, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209067534304321519, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209067534304321519, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209067534304321519, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209067534304321519, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4209067534304321519, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643122918281000387, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-      propertyPath: m_Name
-      value: Misfire_Powerup
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}

@@ -22,7 +22,8 @@ public class SpawnManager : MonoBehaviour
         19,
         19,
         19,
-        19,
+        10,
+        5,
         5,
     };
 
