@@ -119,6 +119,11 @@ public class SpawnManager : MonoBehaviour
         }
     }  
 
+    //balanced spawn between enemies & powerups with rare spawns
+
+
+
+
         //spawn enemies - 10 with delay between each spawn
         //wait
         //spawn enemies - 15 with delay between each spawn

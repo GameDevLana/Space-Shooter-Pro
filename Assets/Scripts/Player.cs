@@ -126,6 +126,11 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    //Pickup Collect - When 'C' is pressed, pickups quickly move to player
+   // Homing Projectile -  create homing projectile that seeks the closest target - include rare powerup to activate
+
+
     void CalculateMovement()
     {
         float horizontalInput = Input.GetAxis("Horizontal");

@@ -13,7 +13,7 @@ public class PowerUp : MonoBehaviour
     [SerializeField]
     private AudioClip _clip;
 
-
+    //Homing projectile powerup - rare
     void Update()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);

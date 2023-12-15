@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
 
     void CalculateMovement()
 
-        //Enemy One
+        //Enemy One - normal movement
    /* {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
     }*/
-        //Enemy Two
+        //Enemy Two - diagonal movement
     {
         transform.Translate(new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
     
@@ -80,6 +80,19 @@ public class Enemy : MonoBehaviour
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
         }
+
+        //Enemy Three - new
+
+        //Enemy Four - aggressive
+
+        //Enemy Five - smart
+
+        //Enemy shields
+        //Enemy avoids
+        //Enemy pickups
+        
+        //Boss AI final wave- stops at center of scene with unique attack 
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)   
