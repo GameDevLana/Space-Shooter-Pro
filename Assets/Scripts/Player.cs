@@ -115,22 +115,16 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("The CameraManager is NULL");
         }
-
-
     }
-
-
 
     void Update()
     {
         CalculateMovement();
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canfire)
         {
-            
             FireLaser();
         }
     }
-
 
     void CalculateMovement()
     {
@@ -159,7 +153,6 @@ public class Player : MonoBehaviour
         
         else if (_currentThrust <=0)
         {
-
             StartCoroutine(ThrustRechargeRoutine());   
         }
 

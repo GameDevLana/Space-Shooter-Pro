@@ -24,23 +24,9 @@ public class Laser : MonoBehaviour
     void MoveUP()
     {
 
-       /* if (_isMisfireActive == false)
-        {
-            transform.Translate (new Vector3(1, 4, 0).normalized * _speed * Time.deltaTime); //Weapon Misfire PU - Causes the player's weapons to misfire randomly, reducing accuracy 
-            //transform.Translate (new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
-        }
-        else
-        {
-            transform.Translate(Vector3.up * _speed * Time.deltaTime);
-        }*/
-
-        
-
-
-
         if (transform.position.y > 8f)
         {
-            
+            transform.Translate(Vector3.up * _speed * Time.deltaTime);
             if (transform.parent != null)
             {
                 Destroy(transform.parent.gameObject);
@@ -49,7 +35,6 @@ public class Laser : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
 
     void MoveDown()
     {
