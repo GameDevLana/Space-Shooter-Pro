@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     private GameObject[] powerups;
     private bool _stopSpawning = false;
 
-    public List<GameObject> powers;
+    //public List<GameObject> powers;
 
     public int[] table =
     {
