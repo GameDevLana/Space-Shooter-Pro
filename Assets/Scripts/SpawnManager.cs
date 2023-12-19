@@ -14,7 +14,6 @@ public class SpawnManager : MonoBehaviour
     private GameObject[] powerups;
     private bool _stopSpawning = false;
 
-    //public List<GameObject> powers;
 
     public int[] table =
     {
@@ -142,7 +141,17 @@ public class SpawnManager : MonoBehaviour
             while (_stopSpawning == false)
             {
                 Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                int randomPowerUp = Random.Range(0, 7);
+
+
+            /*use powerups.Length instead of Random.Range(0, 70);
+             * 
+             * for (int i = 0; i < powerups.Length; i++)  
+            {
+                int randomPowerUp = powerups[i];
+            }*/
+
+
+              int randomPowerUp = Random.Range(0, 7);
                 Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
                 yield return new WaitForSeconds(Random.Range(3, 8));
             }
