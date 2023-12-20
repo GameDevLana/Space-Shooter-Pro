@@ -38,7 +38,7 @@ public class SpawnManager : MonoBehaviour
     public void StartSpawning()
     {
         StartCoroutine(SpawnEnemyRoutine(10, 5.0f));
-       // yield return new WaitForSeconds(5.0f);
+       
 
         StartCoroutine(SpawnPowerupRoutine());
     }
@@ -46,8 +46,7 @@ public class SpawnManager : MonoBehaviour
     //possible multiple coroutines 
 
 
-    IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) //(int enemies, float delaytospawn)
-                                                                   //IEnumerator WaveOneRoutine()
+    IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) 
     {
         yield return new WaitForSeconds(2.0f);
         while (enemies > 0 && _stopSpawning == false)
@@ -118,29 +117,12 @@ public class SpawnManager : MonoBehaviour
         }
     }  
 
-    //balanced spawn between enemies & powerups with rare spawns
-
-
-
-
-        //spawn enemies - 10 with delay between each spawn
-        //wait
-        //spawn enemies - 15 with delay between each spawn
-        //wait
-        //spawn enemies - 20 with delay between each spawn
-        //wait
-        //spawn enemies - 25 with delay between each spawn
-        //wait
-        //spawn enemies - infinite with delay between each spawn. CURRENT SPAWN BEHAVIOR 
-        //stop spawning at player death
-
-
-        IEnumerator SpawnPowerupRoutine()
+    IEnumerator SpawnPowerupRoutine()
+    {
+        yield return new WaitForSeconds(2.0f);
+        while (_stopSpawning == false)
         {
-            yield return new WaitForSeconds(2.0f);
-            while (_stopSpawning == false)
-            {
-                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
 
 
             /*use powerups.Length instead of Random.Range(0, 70);
@@ -151,11 +133,11 @@ public class SpawnManager : MonoBehaviour
             }*/
 
 
-              int randomPowerUp = Random.Range(0, 7);
-                Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
-                yield return new WaitForSeconds(Random.Range(3, 8));
-            }
+            int randomPowerUp = Random.Range(0, 7);
+            Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(3, 8));
         }
+    }
 
     public void OnPlayerDeath()
     { 
