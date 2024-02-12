@@ -41,7 +41,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        //array of enemy features including movement and unique features or firing methods
+        
         CalculateMovement();
+
     
         if (Time.time > _canFire)
         {
@@ -57,7 +60,7 @@ public class Enemy : MonoBehaviour
         }
     }  
     
-
+    //will enemies actually have the methods and coroutines like player and if so it will be a mixture of similarity to powerup script and player script.
     void CalculateMovement()
 
         //Enemy One - normal movement
@@ -82,16 +85,22 @@ public class Enemy : MonoBehaviour
         }
 
         //Enemy Three - new
+        //each enemy wave will hold a unique enemy type
+
+        //Enemy shields
+        //one enemy with shields
+        //one enemy avoids lasers
+        //one enemy pickups?
+        
+
 
         //Enemy Four - aggressive
 
         //Enemy Five - smart
 
-        //Enemy shields
-        //Enemy avoids
-        //Enemy pickups
-        
+
         //Boss AI final wave- stops at center of scene with unique attack 
+        // all the enemies types
 
     }
 
@@ -110,6 +119,8 @@ public class Enemy : MonoBehaviour
             _speed = 0;
 
             _audioSource.Play();
+
+            // enemy damage method like player(shields)
             
             Destroy(this.gameObject, 2.5f);
             }
@@ -122,6 +133,8 @@ public class Enemy : MonoBehaviour
             {
                 _player.AddScore(10);
             }
+
+            // enemy damage method like player(shields)
 
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;

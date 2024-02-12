@@ -48,7 +48,7 @@ public class SpawnManager : MonoBehaviour
     }
 
     //possible multiple coroutines 
-
+    //spawn random enemies
 
     IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) 
     {
@@ -66,7 +66,7 @@ public class SpawnManager : MonoBehaviour
         yield return StartCoroutine(WaveFourRoutine(25, 3f));
         yield return StartCoroutine(WaveFiveRoutine(30, 3f));
     }
-
+    //regular enemies
 
     IEnumerator WaveTwoRoutine(int enemies, float delayToSpawn)
     {
@@ -80,7 +80,7 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(delayToSpawn);
         }
     }
-
+    //diagonal enemies
     IEnumerator WaveThreeRoutine(int enemies, float delayToSpawn)
     {
         yield return new WaitForSeconds(2.0f);
@@ -93,7 +93,7 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(delayToSpawn);
         }
     }
-
+    //damage player enemies
     IEnumerator WaveFourRoutine(int enemies, float delayToSpawn)
     {
         yield return new WaitForSeconds(2.0f);
@@ -105,7 +105,8 @@ public class SpawnManager : MonoBehaviour
             enemies--;
             yield return new WaitForSeconds(delayToSpawn);
         }
-       }
+        //unique projectile
+    }
 
 
     IEnumerator WaveFiveRoutine(int enemies, float delayToSpawn)
@@ -119,7 +120,17 @@ public class SpawnManager : MonoBehaviour
             enemies--;
             yield return new WaitForSeconds(delayToSpawn);
         }
+        //zigzag movement
     }  
+    //2nd wave of five enemies 
+    //homing projectile
+    //smart enemy
+    //enemy pickup
+    //c-key collect pickups
+
+    //Boss AI 
+    //random combo of all the above?
+
 
     IEnumerator SpawnPowerupRoutine()
     {
@@ -128,19 +139,18 @@ public class SpawnManager : MonoBehaviour
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
 
-
-            /*use powerups.Length instead of Random.Range(0, 70);
-             * 
-             * for (int i = 0; i < powerups.Length; i++)  
-            {
-                int randomPowerUp = powerups[i];
-            }*/
-
-
             int randomPowerUp = Random.Range(0, 7);
             Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
+
+
+        /*use powerups.Length instead of Random.Range(0, 70);
+         * 
+         * for (int i = 0; i < powerups.Length; i++)  
+        {
+            int randomPowerUp = powerups[i];
+        }*/
     }
 
     public void OnPlayerDeath()
