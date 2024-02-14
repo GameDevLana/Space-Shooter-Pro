@@ -41,8 +41,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        //array of enemy features including movement and unique features or firing methods
-        
+                
         CalculateMovement();
 
     
@@ -58,10 +57,15 @@ public class Enemy : MonoBehaviour
                 lasers[i].AssignEnemyLaser();
             }
         }
-    }  
-    
+    }
+
     //will enemies actually have the methods and coroutines like player and if so it will be a mixture of similarity to powerup script and player script.
+    //each enemy wave will hold a unique enemy type
+
+
     void CalculateMovement()
+
+
 
         //Enemy One - normal movement
    /* {
@@ -84,8 +88,12 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
 
-        //Enemy Three - new
-        //each enemy wave will hold a unique enemy type
+        //Enemy Three - will fire and damage player
+        
+
+
+
+
 
         //Enemy shields
         //one enemy with shields
@@ -137,6 +145,9 @@ public class Enemy : MonoBehaviour
             // enemy damage method like player(shields)
 
             _anim.SetTrigger("OnEnemyDeath");
+            //explosion animation ^^^^
+            
+            
             _speed = 0;
 
             _audioSource.Play();
