@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
     private float _fireRate = 3.0f;
     private float _canFire = -1;
 
+    public 
+
     
     
     private void Start()

@@ -41,6 +41,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int _lives = 3;
 
+    private int _currentHealth;
+    [SerializeField]
+    private int _maxHealth = 10;
+
 
     private SpawnManager _spawnManager;
 
@@ -93,6 +97,8 @@ public class Player : MonoBehaviour
         _currentAmmo = _maxAmmo;
 
         _currentThrust = _maxThrust;
+
+        _currentHealth = _maxHealth;
 
 
         if (_spawnManager == null)
@@ -248,7 +254,7 @@ public class Player : MonoBehaviour
 
         _lives--;
 
-
+        if (_currentHealth )
         //call camera shake coroutines
         //create a handle to the camera
 
