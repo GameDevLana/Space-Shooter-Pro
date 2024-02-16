@@ -254,7 +254,7 @@ public class Player : MonoBehaviour
 
         _lives--;
 
-        if (_currentHealth )
+       // if (_currentHealth )
         //call camera shake coroutines
         //create a handle to the camera
 

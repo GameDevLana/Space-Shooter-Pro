@@ -52,7 +52,7 @@ public class Laser : MonoBehaviour
         }
     }
 
-
+    //assign pulse laser that causes damage
     public void AssignEnemyLaser()
     {
         _isEnemyLaser = true;

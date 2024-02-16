@@ -631,6 +631,7 @@ MonoBehaviour:
   _fireRate: 0.15
   _maxAmmo: 15
   _lives: 3
+  _maxHealth: 10
   _shieldVisualizer: {fileID: 994103381}
   _spriteRenderer: 3
   _shieldColorOne: {r: 0.92173254, g: 0.93333334, b: 0.12549019, a: 1}
@@ -863,18 +864,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 3717972668085127260, guid: 40e300852860d8f43b48c942f79d5d34, type: 3}
+  enemytypes: []
   _enemyContainer: {fileID: 176585478}
   powerups:
   - {fileID: 2337466045033826627, guid: ec9b728cf227d864995d6b3ec7572024, type: 3}
   - {fileID: 6222416863793497046, guid: dc3b8512f35afa34981ccf995a9d9738, type: 3}
-  - {fileID: 4525371980995968900, guid: 4eab1624fcd79004393d48e2ead70434, type: 3}
-  - {fileID: 271119891805479884, guid: 9e6704dd7649bb74bb12063c0c8812d8, type: 3}
-  - {fileID: 1764165088960849764, guid: 6f361810346d5334daf04857bb7d2dab, type: 3}
-  - {fileID: 4824065421104812852, guid: ac1c0dd56a30b38458867e06b3a024d9, type: 3}
-  - {fileID: 4643122918281000387, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
-  powers:
-  - {fileID: 6222416863793497046, guid: dc3b8512f35afa34981ccf995a9d9738, type: 3}
-  - {fileID: 2337466045033826627, guid: ec9b728cf227d864995d6b3ec7572024, type: 3}
   - {fileID: 4525371980995968900, guid: 4eab1624fcd79004393d48e2ead70434, type: 3}
   - {fileID: 271119891805479884, guid: 9e6704dd7649bb74bb12063c0c8812d8, type: 3}
   - {fileID: 1764165088960849764, guid: 6f361810346d5334daf04857bb7d2dab, type: 3}
