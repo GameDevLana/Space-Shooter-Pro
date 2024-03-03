@@ -43,10 +43,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-                
+
         CalculateMovement();
 
-    
+
         if (Time.time > _canFire)
         {
             _fireRate = Random.Range(3f, 7f);
@@ -61,16 +61,41 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //will enemies actually have the methods and coroutines like player and if so it will be a mixture of similarity to powerup script and player script.
+
+    /*will enemies actually have the methods and coroutines like player and if so it will be a
+    mixture of similarity to powerup script and player script.*/
     //each enemy wave will hold a unique enemy type
+
+    //OPTIONS  Enemy One - will alternate straight and diagonal
+    //OPTIONS  Enemy Two - will fire and damage player
+    //OPTIONS  Enemy Four - aggressive
+    //OPTIONS  Enemy Five - smart
+
+    //Enemy shields
+    //one enemy with shields
+    //one enemy avoids lasers
+    //one enemy pickups?
+
+    //Boss AI final wave- stops at center of scene with unique attack which could be a combo of all enemey types
+    // all the enemies types
 
 
     void CalculateMovement()
 
 
 
-        //Enemy One - normal movement
-   /* {
+
+
+
+
+/*
+    Enemy One - normal movemenT following is commented out while testing the new movement for "enemy two"
+    which is actually a new movement for the same enemy i think and might not be assigned to any 2nd enemy.
+    I need to check on the status of creating new enemy sprites or am i using shapes for prototyping purposes.
+*/
+    
+    /*  
+    {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
         if (transform.position.y < -5f)
@@ -78,8 +103,10 @@ public class Enemy : MonoBehaviour
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
         }
-    }*/
-        //Enemy Two - diagonal movement
+    } 
+    */
+
+//  Enemy Two - diagonal movement following
     {
         transform.Translate(new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
     
@@ -89,30 +116,8 @@ public class Enemy : MonoBehaviour
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
         }
-
-        //Enemy Three - will fire and damage player
-        
-
-
-
-
-
-        //Enemy shields
-        //one enemy with shields
-        //one enemy avoids lasers
-        //one enemy pickups?
-        
-
-
-        //Enemy Four - aggressive
-
-        //Enemy Five - smart
-
-
-        //Boss AI final wave- stops at center of scene with unique attack 
-        // all the enemies types
-
     }
+
 
     private void OnTriggerEnter2D(Collider2D other)   
     {
@@ -129,27 +134,27 @@ public class Enemy : MonoBehaviour
             _speed = 0;
 
             _audioSource.Play();
-
-            // enemy damage method like player(shields)
+            
+//  OPTIONS enemy damage method like player(shields)
             
             Destroy(this.gameObject, 2.5f);
-            }
+        }
        
         if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
 
            if (_player != null)
-            {
+           {
                 _player.AddScore(10);
-            }
+           }
 
-            // enemy damage method like player(shields)
+//  OPTIONS enemy damage method like player(shields)
 
             _anim.SetTrigger("OnEnemyDeath");
-            //explosion animation ^^^^
-            
-            
+
+//  explosion animation ^^^^
+
             _speed = 0;
 
             _audioSource.Play();

@@ -47,10 +47,23 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnPowerupRoutine());
     }
 
-    //possible multiple coroutines 
-    //spawn random enemies
+//possible multiple coroutines 
 
-    IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) 
+//see below for start of spawn random enemies code
+
+/*  
+    yield return new WaitForSeconds(2.0f);
+    while (_stopSpawning == false)
+    {
+        Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+        
+        int randomPowerUp = Random.Range(0, 7);
+        Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
+        yield return new WaitForSeconds(Random.Range(3, 8));
+    }
+*/
+
+IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) //wave one would be normal enemies for now
     {
         yield return new WaitForSeconds(2.0f);
         while (enemies > 0 && _stopSpawning == false)
@@ -66,9 +79,8 @@ public class SpawnManager : MonoBehaviour
         yield return StartCoroutine(WaveFourRoutine(25, 3f));
         yield return StartCoroutine(WaveFiveRoutine(30, 3f));
     }
-    //regular enemies
 
-    IEnumerator WaveTwoRoutine(int enemies, float delayToSpawn)
+    IEnumerator WaveTwoRoutine(int enemies, float delayToSpawn)    //wave two would be diagonal or zigzag movement
     {
         yield return new WaitForSeconds(2.0f);
         while (enemies < 0 && _stopSpawning == false)
@@ -80,8 +92,7 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(delayToSpawn);
         }
     }
-    //diagonal enemies
-    IEnumerator WaveThreeRoutine(int enemies, float delayToSpawn)
+    IEnumerator WaveThreeRoutine(int enemies, float delayToSpawn)   //wave three would be unique projectile - laserbeam enemies
     {
         yield return new WaitForSeconds(2.0f);
         while (enemies < 0 && _stopSpawning == false)
@@ -93,8 +104,8 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(delayToSpawn);
         }
     }
-    //damage player enemies
-    IEnumerator WaveFourRoutine(int enemies, float delayToSpawn)
+    
+    IEnumerator WaveFourRoutine(int enemies, float delayToSpawn)    //wave four would be unique projectile - homing
     {
         yield return new WaitForSeconds(2.0f);
         while (enemies < 0 && _stopSpawning == false)
@@ -105,11 +116,9 @@ public class SpawnManager : MonoBehaviour
             enemies--;
             yield return new WaitForSeconds(delayToSpawn);
         }
-        //unique projectile
     }
 
-
-    IEnumerator WaveFiveRoutine(int enemies, float delayToSpawn)
+    IEnumerator WaveFiveRoutine(int enemies, float delayToSpawn)    //wave five will be smart enemy with pickup
     {
         yield return new WaitForSeconds(2.0f);
         while (enemies < 0 && _stopSpawning == false)
@@ -120,19 +129,9 @@ public class SpawnManager : MonoBehaviour
             enemies--;
             yield return new WaitForSeconds(delayToSpawn);
         }
-        //zigzag movement
     }  
-    //2nd wave of five enemies 
-    //homing projectile
-    //smart enemy
-    //enemy pickup
-    //c-key collect pickups
 
-    //Boss AI 
-    //random combo of all the above?
-
-
-    IEnumerator SpawnPowerupRoutine()
+    IEnumerator SpawnPowerupRoutine()                                       
     {
         yield return new WaitForSeconds(2.0f);
         while (_stopSpawning == false)
@@ -143,15 +142,20 @@ public class SpawnManager : MonoBehaviour
             Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
+    }
 
 
-        /*use powerups.Length instead of Random.Range(0, 70);
-         * 
-         * for (int i = 0; i < powerups.Length; i++)  
+/*
+    use powerups.Length instead of Random.Range(0, 70);
+    for (int i = 0; i < powerups.Length; i++)  
         {
             int randomPowerUp = powerups[i];
-        }*/
-    }
+        }
+*/
+
+
+//  create a boss AI
+
 
     public void OnPlayerDeath()
     { 
