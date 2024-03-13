@@ -89,13 +89,10 @@ public class Enemy : MonoBehaviour
 
 
 /*
-    Enemy One - normal movemenT following is commented out while testing the new movement for "enemy two"
-    which is actually a new movement for the same enemy i think and might not be assigned to any 2nd enemy.
-    I need to check on the status of creating new enemy sprites or am i using shapes for prototyping purposes.
-*/
-    
+    Enemy One - normal movemenT*/        /* Enemy One commented out-testing new movement "enemy two" a new movement for same enemy.
+                                          * May/May not be assigned to 2nd enemy. Will check decision to create new enemy sprites or shapes for prototyping & time purposes.*/
     /*  
-    {
+        {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
         if (transform.position.y < -5f)
@@ -107,7 +104,7 @@ public class Enemy : MonoBehaviour
     */
 
 //  Enemy Two - diagonal movement following
-    {
+{
         transform.Translate(new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
     
 
