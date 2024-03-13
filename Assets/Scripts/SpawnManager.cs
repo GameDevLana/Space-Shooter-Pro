@@ -38,6 +38,7 @@ public class SpawnManager : MonoBehaviour
        
     }
 
+    //*********Spawn new enemyLaserBeam within a wave coroutine at a random location. There will be probability assigned later********
 
     public void StartSpawning()
     {
