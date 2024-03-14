@@ -11,7 +11,7 @@ public class EnemyLaserBeam : MonoBehaviour
     
     private Player _player;
 
-    //private Animator _anim;
+   // private Animator _anim;
 
     //private AudioSource _audioSource;
 
