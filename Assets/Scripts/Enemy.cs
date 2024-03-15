@@ -82,12 +82,6 @@ public class Enemy : MonoBehaviour
 
     void CalculateMovement()
 
-
-
-
-
-
-
 /*
     Enemy One - normal movemenT*/        /* Enemy One commented out-testing new movement "enemy two" a new movement for same enemy.
                                           * May/May not be assigned to 2nd enemy. Will check decision to create new enemy sprites or shapes for prototyping & time purposes.*/

@@ -27,20 +27,22 @@ public class EnemyLaserBeam : MonoBehaviour
 
        3. will I be using _fireRate and _canfire for this enemy*/
 
-    // Start is called before the first frame update
 
     void Start()
     {
+        _player = GameObject.Find("Player").GetComponent<Player>();
+       // _audioSource = GetComponent<AudioSource>();
+
+        if (_player == null)
         {
-            _player = GameObject.Find("Player").GetComponent<Player>();
-            _audioSource = GetComponent<AudioSource>();
-
-            if (_player == null)
-            {
-                Debug.LogError("The Player is NULL.");
-            }
+            Debug.LogError("The Player is NULL.");
         }
+        //_anim = GetComponent<Animator>();
 
+        //if (_anim == null)
+        //{
+         //   Debug.LogError("The Animator is NULL");
+       // }
 
     }
 
@@ -56,18 +58,29 @@ public class EnemyLaserBeam : MonoBehaviour
 
 
     //********need to figure out how to create the laserbeam.**********
-    
-    
-    
+
+
+
     // Update is called once per frame
     void Update()
-    
     //add enemy movement
-
-    
-    
-    
     {
-        
+
+        CalculateMovement();
+
     }
+
+    void CalculateMovement()
+
+        {
+            transform.Translate(Vector3.down* _speed * Time.deltaTime);
+
+            if (transform.position.y< -5f)
+            {
+                float randomX = Random.Range(-8f, 8f);
+            transform.position = new Vector3(randomX, 7, 0);
+            }
+    }
+
+
 }
