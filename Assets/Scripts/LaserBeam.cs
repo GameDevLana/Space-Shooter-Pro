@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaserBeam : MonoBehaviour
 {
-    private bool _isLaserBeamActive = false;
+  //  private bool _isLaserBeamActive = false;
 
     void Start()
     {

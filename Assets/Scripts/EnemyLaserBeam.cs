@@ -8,10 +8,10 @@ public class EnemyLaserBeam : MonoBehaviour
     [SerializeField]
     private float _speed = 4.5f;
 
-    
+
     private Player _player;
 
-   // private Animator _anim;
+    // private Animator _anim;
 
     //private AudioSource _audioSource;
 
@@ -31,7 +31,7 @@ public class EnemyLaserBeam : MonoBehaviour
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
-       // _audioSource = GetComponent<AudioSource>();
+        // _audioSource = GetComponent<AudioSource>();
 
         if (_player == null)
         {
@@ -41,8 +41,8 @@ public class EnemyLaserBeam : MonoBehaviour
 
         //if (_anim == null)
         //{
-         //   Debug.LogError("The Animator is NULL");
-       // }
+        //   Debug.LogError("The Animator is NULL");
+        // }
 
     }
 
@@ -72,15 +72,58 @@ public class EnemyLaserBeam : MonoBehaviour
 
     void CalculateMovement()
 
-        {
-            transform.Translate(Vector3.down* _speed * Time.deltaTime);
+    {
+        transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
-            if (transform.position.y< -5f)
-            {
-                float randomX = Random.Range(-8f, 8f);
+        if (transform.position.y < -5f)
+        {
+            float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
-            }
+        }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            Player player = other.transform.GetComponent<Player>();
 
+            if (player != null)
+            {
+                player.Damage();
+            }
+
+            // _anim.SetTrigger("OnEnemyDeath");
+            // _speed = 0;
+
+            //_audioSource.Play();
+
+            //  OPTIONS enemy damage method like player(shields)
+
+            Destroy(this.gameObject, 2.5f);
+        }
+
+        if (other.tag == "Laser")
+        {
+            Destroy(other.gameObject);
+
+            if (_player != null)
+            {
+                _player.AddScore(10);
+            }
+
+            //  OPTIONS enemy damage method like player(shields)
+
+            // _anim.SetTrigger("OnEnemyDeath");
+
+            //  explosion animation ^^^^
+
+            // _speed = 0;
+
+            // _audioSource.Play();
+
+            Destroy(GetComponent<Collider2D>());
+            Destroy(this.gameObject, 2.5f);
+        }
+    }
 }
