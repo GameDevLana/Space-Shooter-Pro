@@ -104,7 +104,7 @@ public class EnemyLaserBeam : MonoBehaviour
             //_audioSource.Play();
 
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(this.gameObject, 2.5f);
+            Destroy(this.gameObject, .2f);
         }
 
         if (other.tag == "Laser")
@@ -125,7 +125,7 @@ public class EnemyLaserBeam : MonoBehaviour
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
 
             Destroy(GetComponent<Collider2D>());
-            Destroy(this.gameObject, 2.5f);
+            Destroy(this.gameObject, .05f);
         }
     }
 }
