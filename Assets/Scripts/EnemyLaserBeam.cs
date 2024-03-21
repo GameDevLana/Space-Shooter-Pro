@@ -11,6 +11,9 @@ public class EnemyLaserBeam : MonoBehaviour
 
     private Player _player;
 
+    [SerializeField]
+    private GameObject _explosionPrefab;
+
     // private Animator _anim;
 
     //private AudioSource _audioSource;
@@ -94,12 +97,13 @@ public class EnemyLaserBeam : MonoBehaviour
             }
 
             // _anim.SetTrigger("OnEnemyDeath");
-            // _speed = 0;
+            //  explosion animation ^^^^
+
+            _speed = 0;
 
             //_audioSource.Play();
 
-            //  OPTIONS enemy damage method like player(shields)
-
+            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject, 2.5f);
         }
 
@@ -112,15 +116,13 @@ public class EnemyLaserBeam : MonoBehaviour
                 _player.AddScore(10);
             }
 
-            //  OPTIONS enemy damage method like player(shields)
-
             // _anim.SetTrigger("OnEnemyDeath");
-
             //  explosion animation ^^^^
 
-            // _speed = 0;
+            _speed = 0;
 
             // _audioSource.Play();
+            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
 
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.5f);
