@@ -14,6 +14,9 @@ public class EnemyLaserBeam : MonoBehaviour
     [SerializeField]
     private GameObject _explosionPrefab;
 
+    private AudioSource _audioSource;
+
+
     // private Animator _anim;
 
     //private AudioSource _audioSource;
@@ -34,7 +37,7 @@ public class EnemyLaserBeam : MonoBehaviour
     void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
-        // _audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
 
         if (_player == null)
         {
@@ -101,10 +104,11 @@ public class EnemyLaserBeam : MonoBehaviour
 
             _speed = 0;
 
-            //_audioSource.Play();
 
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+            _audioSource.Play();
             Destroy(this.gameObject, .2f);
+
         }
 
         if (other.tag == "Laser")
@@ -121,9 +125,8 @@ public class EnemyLaserBeam : MonoBehaviour
 
             _speed = 0;
 
-            // _audioSource.Play();
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-
+            _audioSource.Play();
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, .05f);
         }
