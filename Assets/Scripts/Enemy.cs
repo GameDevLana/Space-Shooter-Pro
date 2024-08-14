@@ -6,21 +6,21 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 4f;
-    
+
     [SerializeField]
     private GameObject _laserPrefab;
-   
+
     private Player _player;
-    
+
     private Animator _anim;
-    
+
     private AudioSource _audioSource;
-   
+
     private float _fireRate = 3.0f;
     private float _canFire = -1;
 
-   
-    
+
+
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
     {
 
         CalculateMovement();
+        DiagonalMovement();
 
 
         if (Time.time > _canFire)
@@ -78,13 +79,17 @@ public class Enemy : MonoBehaviour
     // all the enemies types
 
 
-    void CalculateMovement()
+    //create the various enemies. 
+    //create a new movement 
+    //create a new enemy prefab
+    //assign new movement to new prefab
+    //instantiate new enemy prefab
 
-/*
-    Enemy One - normal movemenT*/        /* Enemy One commented out-testing new movement "enemy two" a new movement for same enemy.
-                                          * May/May not be assigned to 2nd enemy. Will check decision to create new enemy sprites or shapes for prototyping & time purposes.*/
-    /*  
-        {
+
+
+    //Enemy One - normal movemenT
+    void CalculateMovement()
+    {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
         if (transform.position.y < -5f)
@@ -92,15 +97,15 @@ public class Enemy : MonoBehaviour
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
         }
-    } 
-    */
+    }
 
-//  Enemy Two - diagonal movement following
-{
+
+    void DiagonalMovement()  //Enemy Two - diagonal movement
+    {
         transform.Translate(new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
-    
 
-        if (transform.position.y< -5f)
+
+        if (transform.position.y < -5f)
         {
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
@@ -108,50 +113,49 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D other)   
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
-            
+
             if (player != null)
             {
                 player.Damage();
             }
-
-            _anim.SetTrigger("OnEnemyDeath");
-            _speed = 0;
-
-            _audioSource.Play();
-            
-//  OPTIONS enemy damage method like player(shields)
-            
-            Destroy(this.gameObject, 2.5f);
         }
-       
+        _anim.SetTrigger("OnEnemyDeath");
+        _speed = 0;
+
+        _audioSource.Play();
+
+        //  OPTIONS enemy damage method like player(shields)
+
+        Destroy(this.gameObject, 2.5f);
+
+
         if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
-
-           if (_player != null)
-           {
-                _player.AddScore(10);
-           }
-
-//  OPTIONS enemy damage method like player(shields)
-
-            _anim.SetTrigger("OnEnemyDeath");
-
-//  explosion animation ^^^^
-
-            _speed = 0;
-
-            _audioSource.Play();
-            
-            Destroy(GetComponent<Collider2D>());
-            Destroy(this.gameObject, 2.5f);
+        }
+        if (_player != null)
+        {
+            _player.AddScore(10);
         }
 
-    }
+        //  OPTIONS enemy damage method like player(shields)
 
+        _anim.SetTrigger("OnEnemyDeath");
+
+        //  explosion animation ^^^^
+
+        _speed = 0;
+
+        _audioSource.Play();
+
+        Destroy(GetComponent<Collider2D>());
+        Destroy(this.gameObject, 2.5f);
+    }
 }
+
+

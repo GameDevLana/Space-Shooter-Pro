@@ -908,7 +908,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 222803516041695297, guid: f47862901e01f674483fa871f852e065, type: 3}
-  enemytypes: []
   _enemyContainer: {fileID: 176585478}
   powerups:
   - {fileID: 2337466045033826627, guid: ec9b728cf227d864995d6b3ec7572024, type: 3}

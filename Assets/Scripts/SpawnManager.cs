@@ -7,8 +7,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyPrefab;
 
-    [SerializeField]
-    private GameObject[] enemytypes;
+  //[SerializeField]
+  //private GameObject[] enemyTypes;
 
     [SerializeField]
     private GameObject _enemyContainer;
@@ -48,23 +48,25 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnPowerupRoutine());
     }
 
-//possible multiple coroutines 
+    //possible multiple coroutines 
 
-//see below for start of spawn random enemies code
+    //see below for start of spawn random enemies code
 
-/*  
-    yield return new WaitForSeconds(2.0f);
-    while (_stopSpawning == false)
-    {
-        Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-        
-        int randomPowerUp = Random.Range(0, 7);
-        Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
-        yield return new WaitForSeconds(Random.Range(3, 8));
-    }
-*/
+    /*  
+        This is the code for the powerup spawnroutine:
+       
+        yield return new WaitForSeconds(2.0f);
+        while (_stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
 
-IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) //wave one would be normal enemies for now
+            int randomPowerUp = Random.Range(0, 7);
+            Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(3, 8));
+        }
+    */
+    // https://pastebin.com/ZaY4z4fa
+    IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) //wave one would be normal enemies for now
     {
         yield return new WaitForSeconds(2.0f);
         while (enemies > 0 && _stopSpawning == false)
