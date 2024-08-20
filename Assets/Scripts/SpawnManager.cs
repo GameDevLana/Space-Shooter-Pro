@@ -5,11 +5,14 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _enemyPrefab;
+    private GameObject _enemyStraightPrefab;
 
-  //[SerializeField]
-  //private GameObject[] enemyTypes;
-  
+    [SerializeField]
+    private GameObject _enemyDiagPrefab;
+
+    // [SerializeField]
+    //private GameObject[] enemyTypes;
+
 
     [SerializeField]
     private GameObject _enemyContainer;
@@ -39,7 +42,7 @@ public class SpawnManager : MonoBehaviour
 
     public void StartSpawning()
     {
-        StartCoroutine(SpawnEnemyRoutine(10, 5.0f));
+        StartCoroutine(SpawnEnemyRoutine());
 
         StartCoroutine(SpawnPowerupRoutine());
     }
@@ -59,7 +62,7 @@ public class SpawnManager : MonoBehaviour
             Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(3, 8));*/
 
-    IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) //wave one would be normal enemies for now
+   /* IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) //wave one would be normal enemies for now
     {
         yield return new WaitForSeconds(2.0f);
         while (enemies > 0 && _stopSpawning == false)
@@ -67,19 +70,39 @@ public class SpawnManager : MonoBehaviour
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
             {
-               newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
+               newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
             }
             else
             {
-                newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
+                newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
             }
             newEnemy.transform.parent = _enemyContainer.transform;
 
             enemies--;
             yield return new WaitForSeconds(delayToSpawn);
         }
-    }
+    }*/
 
+    IEnumerator SpawnEnemyRoutine() //wave one would be normal enemies for now
+    {
+        yield return new WaitForSeconds(2.0f);
+        while (_stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+
+            GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
+            {
+                newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
+            }
+            else
+            {
+                newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
+            }
+            newEnemy.transform.parent = _enemyContainer.transform;
+
+            yield return new WaitForSeconds(4.0f);
+        }
+    }
     /* yield return StartCoroutine(WaveTwoRoutine(15, 3f));
           yield return StartCoroutine(WaveThreeRoutine(20, 3f));
           yield return StartCoroutine(WaveFourRoutine(25, 3f));
