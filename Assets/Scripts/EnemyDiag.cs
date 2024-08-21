@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyDiag : MonoBehaviour
+
 {
     [SerializeField]
     private float _speed = 4f;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     private float _canFire = -1;
 
 
+
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
@@ -28,19 +30,19 @@ public class Enemy : MonoBehaviour
         if (_player == null)
         {
             Debug.LogError("The Player is NULL.");
-            _anim = GetComponent<Animator>();
+        }
+        _anim = GetComponent<Animator>();
 
-            if (_anim == null)
-            {
-                Debug.LogError("The Animator is NULL");
-            }
+        if (_anim == null)
+        {
+            Debug.LogError("The Animator is NULL");
         }
     }
 
 
     void Update()
     {
-        CalculateMovement();
+        DiagonalMovement();
 
         if (Time.time > _canFire)
         {
@@ -48,46 +50,19 @@ public class Enemy : MonoBehaviour
             _canFire = Time.time + _fireRate;
             GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
 
- //this is where the enemy laser gets assigned 
-     /* Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+            //this is where the enemy laser gets assigned 
+            /*  Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
 
-        for (int i = 0; i < lasers.Length; i++)
-            {
-                lasers[i].AssignEnemyLaser();
-            }  */
+              for (int i = 0; i < lasers.Length; i++)
+              {
+                  lasers[i].AssignEnemyLaser();
+              }*/
         }
     }
 
-    /*will enemies actually have the methods and coroutines like player and if so it will be a
-    mixture of similarity to powerup script and player script.*/
-    //each enemy wave will hold a unique enemy type
-
-    //OPTIONS  Enemy One - will alternate straight and diagonal
-    //OPTIONS  Enemy Two - will fire and damage player
-    //OPTIONS  Enemy Four - aggressive
-    //OPTIONS  Enemy Five - smart
-
-    //Enemy shields
-    //one enemy with shields
-    //one enemy avoids lasers
-    //one enemy pickups?
-
-    //Boss AI final wave- stops at center of scene with unique attack which could be a combo of all enemey types
-    // all the enemies types
-
-
-    //create the various enemies. 
-    //create a new movement 
-    //create a new enemy prefab
-    //assign new movement to new prefab
-    //instantiate new enemy prefab
-
-
-
-    //Enemy One - normal movemenT
-    void CalculateMovement()
+    void DiagonalMovement()  //Enemy Two - diagonal movement
     {
-        transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        transform.Translate(new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
 
         if (transform.position.y < -5f)
         {
@@ -95,6 +70,7 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
@@ -108,12 +84,10 @@ public class Enemy : MonoBehaviour
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
             _audioSource.Play();
-            Destroy(this.gameObject, 2.5f);
         }
-
         //  OPTIONS enemy damage method like player(shields)
 
-
+        Destroy(this.gameObject, 2.5f);
 
         if (other.tag == "Laser")
         {
@@ -122,16 +96,13 @@ public class Enemy : MonoBehaviour
             {
                 _player.AddScore(10);
             }
-            _anim.SetTrigger("OnEnemyDeath");   // explosion animation 
+            _anim.SetTrigger("OnEnemyDeath");     //explosion animation 
             _speed = 0;
             _audioSource.Play();
-            Destroy(GetComponent<Collider2D>());
-            Destroy(this.gameObject, 2.5f);
         }
 
-        //  OPTIONS enemy damage method like player(shields)
-
+        Destroy(GetComponent<Collider2D>());
+        Destroy(this.gameObject, 2.5f);
     }
 }
-
 
