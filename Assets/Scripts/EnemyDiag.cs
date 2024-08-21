@@ -84,10 +84,10 @@ public class EnemyDiag : MonoBehaviour
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
             _audioSource.Play();
+            Destroy(this.gameObject, 2.5f);
         }
         //  OPTIONS enemy damage method like player(shields)
 
-        Destroy(this.gameObject, 2.5f);
 
         if (other.tag == "Laser")
         {
@@ -99,10 +99,11 @@ public class EnemyDiag : MonoBehaviour
             _anim.SetTrigger("OnEnemyDeath");     //explosion animation 
             _speed = 0;
             _audioSource.Play();
+            Destroy(GetComponent<Collider2D>());
+            Destroy(this.gameObject, 2.5f);
+
         }
 
-        Destroy(GetComponent<Collider2D>());
-        Destroy(this.gameObject, 2.5f);
     }
 }
 

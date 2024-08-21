@@ -28,12 +28,13 @@ public class Enemy : MonoBehaviour
         if (_player == null)
         {
             Debug.LogError("The Player is NULL.");
-            _anim = GetComponent<Animator>();
+        }
 
-            if (_anim == null)
-            {
-                Debug.LogError("The Animator is NULL");
-            }
+        _anim = GetComponent<Animator>();
+       
+        if (_anim == null)
+        {
+            Debug.LogError("The Animator is NULL");
         }
     }
 
