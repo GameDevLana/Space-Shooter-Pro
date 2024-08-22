@@ -16,8 +16,8 @@ public class Enemy : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    private float _fireRate = 3.0f;
-    private float _canFire = -1;
+    //private float _fireRate = 3.0f;
+    //private float _canFire = -1;
 
 
     private void Start()
@@ -43,11 +43,11 @@ public class Enemy : MonoBehaviour
     {
         CalculateMovement();
 
-        if (Time.time > _canFire)
+       /* if (Time.time > _canFire)
         {
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
-            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+           GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);*/
 
  //this is where the enemy laser gets assigned 
      /* Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
             {
                 lasers[i].AssignEnemyLaser();
             }  */
-        }
+      //  }
     }
 
     /*will enemies actually have the methods and coroutines like player and if so it will be a

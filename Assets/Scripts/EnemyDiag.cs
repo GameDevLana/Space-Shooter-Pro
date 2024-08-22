@@ -17,8 +17,8 @@ public class EnemyDiag : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    private float _fireRate = 3.0f;
-    private float _canFire = -1;
+   // private float _fireRate = 3.0f;
+    //private float _canFire = -1;
 
 
 
@@ -44,7 +44,7 @@ public class EnemyDiag : MonoBehaviour
     {
         DiagonalMovement();
 
-        if (Time.time > _canFire)
+      /*  if (Time.time > _canFire)
         {
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
@@ -57,7 +57,7 @@ public class EnemyDiag : MonoBehaviour
               {
                   lasers[i].AssignEnemyLaser();
               }*/
-        }
+       // } 
     }
 
     void DiagonalMovement()  //Enemy Two - diagonal movement
