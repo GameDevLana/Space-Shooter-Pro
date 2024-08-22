@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private float _speed = 4f;
 
-    [SerializeField]
-    private GameObject _laserPrefab;
+   // [SerializeField]
+    //private GameObject _laserPrefab;
 
     private Player _player;
 
@@ -16,9 +16,8 @@ public class Enemy : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    //private float _fireRate = 3.0f;
+  //  private float _fireRate = 3.0f;
     //private float _canFire = -1;
-
 
     private void Start()
     {
@@ -38,54 +37,23 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
     void Update()
     {
         CalculateMovement();
 
-       /* if (Time.time > _canFire)
-        {
+      /* if (Time.time > _canFire)
+       {
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
-           GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);*/
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
 
- //this is where the enemy laser gets assigned 
-     /* Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
-
-        for (int i = 0; i < lasers.Length; i++)
+            for (int i = 0; i < lasers.Length; i++)
             {
                 lasers[i].AssignEnemyLaser();
-            }  */
-      //  }
+            }  
+       }*/
     }
-
-    /*will enemies actually have the methods and coroutines like player and if so it will be a
-    mixture of similarity to powerup script and player script.*/
-    //each enemy wave will hold a unique enemy type
-
-    //OPTIONS  Enemy One - will alternate straight and diagonal
-    //OPTIONS  Enemy Two - will fire and damage player
-    //OPTIONS  Enemy Four - aggressive
-    //OPTIONS  Enemy Five - smart
-
-    //Enemy shields
-    //one enemy with shields
-    //one enemy avoids lasers
-    //one enemy pickups?
-
-    //Boss AI final wave- stops at center of scene with unique attack which could be a combo of all enemey types
-    // all the enemies types
-
-
-    //create the various enemies. 
-    //create a new movement 
-    //create a new enemy prefab
-    //assign new movement to new prefab
-    //instantiate new enemy prefab
-
-
-
-    //Enemy One - normal movemenT
     void CalculateMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
@@ -112,10 +80,6 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject, 2.5f);
         }
 
-        //  OPTIONS enemy damage method like player(shields)
-
-
-
         if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
@@ -129,9 +93,6 @@ public class Enemy : MonoBehaviour
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.5f);
         }
-
-        //  OPTIONS enemy damage method like player(shields)
-
     }
 }
 

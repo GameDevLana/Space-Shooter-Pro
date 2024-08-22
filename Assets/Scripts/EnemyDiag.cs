@@ -8,8 +8,8 @@ public class EnemyDiag : MonoBehaviour
     [SerializeField]
     private float _speed = 4f;
 
-    [SerializeField]
-    private GameObject _laserPrefab;
+   // [SerializeField]
+   // private GameObject _laserPrefab;
 
     private Player _player;
 
@@ -17,9 +17,7 @@ public class EnemyDiag : MonoBehaviour
 
     private AudioSource _audioSource;
 
-   // private float _fireRate = 3.0f;
     //private float _canFire = -1;
-
 
 
     private void Start()
@@ -38,17 +36,16 @@ public class EnemyDiag : MonoBehaviour
             Debug.LogError("The Animator is NULL");
         }
     }
-
-
+   
     void Update()
     {
         DiagonalMovement();
 
-      /*  if (Time.time > _canFire)
+      /* if (Time.time > _canFire)
         {
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
-            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);*/
 
             //this is where the enemy laser gets assigned 
             /*  Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
@@ -86,8 +83,6 @@ public class EnemyDiag : MonoBehaviour
             _audioSource.Play();
             Destroy(this.gameObject, 2.5f);
         }
-        //  OPTIONS enemy damage method like player(shields)
-
 
         if (other.tag == "Laser")
         {
@@ -103,7 +98,6 @@ public class EnemyDiag : MonoBehaviour
             Destroy(this.gameObject, 2.5f);
 
         }
-
-    }
+   }
 }
 
