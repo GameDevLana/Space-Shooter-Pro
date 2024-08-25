@@ -7,11 +7,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyStraightPrefab;
 
-    [SerializeField]
-    private GameObject _enemyDiagPrefab;
-
-    // [SerializeField]
-    //private GameObject[] enemyTypes;
+   // [SerializeField]
+    //private GameObject _enemyDiagPrefab;
 
 
     [SerializeField]
@@ -94,22 +91,25 @@ public class SpawnManager : MonoBehaviour
             {
                 newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
             }
-            else
+           /* else
             {
                 newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
             }
             newEnemy.transform.parent = _enemyContainer.transform;
-
+           */
             yield return new WaitForSeconds(4.0f);
         }
     }
-    /* yield return StartCoroutine(WaveTwoRoutine(15, 3f));
+    /*    
+     *    yield return StartCoroutine(WaveTwoRoutine(15, 3f));
           yield return StartCoroutine(WaveThreeRoutine(20, 3f));
           yield return StartCoroutine(WaveFourRoutine(25, 3f));
-          yield return StartCoroutine(WaveFiveRoutine(30, 3f));*/
+          yield return StartCoroutine(WaveFiveRoutine(30, 3f));
+    */
 
 
-    /*  IEnumerator WaveTwoRoutine(int enemies, float delayToSpawn)    //wave two would be diagonal or zigzag movement
+    /* 
+     * IEnumerator WaveTwoRoutine(int enemies, float delayToSpawn)    //wave two would be diagonal or zigzag movement
       {
           yield return new WaitForSeconds(2.0f);
           while (enemies < 0 && _stopSpawning == false)
@@ -120,9 +120,11 @@ public class SpawnManager : MonoBehaviour
               enemies--;
               yield return new WaitForSeconds(delayToSpawn);
           }
-      }*/
+      }
+    */
 
-    /*  IEnumerator WaveThreeRoutine(int enemies, float delayToSpawn)   //wave three would be unique projectile - laserbeam enemies
+    /* 
+     * IEnumerator WaveThreeRoutine(int enemies, float delayToSpawn)   //wave three would be unique projectile - laserbeam enemies
       {
           yield return new WaitForSeconds(2.0f);
           while (enemies < 0 && _stopSpawning == false)
@@ -133,9 +135,11 @@ public class SpawnManager : MonoBehaviour
               enemies--;
               yield return new WaitForSeconds(delayToSpawn);
           }
-       }*/
+       }
+    */
 
-    /* IEnumerator WaveFourRoutine(int enemies, float delayToSpawn)    //wave four would be unique projectile - homing
+    /* 
+     * IEnumerator WaveFourRoutine(int enemies, float delayToSpawn)    //wave four would be unique projectile - homing
      {
          yield return new WaitForSeconds(2.0f);
          while (enemies < 0 && _stopSpawning == false)
@@ -146,9 +150,11 @@ public class SpawnManager : MonoBehaviour
              enemies--;
              yield return new WaitForSeconds(delayToSpawn);
          }
-     }*/
+     }
+    */
 
-    /* IEnumerator WaveFiveRoutine(int enemies, float delayToSpawn)    //wave five will be smart enemy with pickup
+    /* 
+     * IEnumerator WaveFiveRoutine(int enemies, float delayToSpawn)    //wave five will be smart enemy with pickup
      {
          yield return new WaitForSeconds(2.0f);
          while (enemies < 0 && _stopSpawning == false)
@@ -159,7 +165,8 @@ public class SpawnManager : MonoBehaviour
              enemies--;
              yield return new WaitForSeconds(delayToSpawn);
          }
-     }*/
+     }
+    */
 
 
     IEnumerator SpawnPowerupRoutine()                                       
@@ -175,7 +182,6 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-
 /*
     use powerups.Length instead of Random.Range(0, 70);
     for (int i = 0; i < powerups.Length; i++)  
@@ -184,9 +190,7 @@ public class SpawnManager : MonoBehaviour
         }
 */
 
-
 //  create a boss AI
-
 
     public void OnPlayerDeath()
     { 

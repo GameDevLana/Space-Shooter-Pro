@@ -9,18 +9,18 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 673827347002061223}
-  - component: {fileID: 2833682016595251309}
   - component: {fileID: 1431681114857704694}
   - component: {fileID: 5134873355850239329}
   - component: {fileID: 4542662930829245106}
   - component: {fileID: -7349373224170408698}
+  - component: {fileID: -5370307810895818224}
   m_Layer: 0
   m_Name: EnemyDiag
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &673827347002061223
 Transform:
   m_ObjectHideFlags: 0
@@ -37,19 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
---- !u!114 &2833682016595251309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2024984377563205029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c8debbf64e4648448703e73ed28541f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 3
 --- !u!61 &1431681114857704694
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -213,6 +200,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-5370307810895818224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024984377563205029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f026668e44667be47ab54074a36825e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 4
+  _laserPrefab: {fileID: 149296897999474895, guid: 89e81eae02e9cb349a8e20ad096f9ba4, type: 3}
 --- !u!1 &7457418383752818599
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,8 +240,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7457418383752818599}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.984, y: -0.407, z: 0}
-  m_LocalScale: {x: 0.8070066, y: 0.936876, z: 1}
+  m_LocalPosition: {x: 1.25, y: 1.956, z: 0}
+  m_LocalScale: {x: 0.7553421, y: 0.77639097, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 673827347002061223}

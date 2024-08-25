@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDiag : MonoBehaviour
-
+//public class EnemyDiag : MonoBehaviour
+/*
 {
     [SerializeField]
     private float _speed = 4f;
 
-   // [SerializeField]
-   // private GameObject _laserPrefab;
+   [SerializeField]
+   private GameObject _laserPrefab;
 
     private Player _player;
 
@@ -17,13 +17,14 @@ public class EnemyDiag : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    //private float _canFire = -1;
+    private float _fireRate = 3.0f;
+    private float _canFire = -1;
 
 
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
-        _audioSource = GetComponent<AudioSource>();
+       // _audioSource = GetComponent<AudioSource>();
 
         if (_player == null)
         {
@@ -36,25 +37,23 @@ public class EnemyDiag : MonoBehaviour
             Debug.LogError("The Animator is NULL");
         }
     }
-   
+
     void Update()
     {
         DiagonalMovement();
 
-      /* if (Time.time > _canFire)
+        if (Time.time > _canFire)
         {
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
-            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);*/
-
-            //this is where the enemy laser gets assigned 
-            /*  Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
-
-              for (int i = 0; i < lasers.Length; i++)
-              {
-                  lasers[i].AssignEnemyLaser();
-              }*/
-       // } 
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+           
+            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+            for (int i = 0; i < lasers.Length; i++)
+            {
+                lasers[i].AssignEnemyLaser();
+            }
+        }
     }
 
     void DiagonalMovement()  //Enemy Two - diagonal movement
@@ -91,13 +90,14 @@ public class EnemyDiag : MonoBehaviour
             {
                 _player.AddScore(10);
             }
-            _anim.SetTrigger("OnEnemyDeath");     //explosion animation 
+            _anim.SetTrigger("OnEnemyDeath");    
             _speed = 0;
             _audioSource.Play();
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.5f);
 
         }
-   }
+     }
 }
 
+    */
