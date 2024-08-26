@@ -7,8 +7,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyStraightPrefab;
 
-   // [SerializeField]
-    //private GameObject _enemyDiagPrefab;
+    [SerializeField]
+    private GameObject _enemyDiagPrefab;
 
 
     [SerializeField]
@@ -91,12 +91,12 @@ public class SpawnManager : MonoBehaviour
             {
                 newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
             }
-           /* else
+            else
             {
                 newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
             }
             newEnemy.transform.parent = _enemyContainer.transform;
-           */
+           
             yield return new WaitForSeconds(4.0f);
         }
     }

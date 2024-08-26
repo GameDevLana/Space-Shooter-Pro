@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5134873355850239329}
   - component: {fileID: 4542662930829245106}
   - component: {fileID: -7349373224170408698}
-  - component: {fileID: -5370307810895818224}
   m_Layer: 0
   m_Name: EnemyDiag
   m_TagString: Enemy
@@ -200,20 +199,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-5370307810895818224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2024984377563205029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f026668e44667be47ab54074a36825e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 4
-  _laserPrefab: {fileID: 149296897999474895, guid: 89e81eae02e9cb349a8e20ad096f9ba4, type: 3}
 --- !u!1 &7457418383752818599
 GameObject:
   m_ObjectHideFlags: 0
