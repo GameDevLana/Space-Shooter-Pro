@@ -12,9 +12,9 @@ public class Enemy2 : MonoBehaviour
 
     private Player _player;
 
-    //private Animator _anim;
+    private Animator _anim;
 
-    //private AudioSource _audioSource;
+    private AudioSource _audioSource;
 
     //private float _fireRate = 3.0f;
     //private float _canFire = -1;
@@ -22,19 +22,19 @@ public class Enemy2 : MonoBehaviour
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
-       // _audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
 
         if (_player == null)
         {
             Debug.LogError("The Player is NULL.");
         }
 
-       // _anim = GetComponent<Animator>();
+        _anim = GetComponent<Animator>();
 
-        /*if (_anim == null)
+        if (_anim == null)
         {
             Debug.LogError("The Animator is NULL");
-        }*/
+        }
     }
 
     void Update()
@@ -74,9 +74,9 @@ public class Enemy2 : MonoBehaviour
             {
                 player.Damage();
             }
-           // _anim.SetTrigger("OnEnemyDeath");
+           _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
-            //_audioSource.Play();
+            _audioSource.Play();
             Destroy(this.gameObject, 2.5f);
         }
 
@@ -87,9 +87,9 @@ public class Enemy2 : MonoBehaviour
             {
                 _player.AddScore(10);
             }
-           // _anim.SetTrigger("OnEnemyDeath");   // explosion animation 
+            _anim.SetTrigger("OnEnemyDeath");   // explosion animation 
             _speed = 0;
-            //_audioSource.Play();
+            _audioSource.Play();
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.5f);
         }
