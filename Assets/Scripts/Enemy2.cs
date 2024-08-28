@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy2 : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 3f;
+    private float _speed = 2.5f;
 
     //[SerializeField]
     //private GameObject _laserPrefab;
@@ -39,7 +39,7 @@ public class Enemy2 : MonoBehaviour
 
     void Update()
     {
-        CalculateMovement();
+        DiagonalMovement();
 
        /* if (Time.time > _canFire)
         {
@@ -54,7 +54,8 @@ public class Enemy2 : MonoBehaviour
             }
         }*/
     }
-    void CalculateMovement()
+   /* 
+    * void CalculateMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
@@ -64,6 +65,19 @@ public class Enemy2 : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
     }
+   */
+    void DiagonalMovement()  //Enemy Two - diagonal movement
+    {
+        transform.Translate(new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
+
+        if (transform.position.y < -5f)
+        {
+            float randomX = Random.Range(-8f, 8f);
+            transform.position = new Vector3(randomX, 7, 0);
+        }
+    }
+
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
