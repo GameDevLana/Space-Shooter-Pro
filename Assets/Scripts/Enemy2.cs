@@ -7,8 +7,8 @@ public class Enemy2 : MonoBehaviour
     [SerializeField]
     private float _speed = 2.5f;
 
-    //[SerializeField]
-    //private GameObject _laserPrefab;
+    [SerializeField]
+    private GameObject _laserPrefab;
 
     private Player _player;
 
@@ -16,8 +16,8 @@ public class Enemy2 : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    //private float _fireRate = 3.0f;
-    //private float _canFire = -1;
+    private float _fireRate = 3.0f;
+    private float _canFire = -1;
 
     private void Start()
     {
@@ -41,31 +41,16 @@ public class Enemy2 : MonoBehaviour
     {
         DiagonalMovement();
 
-       /* if (Time.time > _canFire)
+        if (Time.time > _canFire)
         {
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
-            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
-            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
-
-            for (int i = 0; i < lasers.Length; i++)
-            {
-                lasers[i].AssignEnemyLaser();
-            }
-        }*/
-    }
-   /* 
-    * void CalculateMovement()
-    {
-        transform.Translate(Vector3.down * _speed * Time.deltaTime);
-
-        if (transform.position.y < -5f)
-        {
-            float randomX = Random.Range(-8f, 8f);
-            transform.position = new Vector3(randomX, 7, 0);
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + new Vector3(0, -1.2f, 0), Quaternion.identity);
+            Laser laser = enemyLaser.GetComponent<Laser>();
+            laser.AssignEnemyLaser();
         }
     }
-   */
+
     void DiagonalMovement()  //Enemy Two - diagonal movement
     {
         transform.Translate(new Vector3(1, -3, 0).normalized * _speed * Time.deltaTime);
@@ -76,7 +61,6 @@ public class Enemy2 : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
