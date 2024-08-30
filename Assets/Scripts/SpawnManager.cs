@@ -10,7 +10,6 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyDiagPrefab;
 
-
     [SerializeField]
     private GameObject _enemyContainer;
     
@@ -33,31 +32,13 @@ public class SpawnManager : MonoBehaviour
 
     public int total;
     public int randomNumber;
-   
-
-    //*********Spawn new enemyLaserBeam within a wave coroutine at a random location. There will be probability assigned later********
-
+  
     public void StartSpawning()
     {
         StartCoroutine(SpawnEnemyRoutine());
 
         StartCoroutine(SpawnPowerupRoutine());
     }
-
-    //possible multiple coroutines 
-
-    //see below for start of spawn random enemies code
-
-      
-    //  This is the code for the powerup spawnroutine:
-      /*  yield return new WaitForSeconds(2.0f);
-        while (_stopSpawning == false)
-        {
-            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-
-            int randomPowerUp = Random.Range(0, 7);
-            Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
-            yield return new WaitForSeconds(Random.Range(3, 8));*/
 
    /* IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) //wave one would be normal enemies for now
     {
@@ -80,7 +61,7 @@ public class SpawnManager : MonoBehaviour
         }
     }*/
 
-    IEnumerator SpawnEnemyRoutine() //wave one would be normal enemies for now
+    IEnumerator SpawnEnemyRoutine() 
     {
         yield return new WaitForSeconds(2.0f);
         while (_stopSpawning == false)
@@ -167,8 +148,6 @@ public class SpawnManager : MonoBehaviour
          }
      }
     */
-
-
     IEnumerator SpawnPowerupRoutine()                                       
     {
         yield return new WaitForSeconds(2.0f);
@@ -182,15 +161,15 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-/*
-    use powerups.Length instead of Random.Range(0, 70);
-    for (int i = 0; i < powerups.Length; i++)  
-        {
-            int randomPowerUp = powerups[i];
-        }
-*/
 
-//  create a boss AI
+    /*
+        use powerups.Length instead of Random.Range(0, 70);
+        for (int i = 0; i < powerups.Length; i++)  
+            {
+                int randomPowerUp = powerups[i];
+            }
+    */
+
 
     public void OnPlayerDeath()
     { 
