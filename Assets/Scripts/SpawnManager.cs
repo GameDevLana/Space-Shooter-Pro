@@ -37,29 +37,8 @@ public class SpawnManager : MonoBehaviour
     {
         StartCoroutine(SpawnEnemyRoutine());
 
-        StartCoroutine(SpawnPowerupRoutine());
+        StartCoroutine(SpawnPowerupRoutine());//consider adding a myster powerup that can be really special or negative = randomly
     }
-
-   /* IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) //wave one would be normal enemies for now
-    {
-        yield return new WaitForSeconds(2.0f);
-        while (enemies > 0 && _stopSpawning == false)
-        {
-            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
-            {
-               newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
-            }
-            else
-            {
-                newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
-            }
-            newEnemy.transform.parent = _enemyContainer.transform;
-
-            enemies--;
-            yield return new WaitForSeconds(delayToSpawn);
-        }
-    }*/
 
     IEnumerator SpawnEnemyRoutine() 
     {
