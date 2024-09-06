@@ -67,9 +67,21 @@ public class SpawnManager : MonoBehaviour
           yield return StartCoroutine(WaveFiveRoutine(30, 3f));
     */
 
+    /* 
+       * IEnumerator WaveOneRoutine(int enemies, float delayToSpawn)    
+            while (enemies < 0 && _stopSpawning == false)
+            {
+                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+                GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
+                newEnemy.transform.parent = _enemyContainer.transform;
+                enemies--;
+                yield return new WaitForSeconds(delayToSpawn);
+            }
+        }
+      */
 
     /* 
-     * IEnumerator WaveTwoRoutine(int enemies, float delayToSpawn)    //wave two would be diagonal or zigzag movement
+     * IEnumerator WaveTwoRoutine(int enemies, float delayToSpawn)    
       {
           yield return new WaitForSeconds(2.0f);
           while (enemies < 0 && _stopSpawning == false)
@@ -84,8 +96,7 @@ public class SpawnManager : MonoBehaviour
     */
 
     /* 
-     * IEnumerator WaveThreeRoutine(int enemies, float delayToSpawn)   //wave three would be unique projectile - laserbeam enemies
-      {
+     * IEnumerator WaveThreeRoutine(int enemies, float delayToSpawn)   
           yield return new WaitForSeconds(2.0f);
           while (enemies < 0 && _stopSpawning == false)
           {
@@ -99,8 +110,7 @@ public class SpawnManager : MonoBehaviour
     */
 
     /* 
-     * IEnumerator WaveFourRoutine(int enemies, float delayToSpawn)    //wave four would be unique projectile - homing
-     {
+     * IEnumerator WaveFourRoutine(int enemies, float delayToSpawn)  
          yield return new WaitForSeconds(2.0f);
          while (enemies < 0 && _stopSpawning == false)
          {
@@ -114,7 +124,7 @@ public class SpawnManager : MonoBehaviour
     */
 
     /* 
-     * IEnumerator WaveFiveRoutine(int enemies, float delayToSpawn)    //wave five will be smart enemy with pickup
+     * IEnumerator WaveFiveRoutine(int enemies, float delayToSpawn)   
      {
          yield return new WaitForSeconds(2.0f);
          while (enemies < 0 && _stopSpawning == false)
