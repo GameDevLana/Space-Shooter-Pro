@@ -56,87 +56,104 @@ public class SpawnManager : MonoBehaviour
                 newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
             }
             newEnemy.transform.parent = _enemyContainer.transform;
-           
+            //enemies--;
+
             yield return new WaitForSeconds(4.0f);
         }
     }
     /*    
-     *    yield return StartCoroutine(WaveTwoRoutine(15, 3f));
-          yield return StartCoroutine(WaveThreeRoutine(20, 3f));
-          yield return StartCoroutine(WaveFourRoutine(25, 3f));
-          yield return StartCoroutine(WaveFiveRoutine(30, 3f));
+     *    yield return StartCoroutine(EnemyWaveTwoRoutine(15, 3f));
+          yield return StartCoroutine(EnemyWaveThreeRoutine(20, 3f));
+          yield return StartCoroutine(EnemyWaveFourRoutine(25, 3f));
+          yield return StartCoroutine(EnemyWaveFiveRoutine(30, 3f));
     */
 
     /* 
-       * IEnumerator WaveOneRoutine(int enemies, float delayToSpawn)    
-            while (enemies < 0 && _stopSpawning == false)
+  * IEnumerator EnemyWaveTwoRoutine(int enemies, float delayToSpawn)    
+    {
+        yield return new WaitForSeconds(2.0f);
+        while (enemies < 0 && _stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+            GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
             {
-                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
-                newEnemy.transform.parent = _enemyContainer.transform;
-                enemies--;
-                yield return new WaitForSeconds(delayToSpawn);
+                newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
             }
+            else
+            {
+                newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
+            }
+            newEnemy.transform.parent = _enemyContainer.transform;
+            enemies--;
+            yield return new WaitForSeconds(delayToSpawn);
         }
+    }
       */
 
     /* 
-     * IEnumerator WaveTwoRoutine(int enemies, float delayToSpawn)    
-      {
-          yield return new WaitForSeconds(2.0f);
-          while (enemies < 0 && _stopSpawning == false)
-          {
-              Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-              GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
-              newEnemy.transform.parent = _enemyContainer.transform;
-              enemies--;
-              yield return new WaitForSeconds(delayToSpawn);
-          }
-      }
+  * IEnumerator EnemyWaveThreeRoutine(int enemies, float delayToSpawn)    
+    {
+        yield return new WaitForSeconds(2.0f);
+        while (enemies < 0 && _stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+            GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
+            {
+                newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
+            }
+            else
+            {
+                newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
+            }
+            newEnemy.transform.parent = _enemyContainer.transform;
+            enemies--;
+            yield return new WaitForSeconds(delayToSpawn);
+        }
+    }
     */
 
     /* 
-     * IEnumerator WaveThreeRoutine(int enemies, float delayToSpawn)   
-          yield return new WaitForSeconds(2.0f);
-          while (enemies < 0 && _stopSpawning == false)
-          {
-              Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-              GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
-              newEnemy.transform.parent = _enemyContainer.transform;
-              enemies--;
-              yield return new WaitForSeconds(delayToSpawn);
+    IEnumerator EnemyWaveFourRoutine(int enemies, float delayToSpawn)   
+        yield return new WaitForSeconds(2.0f);
+        while (enemies < 0 && _stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+            GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
+            {
+                 newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
+            }
+            else
+            {
+                 newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
+            }
+            newEnemy.transform.parent = _enemyContainer.transform;
+            enemies--;
+            yield return new WaitForSeconds(delayToSpawn);
           }
        }
     */
 
     /* 
-     * IEnumerator WaveFourRoutine(int enemies, float delayToSpawn)  
+     IEnumerator EnemyWaveFiveRoutine(int enemies, float delayToSpawn)  
          yield return new WaitForSeconds(2.0f);
          while (enemies < 0 && _stopSpawning == false)
          {
              Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
-             newEnemy.transform.parent = _enemyContainer.transform;
-             enemies--;
-             yield return new WaitForSeconds(delayToSpawn);
+            GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
+            {
+                 newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
+            }
+            else
+            {
+                 newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
+            }
+            newEnemy.transform.parent = _enemyContainer.transform;
+            enemies--;
+            yield return new WaitForSeconds(delayToSpawn);
          }
      }
     */
 
-    /* 
-     * IEnumerator WaveFiveRoutine(int enemies, float delayToSpawn)   
-     {
-         yield return new WaitForSeconds(2.0f);
-         while (enemies < 0 && _stopSpawning == false)
-         {
-             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-             GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
-             newEnemy.transform.parent = _enemyContainer.transform;
-             enemies--;
-             yield return new WaitForSeconds(delayToSpawn);
-         }
-     }
-    */
     IEnumerator SpawnPowerupRoutine()                                       
     {
         yield return new WaitForSeconds(2.0f);
