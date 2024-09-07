@@ -41,7 +41,6 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-   // yield return StartCoroutine(EnemyWaveTwoRoutine(15, 3f));
      //   yield return StartCoroutine(EnemyWaveThreeRoutine(20, 3f));
        // yield return StartCoroutine(EnemyWaveFourRoutine(25, 3f));
         // yield return StartCoroutine(EnemyWaveFiveRoutine(30, 3f));
@@ -66,16 +65,18 @@ public class SpawnManager : MonoBehaviour
             enemies--;
 
             yield return new WaitForSeconds(4.0f);
+            Debug.Log("Waiting 4 seconds before starting next wave");
+           // yield return StartCoroutine(EnemyWaveTwoRoutine(15, 3f));
         }
     }
       
     
-
+/*
      
     IEnumerator EnemyWaveTwoRoutine(int enemies, float delayToSpawn)    
     {
         yield return new WaitForSeconds(2.0f);
-        while (enemies < 0 && _stopSpawning == false)
+        while (enemies > 0 && _stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
@@ -95,7 +96,7 @@ public class SpawnManager : MonoBehaviour
     IEnumerator EnemyWaveThreeRoutine(int enemies, float delayToSpawn)    
     {
         yield return new WaitForSeconds(2.0f);
-        while (enemies < 0 && _stopSpawning == false)
+        while (enemies > 0 && _stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
@@ -115,7 +116,7 @@ public class SpawnManager : MonoBehaviour
     IEnumerator EnemyWaveFourRoutine(int enemies, float delayToSpawn)
     {
         yield return new WaitForSeconds(2.0f);
-        while (enemies < 0 && _stopSpawning == false)
+        while (enemies > 0 && _stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
@@ -137,7 +138,7 @@ public class SpawnManager : MonoBehaviour
     IEnumerator EnemyWaveFiveRoutine(int enemies, float delayToSpawn)
     {
         yield return new WaitForSeconds(2.0f);
-        while (enemies < 0 && _stopSpawning == false)
+        while (enemies > 0 && _stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
@@ -152,7 +153,7 @@ public class SpawnManager : MonoBehaviour
             enemies--;
             yield return new WaitForSeconds(delayToSpawn);
         }
-    }
+    }*/
     
 
     IEnumerator SpawnPowerupRoutine()                                       
