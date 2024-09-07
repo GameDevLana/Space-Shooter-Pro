@@ -35,12 +35,19 @@ public class SpawnManager : MonoBehaviour
   
     public void StartSpawning()
     {
-        StartCoroutine(SpawnEnemyRoutine());
+        StartCoroutine(SpawnEnemyRoutine(10, 3f));
 
-        StartCoroutine(SpawnPowerupRoutine());//consider adding a myster powerup that can be really special or negative = randomly
+        StartCoroutine(SpawnPowerupRoutine());//consider adding a mystery powerup that can be really special or negative = randomly
     }
 
-    IEnumerator SpawnEnemyRoutine() 
+
+   // yield return StartCoroutine(EnemyWaveTwoRoutine(15, 3f));
+     //   yield return StartCoroutine(EnemyWaveThreeRoutine(20, 3f));
+       // yield return StartCoroutine(EnemyWaveFourRoutine(25, 3f));
+        // yield return StartCoroutine(EnemyWaveFiveRoutine(30, 3f));
+
+
+    IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) 
     {
         yield return new WaitForSeconds(2.0f);
         while (_stopSpawning == false)
@@ -56,20 +63,16 @@ public class SpawnManager : MonoBehaviour
                 newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
             }
             newEnemy.transform.parent = _enemyContainer.transform;
-            //enemies--;
+            enemies--;
 
             yield return new WaitForSeconds(4.0f);
         }
     }
-    /*    
-     *    yield return StartCoroutine(EnemyWaveTwoRoutine(15, 3f));
-          yield return StartCoroutine(EnemyWaveThreeRoutine(20, 3f));
-          yield return StartCoroutine(EnemyWaveFourRoutine(25, 3f));
-          yield return StartCoroutine(EnemyWaveFiveRoutine(30, 3f));
-    */
+      
+    
 
-    /* 
-  * IEnumerator EnemyWaveTwoRoutine(int enemies, float delayToSpawn)    
+     
+    IEnumerator EnemyWaveTwoRoutine(int enemies, float delayToSpawn)    
     {
         yield return new WaitForSeconds(2.0f);
         while (enemies < 0 && _stopSpawning == false)
@@ -88,10 +91,8 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(delayToSpawn);
         }
     }
-      */
-
-    /* 
-  * IEnumerator EnemyWaveThreeRoutine(int enemies, float delayToSpawn)    
+     
+    IEnumerator EnemyWaveThreeRoutine(int enemies, float delayToSpawn)    
     {
         yield return new WaitForSeconds(2.0f);
         while (enemies < 0 && _stopSpawning == false)
@@ -110,10 +111,9 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(delayToSpawn);
         }
     }
-    */
-
-    /* 
-    IEnumerator EnemyWaveFourRoutine(int enemies, float delayToSpawn)   
+    
+    IEnumerator EnemyWaveFourRoutine(int enemies, float delayToSpawn)
+    {
         yield return new WaitForSeconds(2.0f);
         while (enemies < 0 && _stopSpawning == false)
         {
@@ -129,16 +129,17 @@ public class SpawnManager : MonoBehaviour
             newEnemy.transform.parent = _enemyContainer.transform;
             enemies--;
             yield return new WaitForSeconds(delayToSpawn);
-          }
-       }
-    */
+        }
+    }
+   
 
-    /* 
-     IEnumerator EnemyWaveFiveRoutine(int enemies, float delayToSpawn)  
-         yield return new WaitForSeconds(2.0f);
-         while (enemies < 0 && _stopSpawning == false)
-         {
-             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+   
+    IEnumerator EnemyWaveFiveRoutine(int enemies, float delayToSpawn)
+    {
+        yield return new WaitForSeconds(2.0f);
+        while (enemies < 0 && _stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
             GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
             {
                  newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
@@ -150,9 +151,9 @@ public class SpawnManager : MonoBehaviour
             newEnemy.transform.parent = _enemyContainer.transform;
             enemies--;
             yield return new WaitForSeconds(delayToSpawn);
-         }
-     }
-    */
+        }
+    }
+    
 
     IEnumerator SpawnPowerupRoutine()                                       
     {
@@ -167,7 +168,6 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-
     /*
         use powerups.Length instead of Random.Range(0, 70);
         for (int i = 0; i < powerups.Length; i++)  
@@ -175,8 +175,6 @@ public class SpawnManager : MonoBehaviour
                 int randomPowerUp = powerups[i];
             }
     */
-
-
     public void OnPlayerDeath()
     { 
     _stopSpawning = true;
