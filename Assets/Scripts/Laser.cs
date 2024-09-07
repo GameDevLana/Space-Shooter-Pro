@@ -7,9 +7,12 @@ public class Laser : MonoBehaviour
     [SerializeField]
     private float _speed = 8.0f;
     private bool _isEnemyLaser = false;
-
+    public bool EnemyLaser()
+    {
+        return EnemyLaser();
+    }
     void Update()
-    {     
+    {
         if (_isEnemyLaser == false)
         {
             MoveUP();
@@ -19,7 +22,6 @@ public class Laser : MonoBehaviour
             MoveDown();
         }
     }
-
 
     void MoveUP()
     {

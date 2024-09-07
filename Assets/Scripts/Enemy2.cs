@@ -47,7 +47,11 @@ public class Enemy2 : MonoBehaviour
             _canFire = Time.time + _fireRate;
             GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + new Vector3(0, -1.2f, 0), Quaternion.identity);
             Laser laser = enemyLaser.GetComponent<Laser>();
-            laser.AssignEnemyLaser();
+
+            {
+                laser.AssignEnemyLaser();
+               
+            }      
         }
     }
 
@@ -59,9 +63,11 @@ public class Enemy2 : MonoBehaviour
         {
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
+
+
+
         }
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")

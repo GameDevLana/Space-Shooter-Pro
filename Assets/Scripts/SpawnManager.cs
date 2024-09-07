@@ -61,7 +61,7 @@ public class SpawnManager : MonoBehaviour
             }
             newEnemy.transform.parent = _enemyContainer.transform;
             enemies--;
-            yield return StartCoroutine(EnemyWaveTwoRoutine(15, 3f)); // float parameter here is the delaytospawn between instantiating EACH enemy - not the wave itself"
+            yield return new WaitForSeconds(1.0f); // StartCoroutine(EnemyWaveTwoRoutine(15, 3f)); // float parameter here is the delaytospawn between instantiating EACH enemy - not the wave itself"
         }
     }
     /*
