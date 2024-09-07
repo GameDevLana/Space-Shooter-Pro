@@ -41,9 +41,8 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-     //   yield return StartCoroutine(EnemyWaveThreeRoutine(20, 3f));
-       // yield return StartCoroutine(EnemyWaveFourRoutine(25, 3f));
-        // yield return StartCoroutine(EnemyWaveFiveRoutine(30, 3f));
+      
+       
 
 
     IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn) 
@@ -52,7 +51,6 @@ public class SpawnManager : MonoBehaviour
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-
             GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
             {
                 newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
@@ -63,19 +61,14 @@ public class SpawnManager : MonoBehaviour
             }
             newEnemy.transform.parent = _enemyContainer.transform;
             enemies--;
-
-            yield return new WaitForSeconds(4.0f);
-            Debug.Log("Waiting 4 seconds before starting next wave");
-           // yield return StartCoroutine(EnemyWaveTwoRoutine(15, 3f));
+            yield return StartCoroutine(EnemyWaveTwoRoutine(15, 3f)); // float parameter here is the delaytospawn between instantiating EACH enemy - not the wave itself"
         }
     }
-      
-    
-/*
-     
+    /*
+
     IEnumerator EnemyWaveTwoRoutine(int enemies, float delayToSpawn)    
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
         while (enemies > 0 && _stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
@@ -89,13 +82,13 @@ public class SpawnManager : MonoBehaviour
             }
             newEnemy.transform.parent = _enemyContainer.transform;
             enemies--;
-            yield return new WaitForSeconds(delayToSpawn);
+       //   yield return StartCoroutine(EnemyWaveThreeRoutine(20, 2.5f));
+            }
         }
-    }
-     
+
     IEnumerator EnemyWaveThreeRoutine(int enemies, float delayToSpawn)    
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
         while (enemies > 0 && _stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
@@ -109,13 +102,13 @@ public class SpawnManager : MonoBehaviour
             }
             newEnemy.transform.parent = _enemyContainer.transform;
             enemies--;
-            yield return new WaitForSeconds(delayToSpawn);
+            yield return StartCoroutine(EnemyWaveFourRoutine(25, 2.0f));
+            }
         }
-    }
-    
+
     IEnumerator EnemyWaveFourRoutine(int enemies, float delayToSpawn)
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
         while (enemies > 0 && _stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
@@ -129,15 +122,13 @@ public class SpawnManager : MonoBehaviour
             }
             newEnemy.transform.parent = _enemyContainer.transform;
             enemies--;
-            yield return new WaitForSeconds(delayToSpawn);
+            yield return StartCoroutine(EnemyWaveFiveRoutine(30, 1.5f));
         }
     }
-   
 
-   
     IEnumerator EnemyWaveFiveRoutine(int enemies, float delayToSpawn)
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
         while (enemies > 0 && _stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
@@ -151,10 +142,13 @@ public class SpawnManager : MonoBehaviour
             }
             newEnemy.transform.parent = _enemyContainer.transform;
             enemies--;
-            yield return new WaitForSeconds(delayToSpawn);
+            yield return StartCoroutine(EnemyWaveRoutineOver());
         }
-    }*/
-    
+    IEnumerator EnemyWaveRoutineOver()
+    {
+        _stopSpawning = true;
+    }
+    */
 
     IEnumerator SpawnPowerupRoutine()                                       
     {
