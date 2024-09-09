@@ -23,42 +23,36 @@ public class Enemy : MonoBehaviour
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
         _audioSource = GetComponent<AudioSource>();
-
         if (_player == null)
         {
             Debug.LogError("The Player is NULL.");
         }
-
         _anim = GetComponent<Animator>();
-       
         if (_anim == null)
         {
             Debug.LogError("The Animator is NULL");
         }
     }
-
+            
     void Update()
     {
         CalculateMovement();
-
-       if (Time.time > _canFire)
-       {
+        if (Time.time > _canFire)
+        {
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
             GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
             Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
-
             for (int i = 0; i < lasers.Length; i++)
             {
                 lasers[i].AssignEnemyLaser();
-                Debug.Log("EnemyLasers assigned for Enemy");
             } 
-       }
+        }
     }
+
     void CalculateMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
-
         if (transform.position.y < -5f)
         {
             float randomX = Random.Range(-8f, 8f);
@@ -70,7 +64,6 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
-
             if (player != null)
             {
                 player.Damage();
@@ -80,7 +73,6 @@ public class Enemy : MonoBehaviour
             _audioSource.Play();
             Destroy(this.gameObject, 2.5f);
         }
-
         if (other.tag == "Laser")
         {
             Destroy(other.gameObject);

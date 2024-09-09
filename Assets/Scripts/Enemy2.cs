@@ -63,9 +63,6 @@ public class Enemy2 : MonoBehaviour
         {
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
-
-
-
         }
     }
     private void OnTriggerEnter2D(Collider2D other)

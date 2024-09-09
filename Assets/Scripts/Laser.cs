@@ -7,10 +7,7 @@ public class Laser : MonoBehaviour
     [SerializeField]
     private float _speed = 8.0f;
     private bool _isEnemyLaser = false;
-    public bool EnemyLaser()
-    {
-        return EnemyLaser();
-    }
+                
     void Update()
     {
         if (_isEnemyLaser == false)
@@ -26,48 +23,39 @@ public class Laser : MonoBehaviour
     void MoveUP()
     {
         transform.Translate(Vector3.up * _speed * Time.deltaTime);
-
         if (transform.position.y > 8f)
         {
             if (transform.parent != null)
             {
                 Destroy(transform.parent.gameObject);
             }
-
             Destroy(this.gameObject);
         }
     }
-
+        
     void MoveDown()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
-
         if (transform.position.y < -8f)
         {
-            
             if (transform.parent != null)
             {
                 Destroy(transform.parent.gameObject);
             }
-
             Destroy(this.gameObject);
         }
     }
-
     //assign pulse laser that causes damage
     public void AssignEnemyLaser()
     {
         _isEnemyLaser = true;
     }
 
-
     private void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.tag == "Player" && _isEnemyLaser == true)
         {
             Player player = other.GetComponent<Player>();
-
             if (player != null)
             {
                 player.Damage();
@@ -75,3 +63,4 @@ public class Laser : MonoBehaviour
         }
     }
 }
+            

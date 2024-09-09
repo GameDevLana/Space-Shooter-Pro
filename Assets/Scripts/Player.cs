@@ -63,16 +63,12 @@ public class Player : MonoBehaviour
     private Color _shieldColorOne;
     [SerializeField]
     private Color _shieldColorTwo;
-
-
     [SerializeField]
     private GameObject _rightEngine, _leftEngine;
 
     [SerializeField]
     private int _score;
-
     private UIManager _uiManager;
-
     [SerializeField]
     private AudioClip _laserSoundClip;
     [SerializeField]
@@ -80,8 +76,6 @@ public class Player : MonoBehaviour
     private AudioSource _audioSource;
 
     private CameraManager _cameraHolder;
-
-
     //private no ammo audio - click when press space bar                                                                                                                                                                                    
 
     void Start()
@@ -95,28 +89,29 @@ public class Player : MonoBehaviour
         _cameraHolder = GameObject.Find("Main Camera").GetComponent<CameraManager>();
 
         _currentAmmo = _maxAmmo;
-
         _currentThrust = _maxThrust;
-
         _currentHealth = _maxHealth;
-
 
         if (_spawnManager == null)
         {
             Debug.LogError("The Spawn Manager is NULL");
         }
+        
         if (_uiManager == null)
         {
             Debug.LogError("The UI Manager is NULL");
         }
+       
         if (_audioSource == null)
         {
             Debug.LogError("AudioSource on the player is NULL");
         }
+      
         else
         {
             _audioSource.clip = _laserSoundClip;
         }
+      
         if (_cameraHolder == null)
         {
             Debug.LogError("The CameraManager is NULL");
@@ -126,17 +121,15 @@ public class Player : MonoBehaviour
     void Update()
     {
         CalculateMovement();
+
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canfire)
         {
             FireLaser();
         }
     }
 
-
     //Pickup Collect - When 'C' is pressed, pickups quickly move to player
    // Homing Projectile -  create homing projectile that seeks the closest target - include rare powerup to activate
-
-
     void CalculateMovement()
     {
         float horizontalInput = Input.GetAxis("Horizontal");

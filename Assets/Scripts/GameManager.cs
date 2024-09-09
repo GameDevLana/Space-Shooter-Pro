@@ -13,11 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int _enemiesPerWave;
     */
-
     private UIManager _uiManaager;
     private SpawnManager _spawnManager;
        
-    
     [SerializeField]
     private bool _isGameOver;
 
@@ -32,13 +30,11 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(0); //Current Game Scene
         }
 
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
     }
-
  /*
   * public void DestroyEnemies()
     {
@@ -50,7 +46,6 @@ public class GameManager : MonoBehaviour
        }
     }
  */
-
  /*
      * public IEnumerator NewWave()
     {
@@ -63,7 +58,6 @@ public class GameManager : MonoBehaviour
         _spawnManager.StartSpawning(_currentEnemies, delayOfSpawn);
     }
  */
-    
     public void GameOver()
     {
         _isGameOver = true;
