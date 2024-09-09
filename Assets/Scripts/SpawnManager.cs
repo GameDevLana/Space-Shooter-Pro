@@ -49,8 +49,9 @@ public class SpawnManager : MonoBehaviour
             }
             newEnemy.transform.parent = _enemyContainer.transform;
             enemies--;
-            yield return StartCoroutine(EnemyWaveTwoRoutine(5, 3f));   // float parameter here is the delaytospawn between instantiating EACH enemy - not the wave itself"
+            yield return new WaitForSeconds(3.0f);  
         }
+        StartCoroutine(EnemyWaveTwoRoutine(5, 3f));
     }
 
     IEnumerator EnemyWaveTwoRoutine(int enemies, float delayToSpawn)
@@ -70,8 +71,9 @@ public class SpawnManager : MonoBehaviour
             }
             newEnemy.transform.parent = _enemyContainer.transform;
             enemies--;
-            yield return StartCoroutine(EnemyWaveThreeRoutine(5, 2.5f));
+            yield return new WaitForSeconds(3.0f);
         }
+        StartCoroutine(EnemyWaveThreeRoutine(5, 2.5f));
     }
 
     IEnumerator EnemyWaveThreeRoutine(int enemies, float delayToSpawn)    
@@ -91,8 +93,9 @@ public class SpawnManager : MonoBehaviour
             }
             newEnemy.transform.parent = _enemyContainer.transform;
             enemies--;
-            yield return StartCoroutine(EnemyWaveFourRoutine(5, 2.0f));
+            yield return new WaitForSeconds(3.0f);
         }
+        StartCoroutine(EnemyWaveFourRoutine(5, 2.0f));
     }
 
     IEnumerator EnemyWaveFourRoutine(int enemies, float delayToSpawn)
@@ -112,8 +115,9 @@ public class SpawnManager : MonoBehaviour
             }
             newEnemy.transform.parent = _enemyContainer.transform;
             enemies--;
-            yield return StartCoroutine(EnemyWaveFiveRoutine(30, 1.5f));
+            yield return new WaitForSeconds(3.0f);
         }
+        StartCoroutine(EnemyWaveFiveRoutine(30, 1.5f));
     }
 
     IEnumerator EnemyWaveFiveRoutine(int enemies, float delayToSpawn)
