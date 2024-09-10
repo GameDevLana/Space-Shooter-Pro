@@ -27,6 +27,14 @@ public class SpawnManager : MonoBehaviour
     public int total;
     public int randomNumber;
 
+    public int[] _enemiesPerWave = new int[] 
+    {
+        5, 
+        10, 
+        15, 
+        20, 
+        25, 
+    };
     public void StartSpawning()
     {
         StartCoroutine(SpawnEnemyRoutine(10, 3f));
@@ -37,9 +45,11 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         while (_stopSpawning == false)
+        for (int _waveNumber = 0; _waveNumber < _enemiesPerWave.Length; _waveNumber++)
         {
-            for (int i = 0; i < totalEnemies; i++)
-            {
+           int _totalEnemies = _enemiesPerWave[_waveNumber];
+           for (int i = 0; i < _totalEnemies; i++)
+           {
                 Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
                 GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
                 {
@@ -49,11 +59,16 @@ public class SpawnManager : MonoBehaviour
                 {
                     newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
                 }
-
                 newEnemy.transform.parent = _enemyContainer.transform;
-                enemies--;
                 yield return new WaitForSeconds(3.0f);
-            }
+           }
+
+
+
+
+
+
+
             //  StartCoroutine(EnemyWaveTwoRoutine(5, 3f));
         }
     }
