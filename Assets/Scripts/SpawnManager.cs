@@ -37,18 +37,18 @@ public class SpawnManager : MonoBehaviour
     };
     public void StartSpawning()
     {
-        StartCoroutine(SpawnEnemyRoutine(10, 3f));
+        StartCoroutine(SpawnEnemyRoutine());
         StartCoroutine(SpawnPowerupRoutine());  //consider adding a mystery powerup that can be really special or negative = randomly
     }
 
-    IEnumerator SpawnEnemyRoutine(int enemies, float delayToSpawn)
+    IEnumerator SpawnEnemyRoutine()
     {
         yield return new WaitForSeconds(2.0f);
         while (_stopSpawning == false)
-        for (int _waveNumber = 0; _waveNumber < _enemiesPerWave.Length; _waveNumber++)
+        for (int waveNumber = 0; waveNumber < _enemiesPerWave.Length; waveNumber++)
         {
-           int _totalEnemies = _enemiesPerWave[_waveNumber];
-           for (int i = 0; i < _totalEnemies; i++)
+           int totalEnemies = _enemiesPerWave[waveNumber];
+           for (int i = 0; i < totalEnemies; i++)
            {
                 Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
                 GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
@@ -63,13 +63,7 @@ public class SpawnManager : MonoBehaviour
                 yield return new WaitForSeconds(3.0f);
            }
 
-
-
-
-
-
-
-            //  StartCoroutine(EnemyWaveTwoRoutine(5, 3f));
+           yield return new WaitForSeconds(5f);
         }
     }
     /*************************************************************************

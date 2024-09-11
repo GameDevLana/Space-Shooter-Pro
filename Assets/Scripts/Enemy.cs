@@ -21,12 +21,20 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        _player = GameObject.Find("Player").GetComponent<Player>();
-        _audioSource = GetComponent<AudioSource>();
-        if (_player == null)
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
         {
-            Debug.LogError("The Player is NULL.");
+            _player = player.GetComponent<Player>();
+            if (_player == null)
+            {
+                Debug.LogError("The Player is NULL.");
+            }
         }
+        else
+        {
+            Debug.LogError("Player Object is not found.");
+        }
+        _audioSource = GetComponent<AudioSource>();
         _anim = GetComponent<Animator>();
         if (_anim == null)
         {
