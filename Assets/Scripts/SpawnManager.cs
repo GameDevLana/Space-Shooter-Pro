@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
     };
     public int total;
     public int randomNumber;
-
+    [SerializeField]
     public int[] _enemiesPerWave = new int[] 
     {
         5, 
@@ -66,33 +66,8 @@ public class SpawnManager : MonoBehaviour
            yield return new WaitForSeconds(5f);
         }
     }
-    /*************************************************************************
+/*  
   
-    public int[] enemiesPerWave = new int[] { 5, 10, 15, 20, 25 }; // Number of enemies per wave
-
-    private IEnumerator SpawnWaves()
-    {
-        yield return new WaitForSeconds(2.0f); 
-        for (int waveNumber = 0; waveNumber < enemiesPerWave.Length; waveNumber++)
-        {
-            int totalEnemies = enemiesPerWave[waveNumber];  
-            for (int i = 0; i < totalEnemies; i++)
-            {
-                float enemyPrefabToSpawn = Random.Range(0f, 1f);
-                if (enemyPrefabToSpawn > 0.3f)
-             
-    
-    {
-                    Vector3 posToSpawn = new Vector3(Random.Range(0f, 14.5f), 11, 0);
-                    GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
-                    newEnemy.transform.parent = _enemyContainer.transform;
-                }
-                else
-                {
-                    Vector3 posToSpawn = new Vector3(-16.7f, Random.Range(2.0f, 6.5f), 0);
-                    GameObject newEnemy = Instantiate(_enemy2Prefab, posToSpawn, Quaternion.identity);
-                    newEnemy.transform.parent = _enemyContainer.transform;
-                }
 
             // Optional: Add a short delay between enemy spawns in the same wave
               yield return new WaitForSeconds(0.5f);
@@ -111,158 +86,8 @@ public class SpawnManager : MonoBehaviour
     Debug.Log("All waves completed!");
 }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    IEnumerator SpawnEnemyWave(int waveNumber)
-    {
-        int enemiesPerGroup = 5;
-        int totalEnemies = waveNumber * 5;
-
-        for (int i = 0; i < totalEnemies; i++)
-        {
-            float enemyPrefabToSpawn = Random.Range(0f, 1f);
-            if (enemyPrefabToSpawn > 0.3f)
-            {
-                Vector3 posToSpawn = new Vector3(Random.Range(0f, 14.5f), 11, 0);
-                GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
-                newEnemy.transform.parent = _enemyContainer.transform;
-            }
-            else
-            {
-                Vector3 posToSpawn = new Vector3(-16.7f, Random.Range(2.0f, 6.5f), 0);
-                GameObject newEnemy = Instantiate(_enemy2Prefab, posToSpawn, Quaternion.identity);
-                newEnemy.transform.parent = _enemyContainer.transform;
-            }
-
-            if ((i + 1) % enemiesPerGroup == 0)
-            {
-                yield return new WaitForSeconds(3f);
-            }
-        }
-
-        while (GameObject.FindWithTag("Enemy") != null)
-        {
-            yield return null;
-        }
-    }
-
     */
-    //*****************************************************************************************
-    /*
-        IEnumerator EnemyWaveTwoRoutine(int enemies, float delayToSpawn)
-        {
-            Debug.Log("wave2 initiated");
-            yield return new WaitForSeconds(3.0f);
-            while (enemies > 0 && _stopSpawning == false)
-            {
-                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
-                {
-                    newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
-                }
-                else
-                {
-                    newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
-                }
-                newEnemy.transform.parent = _enemyContainer.transform;
-                enemies--;
-                yield return new WaitForSeconds(3.0f);
-            }
-            StartCoroutine(EnemyWaveThreeRoutine(5, 2.5f));
-        }
 
-        IEnumerator EnemyWaveThreeRoutine(int enemies, float delayToSpawn)    
-        {
-            Debug.Log("wave3 initiated");
-            yield return new WaitForSeconds(3.0f);
-            while (enemies > 0 && _stopSpawning == false)
-            {
-                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
-                {
-                    newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
-                }
-                else
-                {
-                    newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
-                }
-                newEnemy.transform.parent = _enemyContainer.transform;
-                enemies--;
-                yield return new WaitForSeconds(3.0f);
-            }
-            StartCoroutine(EnemyWaveFourRoutine(5, 2.0f));
-        }
-
-        IEnumerator EnemyWaveFourRoutine(int enemies, float delayToSpawn)
-        {
-            Debug.Log("wave4 initiated");
-            yield return new WaitForSeconds(3.0f);
-            while (enemies > 0 && _stopSpawning == false)
-            {
-                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
-                {
-                     newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
-                }
-                else
-                {
-                     newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
-                }
-                newEnemy.transform.parent = _enemyContainer.transform;
-                enemies--;
-                yield return new WaitForSeconds(3.0f);
-            }
-            StartCoroutine(EnemyWaveFiveRoutine(30, 1.5f));
-        }
-
-        IEnumerator EnemyWaveFiveRoutine(int enemies, float delayToSpawn)
-        {
-            Debug.Log("wave5 initiated");
-            yield return new WaitForSeconds(3.0f);
-            while (enemies > 0 && _stopSpawning == false)
-            {
-                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
-                {
-                    newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
-                }
-                else
-                {
-                    newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
-                }
-                newEnemy.transform.parent = _enemyContainer.transform;
-                enemies--;
-                yield return new WaitForSeconds(3.0f);
-            }
-        }
-    */
     IEnumerator SpawnPowerupRoutine()                                       
     {
         yield return new WaitForSeconds(2.0f);
