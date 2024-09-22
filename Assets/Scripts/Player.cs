@@ -201,8 +201,6 @@ public class Player : MonoBehaviour
 
            Quaternion laserRotation = Quaternion.Euler(0, 0, 5);
            Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.75f, 0), laserRotation);
-
-           //Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.75f, 0), Quaternion.identity);
            _audioSource.Play();
            _currentAmmo--;
            _uiManager.UpdateAmmo(_currentAmmo);
@@ -244,6 +242,7 @@ public class Player : MonoBehaviour
             }
             return;
         }
+        //take damage from enemy shield 
 
         _lives--;
 

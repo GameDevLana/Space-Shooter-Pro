@@ -41,6 +41,9 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnPowerupRoutine());  //consider adding a mystery powerup that can be really special or negative = randomly
     }
 
+
+
+
     IEnumerator SpawnEnemyRoutine()
     {
         yield return new WaitForSeconds(2.0f);
@@ -66,26 +69,27 @@ public class SpawnManager : MonoBehaviour
            yield return new WaitForSeconds(5f);
         }
     }
-/*  
-  
 
+    //randomly assign shield to enemy spawns 
+
+
+/*  
             // Optional: Add a short delay between enemy spawns in the same wave
+
               yield return new WaitForSeconds(0.5f);
-            }
         
         // Wait for all enemies to be destroyed before starting the next wave
+
         while (GameObject.FindWithTag("Enemy") != null)
         {
             yield return null;
         }
 
         // Optional: Add a delay between waves
+
         yield return new WaitForSeconds(5f); // Wait 5 seconds between waves
-    }
 
     Debug.Log("All waves completed!");
-}
-
     */
 
     IEnumerator SpawnPowerupRoutine()                                       

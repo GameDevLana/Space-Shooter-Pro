@@ -50,7 +50,7 @@ public class Laser : MonoBehaviour
     {
         _isEnemyLaser = true;
     }
-
+    //ontrigger with enemy shield? identify shield and destroy laser 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player" && _isEnemyLaser == true)

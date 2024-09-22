@@ -19,6 +19,8 @@ public class Enemy2 : MonoBehaviour
     private float _fireRate = 3.0f;
     private float _canFire = -1;
 
+    // enemy shield visualizer set to false
+
     private void Start()
     {
         GameObject player = GameObject.FindWithTag("Player");
@@ -59,6 +61,11 @@ public class Enemy2 : MonoBehaviour
             }      
         }
     }
+
+    //method for adding shield - turn shield on
+    //turn on visualizer - set to true 
+    //when to call method - need to be called in spawnmgr
+    //behavior of shield - it will take 1 hit damage  in Ontrigger & use shield sprite from player 
 
     void DiagonalMovement()  //Enemy Two - diagonal movement
     {
