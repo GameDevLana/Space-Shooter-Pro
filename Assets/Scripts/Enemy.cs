@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
 
     private float _fireRate = 3.0f;
     private float _canFire = -1;
+    [SerializeField]
+    private GameObject _enemyShieldPrefab;
+    private bool _enemyShieldActive = false;
 
     // enemy shield visualizer set to false
 
@@ -42,7 +45,19 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("The Animator is NULL");
         }
+
+        int x = Random.Range(0, 100);
+        if(x > 75)
+        {
+            _enemyShieldActive = true;
+        }
+        else
+        {
+            _enemyShieldActive = false;
+        }
+        _enemyShieldPrefab.SetActive(_enemyShieldActive);
     }
+
             
     void Update()
     {
