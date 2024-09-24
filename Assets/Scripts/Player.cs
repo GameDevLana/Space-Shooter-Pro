@@ -183,7 +183,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
     void FireLaser()
     {
         _canfire = Time.time + _fireRate;
@@ -198,7 +197,6 @@ public class Player : MonoBehaviour
         }
         if (_isMisfireActive == true && _isStopFireActive == false && _currentAmmo > 0)
         {
-
            Quaternion laserRotation = Quaternion.Euler(0, 0, 5);
            Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.75f, 0), laserRotation);
            _audioSource.Play();
@@ -407,8 +405,6 @@ public class Player : MonoBehaviour
         _score += points;
         _uiManager.UpdateScore(_score);
     }
-
-    
 }
     
 

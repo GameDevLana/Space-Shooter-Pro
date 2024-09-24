@@ -119,6 +119,18 @@ public class Enemy : MonoBehaviour
 
         }
     }
+
+  /*  public void Damage ()       Damage method of enemy shield to take one hit
+  {
+    if (_shieldPower > 0)
+  {
+        _shieldPower--;
+        ChangeShield();
+        return;
+  }
+    _player?.AddScore(10);
+  */
+
 }
 
 
