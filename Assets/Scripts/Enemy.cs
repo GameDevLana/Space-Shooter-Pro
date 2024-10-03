@@ -94,13 +94,15 @@ public class Enemy : MonoBehaviour
                 player.Damage();
             }
 
-            //if (_enemyShieldActive == true)
-            //{
-              //  _enemyShieldPrefab.SetActive(false);
-            //}
+            if (_enemyShieldActive == true)
+            {
+                _enemyShieldPrefab.SetActive(false);
+                _enemyShieldActive = false;
+                return;
+            }
             
-            //turn shield off
-            //else destroy this object
+                  //  turn shield off
+                  //else destroy this object
 
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
@@ -131,16 +133,9 @@ public class Enemy : MonoBehaviour
 
         }
 
-        /*  public void EnemyDamage ()       Damage method of enemy shield to take one hit
-        {
-          if (_shieldPower > 0)
-        {
-              _shieldPower--;
-              ChangeShield();
-              return;
-        }
-        }
-        */
+        //public void EnemyDamage ()       Damage method of enemy shield to take one hit
+
+
         _player?.AddScore(10);
     }
 
