@@ -18,9 +18,10 @@ public class Enemy : MonoBehaviour
 
     private float _fireRate = 3.0f;
     private float _canFire = -1;
+
     [SerializeField]
-    private GameObject _enemyShieldPrefab;
-    private bool _enemyShieldActive = false;
+    public GameObject _enemyShieldPrefab;
+    public bool _enemyShieldActive = false;
 
     // enemy shield visualizer set to false
 
@@ -45,19 +46,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("The Animator is NULL");
         }
-
-        int x = Random.Range(0, 100);
-        if(x > 75)
-        {
-            _enemyShieldActive = true;
-        }
-        else
-        {
-            _enemyShieldActive = false;
-        }
-        _enemyShieldPrefab.SetActive(_enemyShieldActive);
     }
-
             
     void Update()
     {
@@ -88,6 +77,13 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
     }
+
+    public void EnemyShieldActivated()
+    {
+        _enemyShieldActive = true;
+        _enemyShieldPrefab.SetActive(true);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
@@ -97,14 +93,30 @@ public class Enemy : MonoBehaviour
             {
                 player.Damage();
             }
+
+            //if (_enemyShieldActive == true)
+            //{
+              //  _enemyShieldPrefab.SetActive(false);
+            //}
+            
+            //turn shield off
+            //else destroy this object
+
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
             _audioSource.Play();
+
+
             Destroy(this.gameObject, 2.5f);
         }
         if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
+            //if shield is active 
+            //turn shield off
+
+            //else destroy this object
+
             if (_player != null)
             {
                 _player.AddScore(10);
@@ -118,18 +130,19 @@ public class Enemy : MonoBehaviour
             //the shield visualizer destroys with this object at bottom of screen - sets visualizer back to false
 
         }
-    }
 
-  /*  public void Damage ()       Damage method of enemy shield to take one hit
-  {
-    if (_shieldPower > 0)
-  {
-        _shieldPower--;
-        ChangeShield();
-        return;
-  }
-    _player?.AddScore(10);
-  */
+        /*  public void EnemyDamage ()       Damage method of enemy shield to take one hit
+        {
+          if (_shieldPower > 0)
+        {
+              _shieldPower--;
+              ChangeShield();
+              return;
+        }
+        }
+        */
+        _player?.AddScore(10);
+    }
 
 }
 

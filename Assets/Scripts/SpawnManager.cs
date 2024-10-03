@@ -27,22 +27,23 @@ public class SpawnManager : MonoBehaviour
     public int total;
     public int randomNumber;
     [SerializeField]
-    public int[] _enemiesPerWave = new int[] 
+    public int[] _enemiesPerWave = new int[]
     {
-        5, 
-        10, 
-        15, 
-        20, 
-        25, 
+        5,
+        10,
+        15,
+        20,
+        25,
     };
+    [SerializeField]
+    private float _percentEnemyShield = 0.2f;
+    [SerializeField]
+    public GameObject _enemyShieldPrefab;
     public void StartSpawning()
     {
-        StartCoroutine(SpawnEnemyRoutine());
+        StartCoroutine(SpawnEnemyRoutine());    //randomized instantiation for enemysheildprefab to be childed to all enemy types 
         StartCoroutine(SpawnPowerupRoutine());  //consider adding a mystery powerup that can be really special or negative = randomly
     }
-
-
-
 
     IEnumerator SpawnEnemyRoutine()
     {
@@ -54,7 +55,8 @@ public class SpawnManager : MonoBehaviour
            for (int i = 0; i < totalEnemies; i++)
            {
                 Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                GameObject newEnemy; if (Random.Range(0, 1f) > 0.5)
+                GameObject newEnemy; 
+                if (Random.Range(0f, 1f) > 0.5f)
                 {
                     newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
                 }
@@ -62,15 +64,18 @@ public class SpawnManager : MonoBehaviour
                 {
                     newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
                 }
-                newEnemy.transform.parent = _enemyContainer.transform;
-                yield return new WaitForSeconds(3.0f);
+                    if (Random.Range(0f, 1f) < _percentEnemyShield)
+                    {
+                        //call enemy ShieldActivated Method to activate shield and set Shield Active bool to true. (false is default)
+                    }
+
+                        yield return new WaitForSeconds(3.0f);
            }
 
            yield return new WaitForSeconds(5f);
         }
     }
 
-    //randomly assign shield to enemy spawns 
 
 
 /*  
