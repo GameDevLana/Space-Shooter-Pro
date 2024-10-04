@@ -83,7 +83,12 @@ public class Enemy : MonoBehaviour
         _enemyShieldActive = true;
         _enemyShieldPrefab.SetActive(true);
     }
-
+    public void EnemyShieldDeactivated()
+    {
+        _enemyShieldActive = false;
+        _enemyShieldPrefab.SetActive(false);
+    }
+   
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
@@ -96,8 +101,7 @@ public class Enemy : MonoBehaviour
 
             if (_enemyShieldActive == true)
             {
-                _enemyShieldPrefab.SetActive(false);
-                _enemyShieldActive = false;
+                EnemyShieldDeactivated();
                 return;
             }
             
@@ -116,7 +120,12 @@ public class Enemy : MonoBehaviour
             Destroy(other.gameObject);
             //if shield is active 
             //turn shield off
-
+            if (_enemyShieldActive == true)
+            {
+                _enemyShieldPrefab.SetActive(false);
+                _enemyShieldActive = false;
+                return;
+            }
             //else destroy this object
 
             if (_player != null)

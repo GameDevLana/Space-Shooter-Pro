@@ -39,6 +39,24 @@ public class SpawnManager : MonoBehaviour
     private float _percentEnemyShield = 0.2f;
     [SerializeField]
     public GameObject _enemyShieldPrefab;
+
+    private void Start()
+    /*
+    {
+        _enemyStraightPrefab.GetComponent<Enemy>();
+        _enemyDiagPrefab.GetComponent<Enemy2>();
+        if (_enemyDiagPrefab == null)
+        {
+            Debug.LogError("Enemy is null");
+        }    
+        else if (_enemyStraightPrefab == null)
+        {
+            Debug.LogError("Enemy2 is null");
+        }
+    }
+    */
+
+
     public void StartSpawning()
     {
         StartCoroutine(SpawnEnemyRoutine());    //randomized instantiation for enemysheildprefab to be childed to all enemy types 
@@ -64,38 +82,43 @@ public class SpawnManager : MonoBehaviour
                 {
                     newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
                 }
+                 /*
                     if (Random.Range(0f, 1f) < _percentEnemyShield)
                     {
-                        //call enemy ShieldActivated Method to activate shield and set Shield Active bool to true. (false is default)
+                        //call EnemyShieldActivated Method to activate shield for Enemy and set Shield Active bool to true. (false is default)
+                        //EnemyShieldActivated();
                     }
-
-                        yield return new WaitForSeconds(3.0f);
+                    else
+                    {
+                        //call EnemyShieldActivated Method to activate shield for Enemy2 and set Shield Active bool to true. (false is default)
+                    }
+                 */
+                       
+                    yield return new WaitForSeconds(3.0f);
            }
 
            yield return new WaitForSeconds(5f);
         }
     }
 
-
-
-/*  
-            // Optional: Add a short delay between enemy spawns in the same wave
+          /*  
+             // Optional: Add a short delay between enemy spawns in the same wave
 
               yield return new WaitForSeconds(0.5f);
         
-        // Wait for all enemies to be destroyed before starting the next wave
+             // Wait for all enemies to be destroyed before starting the next wave
 
-        while (GameObject.FindWithTag("Enemy") != null)
-        {
+             while (GameObject.FindWithTag("Enemy") != null)
+            {
             yield return null;
-        }
+             }
 
-        // Optional: Add a delay between waves
+            // Optional: Add a delay between waves
 
-        yield return new WaitForSeconds(5f); // Wait 5 seconds between waves
+             yield return new WaitForSeconds(5f); // Wait 5 seconds between waves
 
-    Debug.Log("All waves completed!");
-    */
+             Debug.Log("All waves completed!");
+         */
 
     IEnumerator SpawnPowerupRoutine()                                       
     {

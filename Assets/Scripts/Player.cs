@@ -240,7 +240,7 @@ public class Player : MonoBehaviour
             }
             return;
         }
-        //take damage from enemy shield 
+        //take damage from enemy shield - Damage Method is called from enemy script already. 
 
         _lives--;
 
