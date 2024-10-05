@@ -19,10 +19,26 @@ public class Enemy2 : MonoBehaviour
     private float _fireRate = 3.0f;
     private float _canFire = -1;
 
-    // enemy shield visualizer set to false
+    [SerializeField]
+    private float _percentEnemyShield = 0.2f;
+    [SerializeField]
+    public GameObject _enemyShieldPrefab;
+    public bool _enemyShieldActive = false;       // enemy shield visualizer set to false
+
 
     private void Start()
     {
+        if (Random.Range(0f, 1f) < _percentEnemyShield)
+        {
+            //call EnemyShieldActivated Method to activate shield for Enemy and set Shield Active bool to true. (false is default)
+            EnemyShieldActivated();
+        }
+        else
+        {
+            //call EnemyShieldActivated Method to activate shield for Enemy2 and set Shield Active bool to true. (false is default)
+            EnemyShieldDeactivated();
+        }
+
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -54,18 +70,14 @@ public class Enemy2 : MonoBehaviour
             _canFire = Time.time + _fireRate;
             GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + new Vector3(0, -1.2f, 0), Quaternion.identity);
             Laser laser = enemyLaser.GetComponent<Laser>();
-
             {
                 laser.AssignEnemyLaser();
-               
             }      
         }
     }
-
     //method for adding shield - turn shield on
     //turn on visualizer - set to true 
-    //when to call method - need to be called in spawnmgr
-    //behavior of shield - it will take 1 hit damage  in Ontrigger & use shield sprite from player 
+    //behavior of shield - it will take 1 hit damage  in OnTrigger & use shield sprite from player 
 
     void DiagonalMovement()  //Enemy Two - diagonal movement
     {
@@ -77,17 +89,32 @@ public class Enemy2 : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
     }
+    public void EnemyShieldActivated()
+    {
+        _enemyShieldActive = true;
+        _enemyShieldPrefab.SetActive(true);
+    }
+    public void EnemyShieldDeactivated()
+    {
+        _enemyShieldActive = false;
+        _enemyShieldPrefab.SetActive(false);
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
-
             if (player != null)
             {
                 player.Damage();
             }
-           _anim.SetTrigger("OnEnemyDeath");
+            if (_enemyShieldActive == true)
+            {
+                EnemyShieldDeactivated();
+                return;
+            }
+            _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
             _audioSource.Play();
             Destroy(this.gameObject, 2.5f);
@@ -96,6 +123,11 @@ public class Enemy2 : MonoBehaviour
         if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
+            if (_enemyShieldActive == true)
+            {
+                EnemyShieldDeactivated();
+                return;
+            }
             if (_player != null)
             {
                 _player.AddScore(10);

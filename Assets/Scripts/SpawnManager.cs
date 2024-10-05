@@ -35,12 +35,7 @@ public class SpawnManager : MonoBehaviour
         20,
         25,
     };
-    [SerializeField]
-    private float _percentEnemyShield = 0.2f;
-    [SerializeField]
-    public GameObject _enemyShieldPrefab;
 
-    private void Start()
     /*
     {
         _enemyStraightPrefab.GetComponent<Enemy>();
@@ -55,8 +50,6 @@ public class SpawnManager : MonoBehaviour
         }
     }
     */
-
-
     public void StartSpawning()
     {
         StartCoroutine(SpawnEnemyRoutine());    //randomized instantiation for enemysheildprefab to be childed to all enemy types 
@@ -82,18 +75,6 @@ public class SpawnManager : MonoBehaviour
                 {
                     newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
                 }
-                 /*
-                    if (Random.Range(0f, 1f) < _percentEnemyShield)
-                    {
-                        //call EnemyShieldActivated Method to activate shield for Enemy and set Shield Active bool to true. (false is default)
-                        //EnemyShieldActivated();
-                    }
-                    else
-                    {
-                        //call EnemyShieldActivated Method to activate shield for Enemy2 and set Shield Active bool to true. (false is default)
-                    }
-                 */
-                       
                     yield return new WaitForSeconds(3.0f);
            }
 

@@ -21,12 +21,25 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     public GameObject _enemyShieldPrefab;
-    public bool _enemyShieldActive = false;
+    public bool _enemyShieldActive = false;           // enemy shield visualizer set to false 
+    [SerializeField]
+    private float _percentEnemyShield = 0.2f;
 
-    // enemy shield visualizer set to false
+    
 
     private void Start()
     {
+        if (Random.Range(0f, 1f) < _percentEnemyShield)
+        {
+            //call EnemyShieldActivated Method to activate shield for Enemy and set Shield Active bool to true. (false is default)
+            EnemyShieldActivated();
+        }
+        else
+        {
+            //call EnemyShieldActivated Method to activate shield for Enemy2 and set Shield Active bool to true. (false is default)
+            EnemyShieldDeactivated();
+        }
+ 
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -40,6 +53,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Player Object is not found.");
         }
+    
         _audioSource = GetComponent<AudioSource>();
         _anim = GetComponent<Animator>();
         if (_anim == null)
@@ -104,15 +118,12 @@ public class Enemy : MonoBehaviour
                 EnemyShieldDeactivated();
                 return;
             }
-            
                   //  turn shield off
                   //else destroy this object
 
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
             _audioSource.Play();
-
-
             Destroy(this.gameObject, 2.5f);
         }
         if (other.tag == "Laser")
@@ -139,15 +150,11 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject, 2.5f);
 
             //the shield visualizer destroys with this object at bottom of screen - sets visualizer back to false
-
         }
-
-        //public void EnemyDamage ()       Damage method of enemy shield to take one hit
-
+        //public void EnemyDamage ()   consider Damage method of enemy shield to take one hit instead of onTrigger
 
         _player?.AddScore(10);
     }
-
 }
 
 
