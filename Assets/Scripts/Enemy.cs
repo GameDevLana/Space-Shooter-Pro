@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     private float _canFire = -1;
 
     [SerializeField]
-    public GameObject _enemyShieldPrefab;
+    public GameObject _enemyShield;
     public bool _enemyShieldActive = false;           // enemy shield visualizer set to false 
     [SerializeField]
     private float _percentEnemyShield = 0.2f;
@@ -95,12 +95,12 @@ public class Enemy : MonoBehaviour
     public void EnemyShieldActivated()
     {
         _enemyShieldActive = true;
-        _enemyShieldPrefab.SetActive(true);
+        _enemyShield.SetActive(true);
     }
     public void EnemyShieldDeactivated()
     {
         _enemyShieldActive = false;
-        _enemyShieldPrefab.SetActive(false);
+        _enemyShield.SetActive(false);
     }
    
     private void OnTriggerEnter2D(Collider2D other)
@@ -133,7 +133,7 @@ public class Enemy : MonoBehaviour
             //turn shield off
             if (_enemyShieldActive == true)
             {
-                _enemyShieldPrefab.SetActive(false);
+                _enemyShield.SetActive(false);
                 _enemyShieldActive = false;
                 return;
             }

@@ -22,7 +22,7 @@ public class Enemy2 : MonoBehaviour
     [SerializeField]
     private float _percentEnemyShield = 0.2f;
     [SerializeField]
-    public GameObject _enemyShieldPrefab;
+    public GameObject _enemyShield;
     public bool _enemyShieldActive = false;       // enemy shield visualizer set to false
 
 
@@ -89,15 +89,16 @@ public class Enemy2 : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
     }
+
     public void EnemyShieldActivated()
     {
         _enemyShieldActive = true;
-        _enemyShieldPrefab.SetActive(true);
+        _enemyShield.SetActive(true);
     }
     public void EnemyShieldDeactivated()
     {
         _enemyShieldActive = false;
-        _enemyShieldPrefab.SetActive(false);
+        _enemyShield.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
