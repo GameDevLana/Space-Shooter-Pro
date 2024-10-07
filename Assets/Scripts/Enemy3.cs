@@ -24,8 +24,8 @@ public class Enemy3 : MonoBehaviour
     public bool _enemyShieldActive = false;           // enemy shield visualizer set to false 
     [SerializeField]
     private float _percentEnemyShield = 0.2f;
-
-    private float _ramRange;
+    [SerializeField]
+    private float _ramRange = 4f;
 
     private void Start()
     {
@@ -81,11 +81,11 @@ public class Enemy3 : MonoBehaviour
     void CalculateMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
-        if (Vector3.Distance(gameObject.transform.position,
-                     _player.transform.position) <= _ramRange)
+
+        if (_player != null && Vector3.Distance(gameObject.transform.position, _player.transform.position) <= _ramRange)
         {
-            Vector3 directionVector = _player.transform.position - transform.position;
-            directionVector.Normalize();
+            Vector3 directionVector = (_player.transform.position - transform.position).normalized;
+
             transform.Translate(directionVector * _speed * Time.deltaTime);
         }
         if (transform.position.y < -5f)
