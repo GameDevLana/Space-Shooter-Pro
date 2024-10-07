@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy3 : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 4f;
@@ -21,19 +21,22 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     public GameObject _enemyShield;
-    public bool _enemyShieldActive = false;          
+    public bool _enemyShieldActive = false;           // enemy shield visualizer set to false 
     [SerializeField]
     private float _percentEnemyShield = 0.2f;
+
 
 
     private void Start()
     {
         if (Random.Range(0f, 1f) < _percentEnemyShield)
         {
+            //call EnemyShieldActivated Method to activate shield for Enemy and set Shield Active bool to true. (false is default)
             EnemyShieldActivated();
         }
         else
         {
+            //call EnemyShieldActivated Method to activate shield for Enemy2 and set Shield Active bool to true. (false is default)
             EnemyShieldDeactivated();
         }
 
@@ -50,7 +53,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Player Object is not found.");
         }
-    
+
         _audioSource = GetComponent<AudioSource>();
         _anim = GetComponent<Animator>();
         if (_anim == null)
@@ -58,8 +61,8 @@ public class Enemy : MonoBehaviour
             Debug.LogError("The Animator is NULL");
         }
     }
-      
-    
+
+
     void Update()
     {
         CalculateMovement();
@@ -72,10 +75,9 @@ public class Enemy : MonoBehaviour
             for (int i = 0; i < lasers.Length; i++)
             {
                 lasers[i].AssignEnemyLaser();
-            } 
+            }
         }
     }
-
     void CalculateMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
@@ -118,6 +120,8 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
+            //if shield is active 
+            //turn shield off
             if (_enemyShieldActive == true)
             {
                 _enemyShield.SetActive(false);
