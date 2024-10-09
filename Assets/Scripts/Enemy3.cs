@@ -127,8 +127,6 @@ public class Enemy3 : MonoBehaviour
         if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
-            //if shield is active 
-            //turn shield off
             if (_enemyShieldActive == true)
             {
                 _enemyShield.SetActive(false);
