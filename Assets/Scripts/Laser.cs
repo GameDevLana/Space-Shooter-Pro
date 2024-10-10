@@ -7,12 +7,12 @@ public class Laser : MonoBehaviour
     [SerializeField]
     private float _speed = 8.0f;
     private bool _isEnemyLaser = false;
-    private bool _isBackwards = true;
+  //  private bool _isBackwards = true;
     
                 
     void Update()
     {
-        if (_isEnemyLaser == false || _isBackwards == true)
+        if (_isEnemyLaser == false)
         {
             MoveUP();
         }
@@ -48,7 +48,7 @@ public class Laser : MonoBehaviour
         }
     }
 
-    public void EnemyLaserBackwardsActive()
+   /* public void EnemyLaserBackwardsActive()
     {
         _isBackwards = true;
     }
@@ -57,7 +57,7 @@ public class Laser : MonoBehaviour
     {
         _isBackwards = false;
     }
-
+   */
 
     //assign pulse laser that causes damage
     public void AssignEnemyLaser()

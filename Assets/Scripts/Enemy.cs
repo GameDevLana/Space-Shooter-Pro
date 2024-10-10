@@ -58,8 +58,8 @@ public class Enemy : MonoBehaviour
             Debug.LogError("The Animator is NULL");
         }
     }
-      
-    
+     
+        
     void Update()
     {
         CalculateMovement();
@@ -75,6 +75,7 @@ public class Enemy : MonoBehaviour
             } 
         }
     }
+
 
     void CalculateMovement()
     {

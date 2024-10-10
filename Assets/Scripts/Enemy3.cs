@@ -85,7 +85,6 @@ public class Enemy3 : MonoBehaviour
         if (_player != null && Vector3.Distance(gameObject.transform.position, _player.transform.position) <= _ramRange)
         {
             Vector3 directionVector = (_player.transform.position - transform.position).normalized;
-
             transform.Translate(directionVector * _speed * Time.deltaTime);
         }
         if (transform.position.y < -5f)
