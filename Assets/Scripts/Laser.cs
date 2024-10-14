@@ -7,12 +7,14 @@ public class Laser : MonoBehaviour
     [SerializeField]
     private float _speed = 8.0f;
     private bool _isEnemyLaser = false;
-  //  private bool _isBackwards = true;
+    private bool _isEnemyLaserUp = false;
     
                 
     void Update()
     {
-        if (_isEnemyLaser == false)
+                //Laser behavior/direction/entity
+       
+        if (_isEnemyLaser == false || _isEnemyLaserUp == true)
         {
             MoveUP();
         }
@@ -21,6 +23,8 @@ public class Laser : MonoBehaviour
             MoveDown();
         }
     }
+
+                //Laser enums maybe. Set direction methods/behavior for all.
 
     void MoveUP()
     {
@@ -48,7 +52,7 @@ public class Laser : MonoBehaviour
         }
     }
 
-   /* public void EnemyLaserBackwardsActive()
+    /*public void EnemyLaserBackwardsActive()
     {
         _isBackwards = true;
     }
@@ -59,12 +63,18 @@ public class Laser : MonoBehaviour
     }
    */
 
-    //assign pulse laser that causes damage
+            //assign pulse laser that causes damage
     public void AssignEnemyLaser()
     {
         _isEnemyLaser = true;
     }
-    //ontrigger with enemy shield? identify shield and destroy laser 
+    public void AssignEnemyLaserUp()
+    {
+        _isEnemyLaserUp = true;    
+    }
+
+
+            //ontrigger with enemy shield? identify shield and destroy laser 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player" && _isEnemyLaser == true)

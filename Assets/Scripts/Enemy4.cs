@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy4 : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 4f;
+    private float _speed = 3f;
 
     [SerializeField]
     private GameObject _laserPrefab;
@@ -45,10 +45,11 @@ public class Enemy4 : MonoBehaviour
     }
 
 
-
     void Update()
     {
         CalculateMovement();
+        CheckPlayerPosition();
+
         if (Time.time > _canFire)
         {
             _fireRate = Random.Range(3f, 7f);
@@ -62,18 +63,51 @@ public class Enemy4 : MonoBehaviour
         }
     }
 
-
-    void CalculateMovement()
+    void CalculateMovement() //ENEMY MOVING DOWN
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
+
         if (transform.position.y < -5f)
         {
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+   
+    private void CheckPlayerPosition()
     {
+        if (_player != null)
+        {
+            if ((int)_player.transform.position.y > (int)transform.position.y)
+            {
+                Debug.Log("Player is behind enemy.");
+                        //TAKING AWAY RANDOM FIRERATE
+                        //_fireRate = Random.Range(.5f, 1.0f);
+                yield return new WaitForSeconds(1.0f);
+                {
+                            // Instantiate the laser at the enemy's position with a small offset
+                    GameObject enemyLaser = Instantiate(_laserPrefab, transform.localPosition + new Vector3(0, 1.47f, 0), Quaternion.identity);
+                            //INSTANTIATE LASER BACKFIRE
+                  
+                    _laserPrefab.GetComponent<Laser>().AssignEnemyLaserUp();
+                    Debug.Log("Enemy Laser Backwards is Active");
+
+                            // Call the method to handle the backward laser logic
+                            // Get all laser components attached to the enemy laser and assign them
+                    Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+                    _canFire = Time.time;    // Update the fire time
+
+                    for (int i = 0; i < lasers.Length; i++)
+                    {
+                        lasers[i].AssignEnemyLaserUp();
+                    }
+                }
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    { 
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();

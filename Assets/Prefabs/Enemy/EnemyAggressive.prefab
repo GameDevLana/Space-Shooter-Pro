@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &64547463909444929
 Transform:
   m_ObjectHideFlags: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
   _enemyShield: {fileID: 4391221924834616859}
   _enemyShieldActive: 0
   _percentEnemyShield: 0.2
+  _ramRange: 4
 --- !u!61 &7941184979097698319
 BoxCollider2D:
   m_ObjectHideFlags: 0

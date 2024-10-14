@@ -11,9 +11,17 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyAggPrefab;
     [SerializeField]
+    private GameObject _enemySmartPrefab;
+
+    //SPAWN SMART ENEMY
+    //ENEMY TYPE ARRAY 
+
+    [SerializeField]
     private GameObject _enemyContainer;
+
     [SerializeField]
     private GameObject[] powerups;
+
     private bool _stopSpawning = false;
 
     public int[] table =
@@ -73,7 +81,7 @@ public class SpawnManager : MonoBehaviour
 
                 if (randomValue > 0.66f)
                 {
-                    newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
+                    newEnemy = Instantiate(_enemySmartPrefab, posToSpawn, Quaternion.identity);
                 }
                 else if (randomValue > 0.33f)
                 {
