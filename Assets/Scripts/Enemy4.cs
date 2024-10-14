@@ -48,7 +48,7 @@ public class Enemy4 : MonoBehaviour
     void Update()
     {
         CalculateMovement();
-        CheckPlayerPosition();
+        StartCoroutine(CheckPlayerPosition());
 
         if (Time.time > _canFire)
         {
@@ -74,7 +74,7 @@ public class Enemy4 : MonoBehaviour
         }
     }
    
-    private void CheckPlayerPosition()
+    private IEnumerator CheckPlayerPosition()
     {
         if (_player != null)
         {

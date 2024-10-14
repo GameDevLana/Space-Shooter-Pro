@@ -13,7 +13,6 @@ public class Laser : MonoBehaviour
     void Update()
     {
                 //Laser behavior/direction/entity
-       
         if (_isEnemyLaser == false || _isEnemyLaserUp == true)
         {
             MoveUP();
@@ -23,7 +22,6 @@ public class Laser : MonoBehaviour
             MoveDown();
         }
     }
-
                 //Laser enums maybe. Set direction methods/behavior for all.
 
     void MoveUP()
@@ -51,7 +49,6 @@ public class Laser : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
     /*public void EnemyLaserBackwardsActive()
     {
         _isBackwards = true;
@@ -62,7 +59,6 @@ public class Laser : MonoBehaviour
         _isBackwards = false;
     }
    */
-
             //assign pulse laser that causes damage
     public void AssignEnemyLaser()
     {
@@ -72,7 +68,6 @@ public class Laser : MonoBehaviour
     {
         _isEnemyLaserUp = true;    
     }
-
 
             //ontrigger with enemy shield? identify shield and destroy laser 
     private void OnTriggerEnter2D(Collider2D other)
