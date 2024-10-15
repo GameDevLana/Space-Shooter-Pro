@@ -15,10 +15,10 @@ public class Enemy4 : MonoBehaviour
     private Animator _anim;
 
     private AudioSource _audioSource;
-
+    private float _canFireBack = -1;
     private float _fireRate = 3.0f;
     private float _canFire = -1;
-
+    private float _backFireRate = 0.5f;
 
     private void Start()
     {
@@ -48,7 +48,7 @@ public class Enemy4 : MonoBehaviour
     void Update()
     {
         CalculateMovement();
-        StartCoroutine(CheckPlayerPosition());
+        CheckPlayerPosition();
 
         if (Time.time > _canFire)
         {
@@ -63,7 +63,7 @@ public class Enemy4 : MonoBehaviour
         }
     }
 
-    void CalculateMovement() //ENEMY MOVING DOWN
+    void CalculateMovement() //Enemy moving down
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
 
@@ -74,29 +74,25 @@ public class Enemy4 : MonoBehaviour
         }
     }
    
-    private IEnumerator CheckPlayerPosition()
+    private void CheckPlayerPosition() //Enemy moving up
     {
         if (_player != null)
         {
-            if ((int)_player.transform.position.y > (int)transform.position.y)
+            if ((int)_player.transform.position.y > (int)transform.position.y) 
             {
-                Debug.Log("Player is behind enemy.");
-                        //TAKING AWAY RANDOM FIRERATE
-                        //_fireRate = Random.Range(.5f, 1.0f);
-                yield return new WaitForSeconds(1.0f);
+                if (Time.time > _canFireBack)
                 {
-                            // Instantiate the laser at the enemy's position with a small offset
-                    GameObject enemyLaser = Instantiate(_laserPrefab, transform.localPosition + new Vector3(0, 1.47f, 0), Quaternion.identity);
-                            //INSTANTIATE LASER BACKFIRE
-                  
-                    _laserPrefab.GetComponent<Laser>().AssignEnemyLaserUp();
-                    Debug.Log("Enemy Laser Backwards is Active");
-
-                            // Call the method to handle the backward laser logic
-                            // Get all laser components attached to the enemy laser and assign them
+                    _canFireBack = Time.time + _backFireRate; 
+                    GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + new Vector3(0, 2.74f, 0), Quaternion.identity);
+                    if (enemyLaser == null)
+                    {
+                        Debug.LogError("Enemy laser was not instantiated correctly");
+                    }
+                    if (_player == null)
+                    {
+                        Debug.LogError("Player reference is null");
+                    }    
                     Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
-                    _canFire = Time.time;    // Update the fire time
-
                     for (int i = 0; i < lasers.Length; i++)
                     {
                         lasers[i].AssignEnemyLaserUp();
@@ -133,7 +129,6 @@ public class Enemy4 : MonoBehaviour
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.5f);
         }
-        _player?.AddScore(10);
     }
 }
 

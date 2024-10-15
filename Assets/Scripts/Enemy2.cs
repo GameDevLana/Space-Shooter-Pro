@@ -130,7 +130,6 @@ public class Enemy2 : MonoBehaviour
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.5f);
         }
-        _player?.AddScore(10);
     }
     //public void EnemyDamage()   consider Damage method of enemy shield to take one hit instead of onTrigger
 }

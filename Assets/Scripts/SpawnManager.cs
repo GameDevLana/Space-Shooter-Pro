@@ -81,11 +81,11 @@ public class SpawnManager : MonoBehaviour
 
                 if (randomValue > 0.66f)
                 {
-                    newEnemy = Instantiate(_enemySmartPrefab, posToSpawn, Quaternion.identity);
+                    newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
                 }
                 else if (randomValue > 0.33f)
                 {
-                    newEnemy = Instantiate(_enemyDiagPrefab, posToSpawn, Quaternion.identity);
+                    newEnemy = Instantiate(_enemySmartPrefab, posToSpawn, Quaternion.identity);
                 }
                 else
                 {
