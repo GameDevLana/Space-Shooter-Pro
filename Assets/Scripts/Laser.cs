@@ -6,11 +6,19 @@ public class Laser : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 8.0f;
+
     private bool _isEnemyLaser = false;
     private bool _isEnemyLaserUp = false;
-    
-                
-    void Update()
+    public bool IsEnemyLaser()  // **New getter method**
+    {
+        return _isEnemyLaser;  // **Returns the value of _isEnemyLaser**
+    }
+    public bool IsEnemyLaserUp()  // **New getter method**
+    {
+        return _isEnemyLaserUp;  // **Returns the value of _isEnemyLaserUp**
+    }
+
+        void Update()
     {
                 //Laser behavior/direction/entity
         if (_isEnemyLaser == false || _isEnemyLaserUp == true)
@@ -49,16 +57,6 @@ public class Laser : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    /*public void EnemyLaserBackwardsActive()
-    {
-        _isBackwards = true;
-    }
-
-    public void EnemyLaserBackwardsDeactivated()
-    {
-        _isBackwards = false;
-    }
-   */
             //assign pulse laser that causes damage
     public void AssignEnemyLaser()
     {
@@ -68,11 +66,10 @@ public class Laser : MonoBehaviour
     {
         _isEnemyLaserUp = true;    
     }
-
-            //ontrigger with enemy shield? identify shield and destroy laser 
+    //ontrigger with enemy shield? identify shield and destroy laser 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player" && _isEnemyLaser == true)
+        if (other.tag == "Player" && (_isEnemyLaser == true || _isEnemyLaserUp == true))
         {
             Player player = other.GetComponent<Player>();
             if (player != null)

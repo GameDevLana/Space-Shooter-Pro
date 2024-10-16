@@ -123,7 +123,8 @@ public class Enemy3 : MonoBehaviour
             _audioSource.Play();
             Destroy(this.gameObject, 2.5f);
         }
-        if (other.tag == "Laser")
+        Laser laser = other.GetComponent<Laser>();  // **Retrieve Laser component**
+        if (laser != null && !laser.IsEnemyLaser() && !laser.IsEnemyLaserUp())
         {
             Destroy(other.gameObject);
             if (_enemyShieldActive == true)
