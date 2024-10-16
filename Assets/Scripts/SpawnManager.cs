@@ -97,6 +97,26 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
+    //NEW SPAWN ENEMY ROUTINE USING ARRAY
+    /*
+    IEnumerator SpawnEnemyRoutine()
+    {
+        yield return new WaitForSeconds(1.0f);
+        while (_stopSpawning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+            int randomEnemy = Random.Range(0, enemyPrefabs.Length);
+            Instantiate(enemyPrefabs[randomEnemy], posToSpawn, Quatiernion.idnetity);
+            yield return new WaitForSeconds(Random.Range(3, 8));
+        }
+    }
+
+
+
+
+    }*/
+
+
           /*  
              // Optional: Add a short delay between enemy spawns in the same wave
 

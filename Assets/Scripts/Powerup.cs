@@ -61,8 +61,15 @@ public class PowerUp : MonoBehaviour
                         Debug.Log("Default Value");
                         break;
                 }
+                Destroy(this.gameObject);
+                return;
             }
+        }
+        if (other.tag == "EnemyLaser")
+        {
+            Destroy(other.gameObject);
             Destroy(this.gameObject);
-        }  
+        }
+        
     }
 }
