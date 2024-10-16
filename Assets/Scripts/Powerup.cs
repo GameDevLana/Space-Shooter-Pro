@@ -13,6 +13,15 @@ public class PowerUp : MonoBehaviour
     [SerializeField]
     private AudioClip _clip;
 
+    private float _range = 3f;
+    private Player _player;
+
+
+    private void Start()
+    {
+        _player = GameObject.Find("Player").GetComponent<Player>();
+    }
+
     //Homing projectile powerup - rare
     void Update()
     {
@@ -20,6 +29,11 @@ public class PowerUp : MonoBehaviour
         if (transform.position.y < -4.5f)
         {
             Destroy(this.gameObject);
+        }
+
+        if(Input.GetKey(KeyCode.C) && Vector3.Distance(_player.transform.position, transform.position) < _range)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
         }
     }
     
