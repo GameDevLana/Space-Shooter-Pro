@@ -128,7 +128,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    //Pickup Collect - When 'C' is pressed, pickups quickly move to player
    // Homing Projectile -  create homing projectile that seeks the closest target - include rare powerup to activate
     void CalculateMovement()
     {
@@ -160,9 +159,7 @@ public class Player : MonoBehaviour
             StartCoroutine(ThrustRechargeRoutine());   
         }
 
-
         //*Adding extra UI for Charge (*opt UI level indicator could include text of %) 
-
 
         if (transform.position.y >= 0)
         {
@@ -248,7 +245,6 @@ public class Player : MonoBehaviour
         //call camera shake coroutines
         //create a handle to the camera
 
-
         if (_lives == 2)
         {
             _leftEngine.SetActive(true);
@@ -267,7 +263,6 @@ public class Player : MonoBehaviour
         }
         _uiManager.UpdateLives(_lives);
     }
-
 
     public void ShieldActive()
     {
@@ -335,7 +330,6 @@ public class Player : MonoBehaviour
 
         StartCoroutine(StopFireCooldownRoutine());
     }
-
 
     public void ThrusterActive()
     {
