@@ -95,12 +95,22 @@ public class Enemy5 : MonoBehaviour
     void CalculateMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
+
         if (_player != null && Vector3.Distance(gameObject.transform.position, _player.transform.position) <= _checkRadius)
+        
         {
-            Vector3 directionVector = (_player.transform.position - transform.position.normalized);
-            transform.Translate(directionVector * _speed * Time.deltaTime);
+            Vector3 directionAway = (Laser.transform.position - transform.position).normalized;
+            float angle = 30f;                                             // Small angle to shift slightly away from laser
+            Quaternion rotation = Quaternion.Euler(0, 0, angle);           // Rotate by 10 degrees for a slight dodge
+                                                                          // Rotate the direction vector slightly
+            Vector3 adjustedDirection = rotation * directionAway;
+                                                                          // Move just enough to get out of the laser's path
+            float dodgeSpeed = 3f;                                        // Lower speed for a small movement
+            
+            transform.position += adjustedDirection * dodgeSpeed * Time.deltaTime;
         }
-        if (transform.position.y < -5f)
+        
+        if (transform.position.y < -5f || transform.position.x < -8f || transform.position.x > 8f)
         {
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
