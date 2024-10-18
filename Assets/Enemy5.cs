@@ -25,18 +25,21 @@ public class Enemy5 : MonoBehaviour
     [SerializeField]
     private float _percentEnemyShield = 0.2f;
     [SerializeField]
-    private float _checkRadius = 5.0f;
-    [SerializeField]
-    private float _rotationModifier = 0;
-    [SerializeField]
-    private float _turnSpeed = 2.5f;
-    private bool _turnStarted = false;
+    private float _checkRadius = 1.0f;
+
+    //[SerializeField]
+    // private float _rotationModifier = 0;
+    //[SerializeField]
+    //private float _turnSpeed = 1.0f;
+    //private bool _turnStarted = false;
 
 
-   // private float _distanceToLaser;
-   //private float _defenseRange = 10.0f;
-   //private Vector3 _avoidDirection;
-
+    // private float _distanceToLaser;
+    //private float _defenseRange = 10.0f;
+    //private Vector3 _avoidDirection;
+    //  [SerializeField]
+    // private bool _canAvoidShot;
+    //private bool _avoidShot;
 
     private void Start()
     {
@@ -86,49 +89,23 @@ public class Enemy5 : MonoBehaviour
                 lasers[i].AssignEnemyLaser();
             }
         }
-        CheckforLasers();
-       // AvoidLaser();
+        //  CheckforLasers(); ****TRACK PLAYER LASERS FOR AVOID BEHAVIOR***
+        // AvoidLaser();   ****TRACK PLAYER LASERS FOR AVOID BEHAVIOR***
     }
     void CalculateMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        if (_player != null && Vector3.Distance(gameObject.transform.position, _player.transform.position) <= _checkRadius)
+        {
+            Vector3 directionVector = (_player.transform.position - transform.position.normalized);
+            transform.Translate(directionVector * _speed * Time.deltaTime);
+        }
         if (transform.position.y < -5f)
         {
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
         }
     }
-
-
-    void CheckforLasers()
-    {
-        Collider2D[] other = Physics2D.OverlapCircleAll(transform.position, _checkRadius);
-        foreach (var hitObject in other)
-        {
-            if (hitObject.CompareTag("Laser"))
-            { 
-                Laser shot = hitObject.GetComponent<Laser>();
-                if(shot != null && !_turnStarted)
-                {
-                    StartCoroutine(AvoidShot(hitObject.transform.position));
-                }
-            }    
-        }
-    }
-    /*  void AvoidLaser()
-      {
-          GameObject _laser = GameObject.Find("Laser(Clone)");
-          if(_laser != null)
-          {
-              _distanceToLaser = Vector3.Distance(_laser.transform.position, this.transform.position);
-              if (_distanceToLaser <= _defenseRange *2)
-              {
-                  _avoidDirection = this.transform.position - _laser.transform.position;
-                  _avoidDirection = _avoidDirection.normalized;
-                  this.transform.position += _avoidDirection * Time.deltaTime * (_speed * 5);
-              }
-          }
-      }*/
 
     public void EnemyShieldActivated()
     {
@@ -181,23 +158,66 @@ public class Enemy5 : MonoBehaviour
             Destroy(this.gameObject, 2.5f);
         }
     }
-   
-    //public void EnemyDamage()   consider Damage method of enemy shield to take one hit instead of onTrigger
-    void TurnShip(Vector3 target)
-    {
-        Vector3 vectorToTarget = (target * -1) - transform.position;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - _rotationModifier;
-        Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * _turnSpeed);
-    }
-
-    IEnumerator AvoidShot(Vector3 target)
-    {
-        TurnShip(target);
-        yield return new WaitForSeconds(0.75f);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 90), Time.deltaTime * _turnSpeed);
-        _turnStarted = true;
-        yield return new WaitForSeconds(0.5f);
-        _turnStarted = false;
-    }
 }
+    //**************************************
+    //FAILED ATTEMPTS AT AVOID BEHAVIOR
+    //****************************************
+    /*  void EnemyAvoidShot()
+      {
+          Vector3 newXPos = new Vector3(x[Index], 0, 0);
+          Vector3 newPos = transform.position += newXPos;
+          transform.position = Vector3.MoveTowards(transform.position, newPos, _speed * Time.deltaTime);
+          _avoidShot = false;
+          _canAvoidShot = false;
+      }*/
+
+    /* void CheckforLasers()
+     {
+         Collider2D[] other = Physics2D.OverlapCircleAll(transform.position, _checkRadius);
+         foreach (var hitObject in other)
+         {
+             if (hitObject.CompareTag("Laser"))
+             { 
+                 Laser shot = hitObject.GetComponent<Laser>();
+                 if(shot != null && !_turnStarted)
+                 {
+                     StartCoroutine(AvoidShot(hitObject.transform.position));
+                 }
+             }    
+         }
+     }/*
+     /*  void AvoidLaser()
+       {
+           GameObject _laser = GameObject.Find("Laser(Clone)");
+           if(_laser != null)
+           {
+               _distanceToLaser = Vector3.Distance(_laser.transform.position, this.transform.position);
+               if (_distanceToLaser <= _defenseRange *2)
+               {
+                   _avoidDirection = this.transform.position - _laser.transform.position;
+                   _avoidDirection = _avoidDirection.normalized;
+                   this.transform.position += _avoidDirection * Time.deltaTime * (_speed * 5);
+               }
+           }
+       }*/
+    //public void EnemyDamage()   consider Damage method of enemy shield to take one hit instead of onTrigger
+    /*I  void TurnShip(Vector3 target)
+      {
+          Vector3 vectorToTarget = (target * -1) - transform.position;
+          float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - _rotationModifier;
+          Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+          transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * _turnSpeed);
+      }*/
+
+    /* IEnumerator AvoidShot(Vector3 target)
+     {
+         TurnShip(target);
+         yield return new WaitForSeconds(0.75f);
+         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, 90), Time.deltaTime * _turnSpeed);
+         _turnStarted = true;
+         yield return new WaitForSeconds(0.5f);
+         _turnStarted = false;
+     }*/
+
+
+

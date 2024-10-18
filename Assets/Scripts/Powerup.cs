@@ -22,7 +22,7 @@ public class PowerUp : MonoBehaviour
         _player = GameObject.Find("Player").GetComponent<Player>();
     }
 
-    //Homing projectile powerup - rare
+                     //**Homing projectile powerup - rare**
     void Update()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
@@ -43,7 +43,6 @@ public class PowerUp : MonoBehaviour
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
-
             AudioSource.PlayClipAtPoint(_clip, transform.position);
             
             if (player != null)
@@ -87,3 +86,5 @@ public class PowerUp : MonoBehaviour
         
     }
 }
+
+

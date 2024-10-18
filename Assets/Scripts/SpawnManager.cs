@@ -12,10 +12,9 @@ public class SpawnManager : MonoBehaviour
     private GameObject _enemyAggPrefab;
     [SerializeField]
     private GameObject _enemySmartPrefab;
-
-    //SPAWN SMART ENEMY
-    //ENEMY TYPE ARRAY 
-
+                        //***SPAWN SMART ENEMY
+                        //***SPAWN AVOID ENEMY
+                        //***ENEMY TYPE ARRAY 
     [SerializeField]
     private GameObject _enemyContainer;
 
@@ -62,8 +61,8 @@ public class SpawnManager : MonoBehaviour
     */
     public void StartSpawning()
     {
-        StartCoroutine(SpawnEnemyRoutine());    //randomized instantiation for enemysheildprefab to be childed to all enemy types 
-        StartCoroutine(SpawnPowerupRoutine());  //consider adding a mystery powerup that can be really special or negative = randomly
+        StartCoroutine(SpawnEnemyRoutine());    //***Randomized instantiation for enemysheildprefab to be childed to ALL enemy types?***
+        StartCoroutine(SpawnPowerupRoutine());  //***Consider adding a mystery powerup that can be really special or negative = randomly.***
     }
 
     IEnumerator SpawnEnemyRoutine()
@@ -77,7 +76,7 @@ public class SpawnManager : MonoBehaviour
            {
                 Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
                 GameObject newEnemy;
-                float randomValue = Random.Range(0f, 1f);  // Generate a random value between 0 and 1
+                float randomValue = Random.Range(0f, 1f);  //** Update generate random value for each enemy type probability**
 
                 if (randomValue > 0.66f)
                 {
@@ -97,7 +96,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    //NEW SPAWN ENEMY ROUTINE USING ARRAY
+                                 //********NEW SPAWN ENEMY ROUTINE USING ARRAY******* see Powerup spawning behavior.
     /*
     IEnumerator SpawnEnemyRoutine()
     {
@@ -110,31 +109,24 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
     }
-
-
-
-
     }*/
 
+        /*  
+                                // ***OPTIONAL: Add a short delay between enemy spawns in the same wave:****
+        yield return new WaitForSeconds(0.5f);
+            
+                                // ***Wait for all enemies to be destroyed before starting the next wave:*****
 
-          /*  
-             // Optional: Add a short delay between enemy spawns in the same wave
+        while (GameObject.FindWithTag("Enemy") != null)
+        {
+        yield return null;
+        }
 
-              yield return new WaitForSeconds(0.5f);
-        
-             // Wait for all enemies to be destroyed before starting the next wave
+                                //****OPTIONAL: Add a delay between waves:*******
 
-             while (GameObject.FindWithTag("Enemy") != null)
-            {
-            yield return null;
-             }
-
-            // Optional: Add a delay between waves
-
-             yield return new WaitForSeconds(5f); // Wait 5 seconds between waves
-
-             Debug.Log("All waves completed!");
-         */
+        yield return new WaitForSeconds(5f); // Wait 5 seconds between waves
+        Debug.Log("All waves completed!");
+        */
 
     IEnumerator SpawnPowerupRoutine()                                       
     {
@@ -147,11 +139,12 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
     }
-    /*    use powerups.Length instead of Random.Range(0, 70);
-        for (int i = 0; i < powerups.Length; i++)  
-            {
-                int randomPowerUp = powerups[i];
-            }*/
+                            /*****USE powerups.length instead of Random.Range(0, 70);*******
+    for (int i = 0; i < powerups.Length; i++)  
+    {
+        int randomPowerUp = powerups[i];
+    }*/
+
     public void OnPlayerDeath()
     { 
     _stopSpawning = true;

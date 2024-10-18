@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _currentThrust;
 
-
     [SerializeField]
     private GameObject _laserPrefab;
 
@@ -32,11 +31,9 @@ public class Player : MonoBehaviour
     private float _fireRate = 0.5f;
     private float _canfire = -1f;
 
-
     [SerializeField]
     private int _maxAmmo = 15;
     private int _currentAmmo;
-
 
     [SerializeField]
     private int _lives = 3;
@@ -44,7 +41,6 @@ public class Player : MonoBehaviour
     private int _currentHealth;
     [SerializeField]
     private int _maxHealth = 10;
-
 
     private SpawnManager _spawnManager;
 
@@ -320,14 +316,12 @@ public class Player : MonoBehaviour
         {
             _isStopFireActive = true;
         }
-
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies)
         {
             _audioSource.Play();
             Destroy(enemy);
         }
-
         StartCoroutine(StopFireCooldownRoutine());
     }
 
@@ -337,9 +331,7 @@ public class Player : MonoBehaviour
         {
             _currentThrust -= _speed * _thrust * Time.deltaTime;
             _uiManager.UpdateThrusterCharge(_currentThrust);
-            
         }
-
     }
 
   public void MisfireActive()
@@ -390,7 +382,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         _isMisfireActive = false;
      }
-    
         //flash current ammo count when it become <5
        //flash NO AMMO when current ammo = 0
 

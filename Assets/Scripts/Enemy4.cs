@@ -74,7 +74,7 @@ public class Enemy4 : MonoBehaviour
         }
     }
    
-    private void CheckPlayerPosition() //Enemy moving up
+    private void CheckPlayerPosition() 
     {
         if (_player != null)
         {
@@ -84,14 +84,6 @@ public class Enemy4 : MonoBehaviour
                 {
                     _canFireBack = Time.time + _backFireRate; 
                     GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + new Vector3(0, 2.74f, 0), Quaternion.identity);
-                    if (enemyLaser == null)
-                    {
-                        Debug.LogError("Enemy laser was not instantiated correctly");
-                    }
-                    if (_player == null)
-                    {
-                        Debug.LogError("Player reference is null");
-                    }    
                     Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
                     for (int i = 0; i < lasers.Length; i++)
                     {

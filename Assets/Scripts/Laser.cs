@@ -9,18 +9,17 @@ public class Laser : MonoBehaviour
 
     private bool _isEnemyLaser = false;
     private bool _isEnemyLaserUp = false;
-    public bool IsEnemyLaser()  // **New getter method**
+    public bool IsEnemyLaser()  
     {
-        return _isEnemyLaser;  // **Returns the value of _isEnemyLaser**
+        return _isEnemyLaser;  
     }
-    public bool IsEnemyLaserUp()  // **New getter method**
+    public bool IsEnemyLaserUp()  
     {
-        return _isEnemyLaserUp;  // **Returns the value of _isEnemyLaserUp**
+        return _isEnemyLaserUp;  
     }
 
         void Update()
     {
-                //Laser behavior/direction/entity
         if (_isEnemyLaser == false || _isEnemyLaserUp == true)
         {
             MoveUP();
@@ -30,7 +29,8 @@ public class Laser : MonoBehaviour
             MoveDown();
         }
     }
-                //Laser enums maybe. Set direction methods/behavior for all.
+                //**Laser enums maybe. Set direction methods/behavior for all.**
+
 
     void MoveUP()
     {
@@ -57,7 +57,7 @@ public class Laser : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-            //assign pulse laser that causes damage
+            //**assign pulse laser that causes damage**
     public void AssignEnemyLaser()
     {
         _isEnemyLaser = true;
@@ -66,7 +66,7 @@ public class Laser : MonoBehaviour
     {
         _isEnemyLaserUp = true;    
     }
-    //ontrigger with enemy shield? identify shield and destroy laser 
+            //***ontrigger with enemy shield? identify shield and destroy laser **
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player" && (_isEnemyLaser == true || _isEnemyLaserUp == true))
