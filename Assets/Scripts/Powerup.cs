@@ -5,11 +5,11 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     [SerializeField]
-    private float _speed = 3.0f; 
-    
+    private float _speed = 3.0f;
+
     [SerializeField] //0 = triple shot 1 = speed 2 = shield 3 = ammo 4 = health 5 = bomb  6 = misfire  
     private int powerupID;
-    
+
     [SerializeField]
     private AudioClip _clip;
 
@@ -20,9 +20,10 @@ public class PowerUp : MonoBehaviour
     private void Start()
     {
         _player = GameObject.Find("Player").GetComponent<Player>();
+        
     }
-
-                     //**Homing projectile powerup - rare**
+   
+    //**Homing projectile powerup - rare**
     void Update()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);

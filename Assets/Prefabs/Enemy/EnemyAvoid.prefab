@@ -164,14 +164,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5385112950070537227}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373120081375297468351583512a0e0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 10ec119235f5dcb42b868648227f4174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 2
   _laserPrefab: {fileID: 6585060043216461956, guid: 7d1bdb8fd4eded7418e361996a0aca04, type: 3}
-  _enemyShield: {fileID: 6953043922158894848}
-  _enemyShieldActive: 0
-  _percentEnemyShield: 0.2
+  _checkRadius: 1
 --- !u!61 &1242975212231413294
 BoxCollider2D:
   m_ObjectHideFlags: 0

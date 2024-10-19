@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 3.5f;
-
     [SerializeField]
     private float _boost = 8.5f;
 
@@ -23,7 +22,6 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private GameObject _laserPrefab;
-
     [SerializeField]
     private GameObject _tripleShotPrefab;
 
@@ -70,7 +68,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioClip _explodeSoundClip;
     private AudioSource _audioSource;
-
     private CameraManager _cameraHolder;
     //private no ammo audio - click when press space bar                                                                                                                                                                                    
 
