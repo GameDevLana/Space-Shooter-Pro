@@ -30,8 +30,6 @@ public class Laser : MonoBehaviour
         }
     }
                 //**Laser enums maybe. Set direction methods/behavior for all.**
-
-
     void MoveUP()
     {
         transform.Translate(Vector3.up * _speed * Time.deltaTime);

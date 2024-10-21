@@ -96,7 +96,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-                                 //********NEW SPAWN ENEMY ROUTINE USING ARRAY******* see Powerup spawning behavior.
+                                 //********NEW SPAWN ENEMY ROUTINE USING ARRAY******* (see Powerup spawning behavior)
     /*
     IEnumerator SpawnEnemyRoutine()
     {
@@ -109,10 +109,9 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
     }
-    }*/
+    }*/   
 
-        /*  
-                                // ***OPTIONAL: Add a short delay between enemy spawns in the same wave:****
+        /*                     // ***OPTIONAL: Add a short delay between enemy spawns in the same wave:****
         yield return new WaitForSeconds(0.5f);
             
                                 // ***Wait for all enemies to be destroyed before starting the next wave:*****
@@ -121,12 +120,13 @@ public class SpawnManager : MonoBehaviour
         {
         yield return null;
         }
-
+   
                                 //****OPTIONAL: Add a delay between waves:*******
 
         yield return new WaitForSeconds(5f); // Wait 5 seconds between waves
         Debug.Log("All waves completed!");
-        */
+    
+         *//////////////////////////////////////////////////////
 
     IEnumerator SpawnPowerupRoutine()                                       
     {
@@ -143,7 +143,7 @@ public class SpawnManager : MonoBehaviour
     for (int i = 0; i < powerups.Length; i++)  
     {
         int randomPowerUp = powerups[i];
-    }*/
+    }*////////////////////////////////////////////////////////////////////////////
 
     public void OnPlayerDeath()
     { 

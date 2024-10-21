@@ -19,23 +19,35 @@ public class Enemy5 : MonoBehaviour
     private float _fireRate = 3.0f;
     private float _canFire = -1;
 
-   // [SerializeField]
-   // public GameObject _enemyShield;
+    // [SerializeField]              ************SHIELDS********
+    // public GameObject _enemyShield;
     //public bool _enemyShieldActive = false;
-   // [SerializeField]
-   // private float _percentEnemyShield = 0.2f;
+    // [SerializeField]
+    // private float _percentEnemyShield = 0.2f;
+    ////////////////////////////////////////////////////////////
 
+    [SerializeField]
+    private int _dodgeSpeed = 6;
+    private bool _isDodgeOn = false;
+
+
+
+    //[SerializeField]                      **********DODGECOUNT*******
+    // private int _randomNumber = Random.Range(0, 2);
+    // [SerializeField]
+    // private _dodgeLaserCount = 0;
+    //////////////////////////////////////////////////////////////
 
     private void Start()
     {
-     /*   if (Random.Range(0f, 1f) < _percentEnemyShield)
-        {
-            EnemyShieldActivated();
-        }
-        else
-        {
-            EnemyShieldDeactivated();
-        }*/
+        /*   if (Random.Range(0f, 1f) < _percentEnemyShield)  ************SHIELDS********
+           {
+               EnemyShieldActivated();
+           }
+           else
+           {
+               EnemyShieldDeactivated();
+           }*//////////////////////////////////////////////////////////// 
 
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
@@ -59,7 +71,6 @@ public class Enemy5 : MonoBehaviour
         }
     }
 
-
     void Update()
     {
         CalculateMovement();
@@ -73,18 +84,27 @@ public class Enemy5 : MonoBehaviour
             {
                 lasers[i].AssignEnemyLaser();
             }
+                                                        //*************************ENEMY LASERS OFFSET SHOULD BE CLOSER TO SHIP AND SMALLER/SHORTER************
         }
     }
     void CalculateMovement()
     {
-        transform.Translate(Vector3.down * _speed * Time.deltaTime);
-        if (transform.position.y < -5f)
+        if (_isDodgeOn == true)
+        {
+            transform.Translate(_dodgeSpeed * Time.deltaTime * Vector3.right);
+        }
+        else
+        { 
+            transform.Translate(_speed * Time.deltaTime * Vector3.down);
+        }
+
+        if (transform.position.y < -5f) //also if it goes out of bounds horizontally.
         {
             float randomX = Random.Range(-8f, 8f);
             transform.position = new Vector3(randomX, 7, 0);
         }
     }
-    /*  public void EnemyShieldActivated()
+    /*  public void EnemyShieldActivated()  ************SHIELDS********
       {
           _enemyShieldActive = true;
           _enemyShield.SetActive(true);
@@ -93,7 +113,7 @@ public class Enemy5 : MonoBehaviour
       {
           _enemyShieldActive = false;
           _enemyShield.SetActive(false);
-      }*/
+      }*////////////////////////////////////////////////////////////////
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -105,26 +125,27 @@ public class Enemy5 : MonoBehaviour
                 player.Damage();
             }
 
-          /*  if (_enemyShieldActive == true)
-            {
-                EnemyShieldDeactivated();
-                return;
-            }*/
+            /*  if (_enemyShieldActive == true)        *********SHIELDS*******
+              {
+                  EnemyShieldDeactivated();
+                  return;
+              }*/////////////////////////////////////////////////////////////////
+
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
             _audioSource.Play();
             Destroy(this.gameObject, 2.5f);
         }
-        Laser laser = other.GetComponent<Laser>();  // **Retrieve Laser component**
+        Laser laser = other.GetComponent<Laser>();
         if (laser != null && !laser.IsEnemyLaser() && !laser.IsEnemyLaserUp())
         {
             Destroy(other.gameObject);
-           /* if (_enemyShieldActive == true)
-            {
-                _enemyShield.SetActive(false);
-                _enemyShieldActive = false;
-                return;
-            }*/
+            /* if (_enemyShieldActive == true)     ************SHIELDS********
+             {
+                 _enemyShield.SetActive(false);
+                 _enemyShieldActive = false;
+                 return;
+             }*///////////////////////////////////////////////////////////////
 
             if (_player != null)
             {
@@ -137,9 +158,26 @@ public class Enemy5 : MonoBehaviour
             Destroy(this.gameObject, 2.5f);
         }
     }
+    public void Dodge()
+    {
+        {
+            Debug.Log("Dodging laser.");
+            _isDodgeOn = true;
+            StartCoroutine(DodgeDelayRoutine());
+        }
+    }
+    IEnumerator DodgeDelayRoutine()
+    {
+        yield return new WaitForSeconds(.5f);
+        _isDodgeOn = false;
+    }
+    //transform.Translate(Vector3.right * _dodgeSpeed * _direction * Time.deltaTime);
+    //transform.Translate(Vector3.right *5); //simple example
+
+
 }
 
-    //public void EnemyDamage()   consider Damage method of enemy shield to take one hit instead of onTrigger
+//public void EnemyDamage()   consider Damage method of enemy shield to take one hit instead of onTrigger
 
 
 

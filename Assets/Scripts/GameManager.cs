@@ -5,14 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    /*
+   
+    /*            ************************ENEMY WAVE SYSTEM - IS THIS VALID OR DO I DELETE?**************
      * [SerializeField]
     private int _maxWaves;
     private int _currentWave;
 
     [SerializeField]
     private int _enemiesPerWave;
-    */
+    *//////////////////////////////////////////////////
+
     private UIManager _uiManaager;
     private SpawnManager _spawnManager;
        
@@ -22,9 +24,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        //if the r key was pressed
-        //restart the current scene
-
         if (Input.GetKeyDown(KeyCode.R) && _isGameOver == true)
         {
             SceneManager.LoadScene(0); //Current Game Scene
@@ -35,7 +34,8 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
     }
- /*
+
+ /*                *****************ENEMY WAVE SYSTEM - IS THIS VALID OR DO I DELETE?*********
   * public void DestroyEnemies()
     {
         _currentEnemies--;
@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour
         float delayOfSpawn = 2f / (float)_currentWave;
         _spawnManager.StartSpawning(_currentEnemies, delayOfSpawn);
     }
- */
+ *//////////////////////////////////////////////////////////////////////////////
+
     public void GameOver()
     {
         _isGameOver = true;

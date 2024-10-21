@@ -21,7 +21,7 @@ public class Enemy3 : MonoBehaviour
 
     [SerializeField]
     public GameObject _enemyShield;
-    public bool _enemyShieldActive = false;           // enemy shield visualizer set to false 
+    public bool _enemyShieldActive = false;          
     [SerializeField]
     private float _percentEnemyShield = 0.2f;
     [SerializeField]
@@ -31,12 +31,10 @@ public class Enemy3 : MonoBehaviour
     {
         if (Random.Range(0f, 1f) < _percentEnemyShield)
         {
-            //call EnemyShieldActivated Method to activate shield for Enemy and set Shield Active bool to true. (false is default)
             EnemyShieldActivated();
         }
         else
         {
-            //call EnemyShieldActivated Method to activate shield for Enemy2 and set Shield Active bool to true. (false is default)
             EnemyShieldDeactivated();
         }
 
@@ -123,7 +121,7 @@ public class Enemy3 : MonoBehaviour
             _audioSource.Play();
             Destroy(this.gameObject, 2.5f);
         }
-        Laser laser = other.GetComponent<Laser>();  // **Retrieve Laser component**
+        Laser laser = other.GetComponent<Laser>();  
         if (laser != null && !laser.IsEnemyLaser() && !laser.IsEnemyLaserUp())
         {
             Destroy(other.gameObject);
