@@ -8,7 +8,8 @@ public class Enemy5 : MonoBehaviour
     private float _speed = 5f;
 
     [SerializeField]
-    private GameObject _laserPrefab;
+    private GameObject _homingProjectile;
+
 
     private Player _player;
 
@@ -30,6 +31,7 @@ public class Enemy5 : MonoBehaviour
     private int _dodgeSpeed = 6;
     private bool _isDodgeOn = false;
 
+    private bool _isHomingProjectileActive = false; //*************WHY IS THIS GREY?***********
 
 
     //[SerializeField]                      **********DODGECOUNT*******
@@ -74,6 +76,10 @@ public class Enemy5 : MonoBehaviour
     void Update()
     {
         CalculateMovement();
+        if (_isHomingProjectileActive == true)
+        {
+            GameObject homingProjectile = Instantiate(_homingProjectile, transform.position, Quaternion.identity);
+        }
        /* if (Time.time > _canFire)
         {
             _fireRate = Random.Range(3f, 7f);
@@ -158,6 +164,7 @@ public class Enemy5 : MonoBehaviour
             Destroy(this.gameObject, 2.5f);
         }
     }
+
     public void Dodge()
     {
         {
@@ -173,6 +180,23 @@ public class Enemy5 : MonoBehaviour
     }
     //transform.Translate(Vector3.right * _dodgeSpeed * _direction * Time.deltaTime);
     //transform.Translate(Vector3.right *5); //simple example
+
+    public void HomingProjectileActive()
+    {
+        _isHomingProjectileActive = true;
+        StartCoroutine(HomingProjectileCoolDownRoutine());
+    }
+
+
+
+    IEnumerator HomingProjectileCoolDownRoutine()
+    {
+        yield return new WaitForSeconds(6.0f);
+        _isHomingProjectileActive = false;
+    }
+
+
+
 
 
 }

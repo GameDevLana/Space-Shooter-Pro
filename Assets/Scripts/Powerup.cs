@@ -37,7 +37,7 @@ public class PowerUp : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
         }
     }
-    
+    //Add HomingProjectilePowerup. Will it be added to this switch statement/array or do I make a new script for enemy powerups? Attach new PU sprite in Inspector. 
     
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -128,7 +128,7 @@ public class SpawnManager : MonoBehaviour
     
          *//////////////////////////////////////////////////////
 
-    IEnumerator SpawnPowerupRoutine()                                       
+    IEnumerator SpawnPowerupRoutine()                                      //**********ADD HOMINGPROJECTILE POWERUP TO SPAWN MGR*************************
     {
         yield return new WaitForSeconds(2.0f);
         while (_stopSpawning == false)

@@ -14,6 +14,9 @@ public class HomingProjectile : MonoBehaviour
     private float _missileSpeed;
     private float _missileTurnSpeed;
 
+   // private bool _isEnemyLaser = false;
+
+
     void Start()
     {
 
@@ -24,7 +27,12 @@ public class HomingProjectile : MonoBehaviour
         }
         FindClosestEnemy();
     }
-    // Update is called once per frame
+
+    private void FixedUpdate()
+    {
+        FireMissile();
+    }
+
     void Update()
     {
 
@@ -37,7 +45,6 @@ public class HomingProjectile : MonoBehaviour
         foreach (var enemy in targets)
         {
             _distance = (enemy.transform.position - this.transform.position).sqrMagnitude;
-
             if (_distance < _closestTarget)
             {
                 _closestTarget = _distance;
@@ -45,10 +52,23 @@ public class HomingProjectile : MonoBehaviour
             }
         }
     }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")  // && (_isEnemyLaser == true || _isEnemyLaserUp == true))
+        {
+            Player player = other.GetComponent<Player>();
+            if (player != null)
+            {
+                player.Damage();
+            }
+        }
+    }
+
     private void FireMissile()
     {
         _rbMissile.velocity = transform.up * _missileSpeed * Time.deltaTime;
-
         if (_target != null)
         {
             Vector2 direction = (Vector2)_target.position - _rbMissile.position;
@@ -57,17 +77,9 @@ public class HomingProjectile : MonoBehaviour
             float rotationValue = Vector3.Cross(direction, transform.up).z;
             _rbMissile.angularVelocity = -rotationValue * _missileTurnSpeed;
             _rbMissile.velocity = transform.up * _missileSpeed * Time.deltaTime;
-
-
         }
     }
-    private void FixedUpdate()
-    {
-        FireMissile();
-    }
-
-
-
+   
 
 
 
