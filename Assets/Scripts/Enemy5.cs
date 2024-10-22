@@ -16,8 +16,8 @@ public class Enemy5 : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    private float _fireRate = 3.0f;
-    private float _canFire = -1;
+   // private float _fireRate = 3.0f;
+  //  private float _canFire = -1;
 
     // [SerializeField]              ************SHIELDS********
     // public GameObject _enemyShield;
@@ -74,7 +74,7 @@ public class Enemy5 : MonoBehaviour
     void Update()
     {
         CalculateMovement();
-        if (Time.time > _canFire)
+       /* if (Time.time > _canFire)
         {
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
@@ -85,7 +85,7 @@ public class Enemy5 : MonoBehaviour
                 lasers[i].AssignEnemyLaser();
             }
                                                         //*************************ENEMY LASERS OFFSET SHOULD BE CLOSER TO SHIP AND SMALLER/SHORTER************
-        }
+        }*/
     }
     void CalculateMovement()
     {
