@@ -6,11 +6,6 @@ public class Enemy5 : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 5f;
-
-    [SerializeField]
-    private GameObject _homingProjectile;
-
-
     private Player _player;
 
     private Animator _anim;
@@ -31,9 +26,6 @@ public class Enemy5 : MonoBehaviour
     private int _dodgeSpeed = 6;
     private bool _isDodgeOn = false;
 
-    private bool _isHomingProjectileActive = false; //*************WHY IS THIS GREY?***********
-
-
     //[SerializeField]                      **********DODGECOUNT*******
     // private int _randomNumber = Random.Range(0, 2);
     // [SerializeField]
@@ -42,15 +34,6 @@ public class Enemy5 : MonoBehaviour
 
     private void Start()
     {
-        /*   if (Random.Range(0f, 1f) < _percentEnemyShield)  ************SHIELDS********
-           {
-               EnemyShieldActivated();
-           }
-           else
-           {
-               EnemyShieldDeactivated();
-           }*//////////////////////////////////////////////////////////// 
-
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -75,11 +58,8 @@ public class Enemy5 : MonoBehaviour
 
     void Update()
     {
+
         CalculateMovement();
-        if (_isHomingProjectileActive == true)
-        {
-            GameObject homingProjectile = Instantiate(_homingProjectile, transform.position, Quaternion.identity);
-        }
        /* if (Time.time > _canFire)
         {
             _fireRate = Random.Range(3f, 7f);
@@ -181,19 +161,6 @@ public class Enemy5 : MonoBehaviour
     //transform.Translate(Vector3.right * _dodgeSpeed * _direction * Time.deltaTime);
     //transform.Translate(Vector3.right *5); //simple example
 
-    public void HomingProjectileActive()
-    {
-        _isHomingProjectileActive = true;
-        StartCoroutine(HomingProjectileCoolDownRoutine());
-    }
-
-
-
-    IEnumerator HomingProjectileCoolDownRoutine()
-    {
-        yield return new WaitForSeconds(6.0f);
-        _isHomingProjectileActive = false;
-    }
 
 
 

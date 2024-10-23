@@ -37,7 +37,7 @@ public class PowerUp : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
         }
     }
-    //Add HomingProjectilePowerup. Will it be added to this switch statement/array or do I make a new script for enemy powerups? Attach new PU sprite in Inspector. 
+    //Add HomingProjectilePowerup. Will it be added to this switch statement/array or do I make a new script for enemy powerups?. 
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -45,8 +45,9 @@ public class PowerUp : MonoBehaviour
         {
             Player player = other.transform.GetComponent<Player>();
             AudioSource.PlayClipAtPoint(_clip, transform.position);
+           
             
-            if (player != null)
+            if (player != null)// && enemy5 != null)
             {
                 switch (powerupID)
                 {
@@ -71,6 +72,10 @@ public class PowerUp : MonoBehaviour
                     case 6:
                       player.MisfireActive();
                         break;
+                   // case 7:
+                   //     enemy5.HomingProjectileActive();
+                    //    break;
+
                     default:
                         Debug.Log("Default Value");
                         break;
@@ -79,11 +84,28 @@ public class PowerUp : MonoBehaviour
                 return;
             }
         }
+        
         if (other.tag == "EnemyLaser")
         {
             Destroy(other.gameObject);
             Destroy(this.gameObject);
         }
+
+      /*  if (other.tag == "Enemy")
+        {
+            Enemy5 enemy5 = other.transform.GetComponent<Enemy5>();
+            enemy5.HomingProjectileActive();
+            Destroy(this.gameObject);
+            return;
+
+            if (other.tag == "Player")
+            {
+                Destroy(other.gameObject);
+                Destroy(this.gameObject);
+            }
+
+        }*/
+
     }
 }
 
