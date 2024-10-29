@@ -218,15 +218,13 @@ public class Player : MonoBehaviour
 
     void FireHomingProjectilee()
     {
-        if (Input.GetKey(KeyCode.RightShift) && _isHomingProjectileActive == true)     //NOT WORKING************************
+        if (Input.GetKeyDown(KeyCode.RightShift) && _isHomingProjectileActive == true)     
         {
-            Instantiate(_homingProjectile, transform.position + new Vector3(0, 0.0f, 0), Quaternion.identity);
-            Debug.Log("Homing projectile instantiating");
-        }          
+            Instantiate(_homingProjectile, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
+        }
+        _isHomingProjectileActive = false;
     }
 
-
-    
 
     public void Damage()
     {
