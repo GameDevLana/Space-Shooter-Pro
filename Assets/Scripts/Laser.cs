@@ -22,7 +22,7 @@ public class Laser : MonoBehaviour
     {
         if (_isEnemyLaser == false || _isEnemyLaserUp == true)
         {
-            MoveUP();
+            MoveUp();
         }
         else
         {
@@ -30,7 +30,7 @@ public class Laser : MonoBehaviour
         }
     }
                 //**Laser enums maybe. Set direction methods/behavior for all.**
-    void MoveUP()
+    void MoveUp()
     {
         transform.Translate(Vector3.up * _speed * Time.deltaTime);
         if (transform.position.y > 8f)
