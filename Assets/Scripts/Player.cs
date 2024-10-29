@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
     private bool _isShieldActive = false;
     private bool _isStopFireActive = false;
     private bool _isMisfireActive = false;
+    private bool _isHomingProjectileActive = false; 
 
     [SerializeField]
     private GameObject _shieldVisualizer;
@@ -69,7 +70,14 @@ public class Player : MonoBehaviour
     private AudioClip _explodeSoundClip;
     private AudioSource _audioSource;
     private CameraManager _cameraHolder;
-    //private no ammo audio - click when press space bar                                                                                                                                                                                    
+
+    //private "noAmmo" audio - click when press space bar
+    
+    [SerializeField]
+    private GameObject _homingProjectile;
+
+
+
 
     void Start()
     {
@@ -119,9 +127,14 @@ public class Player : MonoBehaviour
         {
             FireLaser();
         }
+
+        if (Input.GetKey(KeyCode.RightShift) && _isHomingProjectileActive == true)
+        {
+            FireHomingProjectilee();
+            //GameObject homingProjectile = Instantiate(_homingProjectile, transform.position, Quaternion.identity);         //not sure what this does or is for
+        }
     }
 
-   // Homing Projectile -  create homing projectile that seeks the closest target - include rare powerup to activate
     void CalculateMovement()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -187,11 +200,11 @@ public class Player : MonoBehaviour
         }
         if (_isMisfireActive == true && _isStopFireActive == false && _currentAmmo > 0)
         {
-           Quaternion laserRotation = Quaternion.Euler(0, 0, 5);
-           Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.75f, 0), laserRotation);
-           _audioSource.Play();
-           _currentAmmo--;
-           _uiManager.UpdateAmmo(_currentAmmo);
+            Quaternion laserRotation = Quaternion.Euler(0, 0, 5);
+            Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.75f, 0), laserRotation);
+            _audioSource.Play();
+            _currentAmmo--;
+            _uiManager.UpdateAmmo(_currentAmmo);
         }
 
         else if (_currentAmmo > 0 && _isStopFireActive == false)
@@ -201,8 +214,19 @@ public class Player : MonoBehaviour
             _currentAmmo--;
             _uiManager.UpdateAmmo(_currentAmmo);
         }
+    }  
 
+    void FireHomingProjectilee()
+    {
+        if (Input.GetKey(KeyCode.RightShift) && _isHomingProjectileActive == true)     //NOT WORKING************************
+        {
+            Instantiate(_homingProjectile, transform.position + new Vector3(0, 0.0f, 0), Quaternion.identity);
+            Debug.Log("Homing projectile instantiating");
+        }          
     }
+
+
+    
 
     public void Damage()
     {
@@ -256,6 +280,7 @@ public class Player : MonoBehaviour
         }
         _uiManager.UpdateLives(_lives);
     }
+
 
     public void ShieldActive()
     {
@@ -337,6 +362,18 @@ public class Player : MonoBehaviour
         StartCoroutine(MisfireCooldownRoutine());
     }
 
+    public void HomingProjectileActive()
+    {
+        {
+            _isHomingProjectileActive = true;
+            StartCoroutine(HomingProjectileCoolDownRoutine());
+        }
+
+     
+        _audioSource.Play();
+    }
+
+
     IEnumerator TripleShotPowerDownRoutine()
     {
         yield return new WaitForSeconds(6.0f); 
@@ -357,7 +394,7 @@ public class Player : MonoBehaviour
 
     IEnumerator ThrustRechargeRoutine()
     {
-        while (_currentThrust !=100)
+        while (_currentThrust !=100)  //Should this be <100? is != the right one?
         {
             {
                 yield return new WaitForSeconds(5.0f);
@@ -379,8 +416,15 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
         _isMisfireActive = false;
      }
-        //flash current ammo count when it become <5
-       //flash NO AMMO when current ammo = 0
+
+    IEnumerator HomingProjectileCoolDownRoutine()
+    {
+        yield return new WaitForSeconds(10.0f);
+        _isHomingProjectileActive = false;
+    }
+
+    //flash current ammo count when it become <5
+    //flash NO AMMO when current ammo = 0
 
     public void AddScore(int points)
     {

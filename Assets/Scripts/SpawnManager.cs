@@ -25,12 +25,13 @@ public class SpawnManager : MonoBehaviour
 
     public int[] table =
     {
-        19,
-        19,
-        19,
-        19,
         10,
+        15,
+        15,
+        25,
+        15,
         5,
+        10,
         5,
     };
     public int total;

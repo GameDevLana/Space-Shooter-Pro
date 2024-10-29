@@ -45,9 +45,8 @@ public class PowerUp : MonoBehaviour
         {
             Player player = other.transform.GetComponent<Player>();
             AudioSource.PlayClipAtPoint(_clip, transform.position);
-           
-            
-            if (player != null)// && enemy5 != null)
+
+            if (player != null)
             {
                 switch (powerupID)
                 {
@@ -72,9 +71,9 @@ public class PowerUp : MonoBehaviour
                     case 6:
                       player.MisfireActive();
                         break;
-                   // case 7:
-                   //     enemy5.HomingProjectileActive();
-                    //    break;
+                    case 7:
+                        player.HomingProjectileActive();
+                        break;
 
                     default:
                         Debug.Log("Default Value");
@@ -91,20 +90,7 @@ public class PowerUp : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-      /*  if (other.tag == "Enemy")
-        {
-            Enemy5 enemy5 = other.transform.GetComponent<Enemy5>();
-            enemy5.HomingProjectileActive();
-            Destroy(this.gameObject);
-            return;
-
-            if (other.tag == "Player")
-            {
-                Destroy(other.gameObject);
-                Destroy(this.gameObject);
-            }
-
-        }*/
+        
 
     }
 }
