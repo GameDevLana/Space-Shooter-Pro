@@ -24,15 +24,13 @@ public class HomingProjectile : MonoBehaviour
         {
             Debug.LogError("The Rigidbody is NULL!");
         }
-     //   FindClosestEnemy();                      //NEEED TO ADD GENERIC MOVEMENT UP
+       
     }
 
-    void Update()
-    {
-        MoveUp();    
-    }
+   
     private void FixedUpdate()
     {
+        FindClosestEnemy();
         TrackEnemy();
     }
 
@@ -50,16 +48,22 @@ public class HomingProjectile : MonoBehaviour
     private void FindClosestEnemy()
     {
         targets = GameObject.FindGameObjectsWithTag("Enemy");
-
-         foreach (var enemy in targets)
-         {
-             _distance = (enemy.transform.position - this.transform.position).sqrMagnitude;
-             if (_distance < _closestTarget)
-             {
-                 _closestTarget = _distance;
-                 _target = enemy.transform;
-             }
-         }
+       
+        if (targets.Length == 0)
+        {
+            Debug.LogWarning("No enemies found!", this);
+            
+        }
+       
+        foreach (var enemy in targets)
+        {
+            _distance = (enemy.transform.position - this.transform.position).sqrMagnitude;
+            if (_distance < _closestTarget)
+            {
+                _closestTarget = _distance;
+                _target = enemy.transform;
+            }
+        }
         Debug.Log("Finding closest enemy in scene.");
     }
 
@@ -74,6 +78,10 @@ public class HomingProjectile : MonoBehaviour
             float rotationValue = Vector3.Cross(direction, transform.up).z;
             _projectile.angularVelocity = -rotationValue * _projectileTurnSpeed;
             _projectile.velocity = transform.up * _projectileSpeed * Time.deltaTime;
+        }
+        else
+        {
+            MoveUp();
         }
     }
 
