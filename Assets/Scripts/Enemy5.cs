@@ -143,6 +143,31 @@ public class Enemy5 : MonoBehaviour
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.5f);
         }
+
+        HomingProjectile projectile = other.GetComponent<HomingProjectile>();
+        if (projectile != null)
+        {
+            Destroy(other.gameObject);
+            _speed = 0;
+            Destroy(GetComponent<Collider2D>());
+            Destroy(this.gameObject, 2.5f);
+
+            /* if (_enemyShieldActive == true)     ************SHIELDS********
+             {
+                 _enemyShield.SetActive(false);
+                 _enemyShieldActive = false;
+                 return;
+             }*///////////////////////////////////////////////////////////////
+            if (_player != null)
+            {
+                _player.AddScore(10);
+            }
+            _anim.SetTrigger("OnEnemyDeath");   // explosion animation 
+            _speed = 0;
+            _audioSource.Play();
+            Destroy(GetComponent<Collider2D>());
+            Destroy(this.gameObject, 2.5f);
+        }
     }
 
     public void Dodge()

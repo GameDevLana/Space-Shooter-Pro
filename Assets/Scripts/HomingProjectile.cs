@@ -11,8 +11,10 @@ public class HomingProjectile : MonoBehaviour
     private Rigidbody2D _projectile;
     private float _distance;
     private float _closestTarget = Mathf.Infinity;
-    private float _projectileSpeed;
-    private float _projectileTurnSpeed;
+    [SerializeField]
+    private float _projectileSpeed = 100.0f;
+    [SerializeField]
+    private float _projectileTurnSpeed = 20f;
 
    // private bool _isEnemyLaser = false;
 
@@ -27,7 +29,6 @@ public class HomingProjectile : MonoBehaviour
        
     }
 
-   
     private void FixedUpdate()
     {
         FindClosestEnemy();
@@ -41,9 +42,7 @@ public class HomingProjectile : MonoBehaviour
          {
           Destroy(this.gameObject);
          }
-        Debug.Log("projectile will move up now");
     }
-
 
     private void FindClosestEnemy()
     {
@@ -51,25 +50,29 @@ public class HomingProjectile : MonoBehaviour
        
         if (targets.Length == 0)
         {
-            Debug.LogWarning("No enemies found!", this);
-            
+            MoveUp();
         }
-       
-        foreach (var enemy in targets)
+
+        if (_target == null)
         {
-            _distance = (enemy.transform.position - this.transform.position).sqrMagnitude;
-            if (_distance < _closestTarget)
+
+            foreach (var enemy in targets)
             {
-                _closestTarget = _distance;
-                _target = enemy.transform;
+                _distance = (enemy.transform.position - this.transform.position).sqrMagnitude;
+
+                if (_distance < _closestTarget)
+                {
+                    _closestTarget = _distance;
+                    _target = enemy.transform;
+                }
+
             }
         }
-        Debug.Log("Finding closest enemy in scene.");
     }
 
     private void TrackEnemy()
     {
-        _projectile.velocity = _projectileSpeed * Time.deltaTime * transform.up;
+        _projectile.velocity = _projectileSpeed * Time.fixedDeltaTime * transform.up;
         if (_target != null)
         {
             Vector2 direction = (Vector2)_target.position - _projectile.position;
@@ -77,12 +80,8 @@ public class HomingProjectile : MonoBehaviour
 
             float rotationValue = Vector3.Cross(direction, transform.up).z;
             _projectile.angularVelocity = -rotationValue * _projectileTurnSpeed;
-            _projectile.velocity = transform.up * _projectileSpeed * Time.deltaTime;
+            _projectile.velocity = transform.up * _projectileSpeed * Time.fixedDeltaTime;
         }
-        else
-        {
-            MoveUp();
-        }
+       
     }
-
 }
