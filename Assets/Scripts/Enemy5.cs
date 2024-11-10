@@ -108,22 +108,15 @@ public class Enemy5 : MonoBehaviour
             Player player = other.transform.GetComponent<Player>();
             if (player != null)
 
-
             {
                 player.Damage();
             }
-
             /*  if (_enemyShieldActive == true)        *********SHIELDS*******
               {
                   EnemyShieldDeactivated();
                   return;
               }*/////////////////////////////////////////////////////////////////
-            _anim.SetTrigger("OnEnemyDeath");
-            _speed = 0;
-            _audioSource.Play();
-            Destroy(this.gameObject, 2.5f);
         }
-
 
         Laser laser = other.GetComponent<Laser>();
 
@@ -136,27 +129,17 @@ public class Enemy5 : MonoBehaviour
                  _enemyShieldActive = false;
                  return;
              }*///////////////////////////////////////////////////////////////
-
             if (_player != null)  //Player scores for hitting enemy with laser
             {
                 _player.AddScore(10);
             }
-
-            _speed = 0;                         //enemy stops moving upon collision
-            _anim.SetTrigger("OnEnemyDeath");   // explosion animation with audio
-            _audioSource.Play();                   
-            Destroy(GetComponent<Collider2D>());  //destroy enemy collider and gameObject
-            Destroy(this.gameObject, 2.5f);
         }
-
-
 
         HomingProjectile projectile = other.GetComponent<HomingProjectile>();
 
         if (projectile != null)
         {
             Destroy(other.gameObject);
-
             /* if (_enemyShieldActive == true)     ************SHIELDS********
              {
                  _enemyShield.SetActive(false);
@@ -167,22 +150,17 @@ public class Enemy5 : MonoBehaviour
             {
                 _player.AddScore(10);
             }
-
-            _speed = 0;                           //enemy stops moving upon collision
-            _anim.SetTrigger("OnEnemyDeath");     // explosion animation with audio
-            _audioSource.Play();                
-            Destroy(GetComponent<Collider2D>());  //destroy enemy collider and gameObject 
-            Destroy(this.gameObject, 2.5f);
         }
+        EnemyDeath();
+    }
 
-       /*********************************************************
-        _speed = 0;                                 
-        _anim.SetTrigger("OnEnemyDeath");   
+    private void EnemyDeath()
+    {
+        _speed = 0;
+        _anim.SetTrigger("OnEnemyDeath");
         _audioSource.Play();
-        Destroy(GetComponent<Collider2D>());  
+        Destroy(GetComponent<Collider2D>());
         Destroy(this.gameObject, 2.5f);
-       **********************************************************/
-
     }
 
     public void Dodge()
@@ -198,17 +176,15 @@ public class Enemy5 : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         _isDodgeOn = false;
     }
+
     //transform.Translate(Vector3.right * _dodgeSpeed * _direction * Time.deltaTime);
     //transform.Translate(Vector3.right *5); //simple example
 
 
-
-
-
+    //public void EnemyDamage()   consider Damage method of enemy shield to take one hit instead of onTrigger
 
 }
 
-//public void EnemyDamage()   consider Damage method of enemy shield to take one hit instead of onTrigger
 
 
 
