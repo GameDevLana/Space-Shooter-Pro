@@ -27,8 +27,9 @@ public class HomingProjectile : MonoBehaviour
     void MoveUp()
     {
          transform.Translate(_projectileSpeed * Time.deltaTime * Vector3.up);
-         if (transform.position.y > 8f)
-         {
+
+         if (transform.position.y > 8f)             //****ADD OUT OF BOUNDS FOR LOWER AND BOTH SIDES. ****
+        {
           Destroy(this.gameObject);
          }
     }
@@ -63,6 +64,8 @@ public class HomingProjectile : MonoBehaviour
 
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle-90f, Vector3.forward);
+
+            //*********ADD FORWARD MOVEMENT IN ADDITION TO THE MOVEUP METHOD????******
         }
        
     }
