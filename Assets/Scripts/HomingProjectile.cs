@@ -12,27 +12,16 @@ public class HomingProjectile : MonoBehaviour
     private float _distance;
     private float _closestTarget = Mathf.Infinity;
     [SerializeField]
-    private float _projectileSpeed = 100.0f;
-    [SerializeField]
-    private float _projectileTurnSpeed = 20f;
+    private float _projectileSpeed = 20.0f;
 
    // private bool _isEnemyLaser = false;
 
-    void Start()
-    {
 
-        _projectile = GetComponent<Rigidbody2D>();
-        if (_projectile == null)
-        {
-            Debug.LogError("The Rigidbody is NULL!");
-        }
-       
-    }
-
-    private void FixedUpdate()
+    private void Update()
     {
         FindClosestEnemy();
         TrackEnemy();
+        MoveUp();
     }
 
     void MoveUp()
@@ -47,11 +36,6 @@ public class HomingProjectile : MonoBehaviour
     private void FindClosestEnemy()
     {
         targets = GameObject.FindGameObjectsWithTag("Enemy");
-       
-        if (targets.Length == 0)
-        {
-            MoveUp();
-        }
 
         if (_target == null)
         {
@@ -72,15 +56,13 @@ public class HomingProjectile : MonoBehaviour
 
     private void TrackEnemy()
     {
-        _projectile.velocity = _projectileSpeed * Time.fixedDeltaTime * transform.up;
         if (_target != null)
         {
-            Vector2 direction = (Vector2)_target.position - _projectile.position;
-            direction.Normalize();
+            Vector3 dir = _target.position - transform.position;
+            dir.Normalize();
 
-            float rotationValue = Vector3.Cross(direction, transform.up).z;
-            _projectile.angularVelocity = -rotationValue * _projectileTurnSpeed;
-            _projectile.velocity = transform.up * _projectileSpeed * Time.fixedDeltaTime;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle-90f, Vector3.forward);
         }
        
     }

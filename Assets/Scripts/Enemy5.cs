@@ -107,6 +107,8 @@ public class Enemy5 : MonoBehaviour
         {
             Player player = other.transform.GetComponent<Player>();
             if (player != null)
+
+
             {
                 player.Damage();
             }
@@ -116,13 +118,15 @@ public class Enemy5 : MonoBehaviour
                   EnemyShieldDeactivated();
                   return;
               }*/////////////////////////////////////////////////////////////////
-
             _anim.SetTrigger("OnEnemyDeath");
             _speed = 0;
             _audioSource.Play();
             Destroy(this.gameObject, 2.5f);
         }
+
+
         Laser laser = other.GetComponent<Laser>();
+
         if (laser != null && !laser.IsEnemyLaser() && !laser.IsEnemyLaserUp())
         {
             Destroy(other.gameObject);
@@ -133,24 +137,25 @@ public class Enemy5 : MonoBehaviour
                  return;
              }*///////////////////////////////////////////////////////////////
 
-            if (_player != null)
+            if (_player != null)  //Player scores for hitting enemy with laser
             {
                 _player.AddScore(10);
             }
-            _anim.SetTrigger("OnEnemyDeath");   // explosion animation 
-            _speed = 0;
-            _audioSource.Play();
-            Destroy(GetComponent<Collider2D>());
+
+            _speed = 0;                         //enemy stops moving upon collision
+            _anim.SetTrigger("OnEnemyDeath");   // explosion animation with audio
+            _audioSource.Play();                   
+            Destroy(GetComponent<Collider2D>());  //destroy enemy collider and gameObject
             Destroy(this.gameObject, 2.5f);
         }
 
+
+
         HomingProjectile projectile = other.GetComponent<HomingProjectile>();
+
         if (projectile != null)
         {
             Destroy(other.gameObject);
-            _speed = 0;
-            Destroy(GetComponent<Collider2D>());
-            Destroy(this.gameObject, 2.5f);
 
             /* if (_enemyShieldActive == true)     ************SHIELDS********
              {
@@ -158,16 +163,26 @@ public class Enemy5 : MonoBehaviour
                  _enemyShieldActive = false;
                  return;
              }*///////////////////////////////////////////////////////////////
-            if (_player != null)
+            if (_player != null)   //Player scores for hitting enemy with homing projectile
             {
                 _player.AddScore(10);
             }
-            _anim.SetTrigger("OnEnemyDeath");   // explosion animation 
-            _speed = 0;
-            _audioSource.Play();
-            Destroy(GetComponent<Collider2D>());
+
+            _speed = 0;                           //enemy stops moving upon collision
+            _anim.SetTrigger("OnEnemyDeath");     // explosion animation with audio
+            _audioSource.Play();                
+            Destroy(GetComponent<Collider2D>());  //destroy enemy collider and gameObject 
             Destroy(this.gameObject, 2.5f);
         }
+
+       /*********************************************************
+        _speed = 0;                                 
+        _anim.SetTrigger("OnEnemyDeath");   
+        _audioSource.Play();
+        Destroy(GetComponent<Collider2D>());  
+        Destroy(this.gameObject, 2.5f);
+       **********************************************************/
+
     }
 
     public void Dodge()
