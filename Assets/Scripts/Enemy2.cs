@@ -98,39 +98,65 @@ public class Enemy2 : MonoBehaviour
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
+            
             if (player != null)
             {
                 player.Damage();
             }
+            
             if (_enemyShieldActive == true)
             {
                 EnemyShieldDeactivated();
                 return;
             }
-            _anim.SetTrigger("OnEnemyDeath");
-            _speed = 0;
-            _audioSource.Play();
-            Destroy(this.gameObject, 2.5f);
         }
+
         Laser laser = other.GetComponent<Laser>();  // **Retrieve Laser component**
+        
         if (laser != null && !laser.IsEnemyLaser() && !laser.IsEnemyLaserUp())
         {
             Destroy(other.gameObject);
+
             if (_enemyShieldActive == true)
             {
                 EnemyShieldDeactivated();
                 return;
             }
+            
             if (_player != null)
             {
                 _player.AddScore(10);
             }
-            _anim.SetTrigger("OnEnemyDeath");   // explosion animation 
-            _speed = 0;
-            _audioSource.Play();
-            Destroy(GetComponent<Collider2D>());
-            Destroy(this.gameObject, 2.5f);
         }
+
+        HomingProjectile projectile = other.GetComponent<HomingProjectile>();
+
+        if (projectile != null)
+        {
+            Destroy(other.gameObject);
+            /* if (_enemyShieldActive == true)     ************SHIELDS********
+             {
+                 _enemyShield.SetActive(false);
+                 _enemyShieldActive = false;
+                 return;
+             }*///////////////////////////////////////////////////////////////
+            if (_player != null)   //Player scores for hitting enemy with homing projectile
+            {
+                _player.AddScore(10);
+            }
+        }
+
+        EnemyDeath();
     }
+
+    private void EnemyDeath()
+    {
+        _speed = 0;
+        _anim.SetTrigger("OnEnemyDeath");
+        _audioSource.Play();
+        Destroy(GetComponent<Collider2D>());
+        Destroy(this.gameObject, 2.5f);
+    }
+
     //public void EnemyDamage()   consider Damage method of enemy shield to take one hit instead of onTrigger
 }
