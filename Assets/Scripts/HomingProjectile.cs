@@ -28,7 +28,7 @@ public class HomingProjectile : MonoBehaviour
     {
          transform.Translate(_projectileSpeed * Time.deltaTime * Vector3.up);
 
-         if (transform.position.y > 8f)             //****ADD OUT OF BOUNDS FOR LOWER AND BOTH SIDES. ****
+         if (transform.position.y > 8f || transform.position.y <-8f)             //****ADD OUT OF BOUNDS FOR LOWER AND BOTH SIDES. ****
         {
           Destroy(this.gameObject);
          }
