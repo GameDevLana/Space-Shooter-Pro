@@ -115,6 +115,8 @@ public class Enemy2 : MonoBehaviour
             }
         }
 
+                                                        //********** ADJUST LASER TO SHOOT DIAGONALLY**************
+        
         Laser laser = other.GetComponent<Laser>();  // **Retrieve Laser component**
         
         if (laser != null && !laser.IsEnemyLaser() && !laser.IsEnemyLaserUp())
