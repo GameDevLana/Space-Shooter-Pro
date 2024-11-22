@@ -12,12 +12,13 @@ public class SpawnManager : MonoBehaviour
     private GameObject _enemyAggPrefab;
     [SerializeField]
     private GameObject _enemySmartPrefab;
-                        //***SPAWN SMART ENEMY
-                        //***SPAWN AVOID ENEMY
-                        //***ENEMY TYPE ARRAY 
+    [SerializeField]
+    private GameObject _enemyAvoidPrefab;
     [SerializeField]
     private GameObject _enemyContainer;
-
+    
+    SerializeField]
+    private GameObject[] enemyPrefabs;
     [SerializeField]
     private GameObject[] powerups;
 
@@ -36,6 +37,8 @@ public class SpawnManager : MonoBehaviour
     };
     public int total;
     public int randomNumber;
+
+                                                //*****Add text for each wave, final wave & Boss intro.*******
     [SerializeField]
     public int[] _enemiesPerWave = new int[]
     {
@@ -75,42 +78,32 @@ public class SpawnManager : MonoBehaviour
            int totalEnemies = _enemiesPerWave[waveNumber];
            for (int i = 0; i < totalEnemies; i++)
            {
-                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-                GameObject newEnemy;
-                float randomValue = Random.Range(0f, 1f);  //** Update generate random value for each enemy type probability**
-
-                if (randomValue > 0.66f)
-                {
-                    newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
-                }
-                else if (randomValue > 0.33f)
-                {
-                    newEnemy = Instantiate(_enemySmartPrefab, posToSpawn, Quaternion.identity);
-                }
-                else
-                {
-                    newEnemy = Instantiate(_enemyAggPrefab, posToSpawn, Quaternion.identity);
-                }
+                    Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+                    int randomEnemy = Random.Range(0, enemyPrefabs.Length);
+                    Instantiate(enemyPrefabs[randomEnemy], posToSpawn, Quaternion.identity);
                     yield return new WaitForSeconds(3.0f);
-           }
+                    /* GameObject newEnemy;
+                     float randomValue = Random.Range(0f, 1f);  //** Update generate random value for each enemy type probability**
+
+                     if (randomValue > 0.66f)
+                     {
+                         newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
+                     }
+                     else if (randomValue > 0.33f)
+                     {
+                         newEnemy = Instantiate(_enemySmartPrefab, posToSpawn, Quaternion.identity);
+                     }
+                     else
+                     {
+                         newEnemy = Instantiate(_enemyAggPrefab, posToSpawn, Quaternion.identity);
+                     }*/
+
+                }
            yield return new WaitForSeconds(5f);
         }
     }
 
-                                 //********NEW SPAWN ENEMY ROUTINE USING ARRAY******* (see Powerup spawning behavior)
-    /*
-    IEnumerator SpawnEnemyRoutine()
-    {
-        yield return new WaitForSeconds(1.0f);
-        while (_stopSpawning == false)
-        {
-            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            int randomEnemy = Random.Range(0, enemyPrefabs.Length);
-            Instantiate(enemyPrefabs[randomEnemy], posToSpawn, Quatiernion.idnetity);
-            yield return new WaitForSeconds(Random.Range(3, 8));
-        }
-    }
-    }*/   
+      
 
         /*                     // ***OPTIONAL: Add a short delay between enemy spawns in the same wave:****
         yield return new WaitForSeconds(0.5f);
@@ -129,19 +122,18 @@ public class SpawnManager : MonoBehaviour
     
          *//////////////////////////////////////////////////////
 
-    IEnumerator SpawnPowerupRoutine()                                      //**********ADD HOMINGPROJECTILE POWERUP TO SPAWN MGR*************************
+    IEnumerator SpawnPowerupRoutine()                                      //**********ADD HOMINGPROJECTILE POWERUP TO SPAWN MGR   --changed to powerups.Length. 
     {
         yield return new WaitForSeconds(2.0f);
         while (_stopSpawning == false)
         {
             Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
-            int randomPowerUp = Random.Range(0, 7);
+            int randomPowerUp = Random.Range(0, powerups.Length);
             Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
     }
-                            /*****USE powerups.length instead of Random.Range(0, 70);*******
-    for (int i = 0; i < powerups.Length; i++)  
+   /* for (int i = 0; i < powerups.Length; i++)  
     {
         int randomPowerUp = powerups[i];
     }*////////////////////////////////////////////////////////////////////////////
