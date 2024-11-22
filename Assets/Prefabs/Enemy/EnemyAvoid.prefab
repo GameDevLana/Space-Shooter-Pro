@@ -169,7 +169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
-  _homingProjectile: {fileID: 4934552387964046887, guid: b31b3ed77a2105646af0021c33909149, type: 3}
   _dodgeSpeed: 6
 --- !u!61 &1242975212231413294
 BoxCollider2D:
@@ -397,6 +396,7 @@ GameObject:
   - component: {fileID: 2732959608671529454}
   - component: {fileID: 9171444326585832657}
   - component: {fileID: 384874972688398442}
+  - component: {fileID: 8600386733181502587}
   m_Layer: 0
   m_Name: EnemyAvoidDodge
   m_TagString: Untagged
@@ -475,6 +475,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 8283175309326031544}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6888528136679cd40a7223f5cb4cf665, type: 3}
+  m_Script: {fileID: 11500000, guid: 10ec119235f5dcb42b868648227f4174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 5
+  _dodgeSpeed: 6
+--- !u!95 &8600386733181502587
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283175309326031544}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

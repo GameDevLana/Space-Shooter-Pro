@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightShift) && _isHomingProjectileActive == true)
         {
-            FireHomingProjectilee();
+            FireHomingProjectile();
             //GameObject homingProjectile = Instantiate(_homingProjectile, transform.position, Quaternion.identity);         //not sure what this does or is for
         }
     }
@@ -216,7 +216,7 @@ public class Player : MonoBehaviour
         }
     }  
 
-    void FireHomingProjectilee()
+    void FireHomingProjectile()
     {
         if (Input.GetKeyDown(KeyCode.RightShift) && _isHomingProjectileActive == true)     
         {
