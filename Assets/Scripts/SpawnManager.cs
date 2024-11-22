@@ -17,7 +17,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyContainer;
     
-    SerializeField]
+    [SerializeField]
     private GameObject[] enemyPrefabs;
     [SerializeField]
     private GameObject[] powerups;
