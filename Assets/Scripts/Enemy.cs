@@ -52,11 +52,16 @@ public class Enemy : MonoBehaviour
         }
     
         _audioSource = GetComponent<AudioSource>();
-        _anim = GetComponent<Animator>();
         if (_anim == null)
         {
             Debug.LogError("The Animator is NULL");
         }
+        _anim = GetComponent<Animator>();
+        if (_audioSource == null)
+        {
+            Debug.LogError("The Audio is NULL");
+        }
+       
     }
      
         

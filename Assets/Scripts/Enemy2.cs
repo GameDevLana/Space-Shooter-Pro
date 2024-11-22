@@ -50,6 +50,10 @@ public class Enemy2 : MonoBehaviour
             Debug.LogError("Player Object is not found.");
         }
         _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+        {
+            Debug.LogError("The Audio is NULL");
+        }
         _anim = GetComponent<Animator>();
         if (_anim == null)
         {
@@ -61,16 +65,16 @@ public class Enemy2 : MonoBehaviour
     void Update()
     {
         DiagonalMovement();
-
         if (Time.time > _canFire)
         {
             _fireRate = Random.Range(3f, 7f);
             _canFire = Time.time + _fireRate;
-            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position + new Vector3(0, -1.2f, 0), Quaternion.identity);
-            Laser laser = enemyLaser.GetComponent<Laser>();
+            GameObject enemyLaser = Instantiate(_laserPrefab, transform.position, Quaternion.identity);
+            Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
+            for (int i = 0; i < lasers.Length; i++)
             {
-                laser.AssignEnemyLaser();
-            }      
+                lasers[i].AssignEnemyLaser();
+            }
         }
     }
     void DiagonalMovement()  //Enemy Two - diagonal movement

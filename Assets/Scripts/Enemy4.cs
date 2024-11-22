@@ -37,6 +37,10 @@ public class Enemy4 : MonoBehaviour
         }
 
         _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+        {
+            Debug.LogError("The Audio is NULL");
+        }
         _anim = GetComponent<Animator>();
         if (_anim == null)
         {
