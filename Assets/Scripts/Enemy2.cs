@@ -54,6 +54,8 @@ public class Enemy2 : MonoBehaviour
         {
             Debug.LogError("The Audio is NULL");
         }
+
+    
     }
 
 

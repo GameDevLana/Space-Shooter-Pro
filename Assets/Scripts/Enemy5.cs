@@ -12,8 +12,8 @@ public class Enemy5 : MonoBehaviour
     private GameObject _explosionPrefab;
     private AudioSource _audioSource;
 
-   // private float _fireRate = 3.0f;
-  //  private float _canFire = -1;
+    // private float _fireRate = 3.0f;
+    //  private float _canFire = -1;
 
     // [SerializeField]              ************SHIELDS********
     // public GameObject _enemyShield;
@@ -53,6 +53,7 @@ public class Enemy5 : MonoBehaviour
         {
             Debug.LogError("The Audio is NULL");
         }
+
     }
 
     void Update()

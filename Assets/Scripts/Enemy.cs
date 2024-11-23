@@ -52,16 +52,16 @@ public class Enemy : MonoBehaviour
         }
     
         _audioSource = GetComponent<AudioSource>();
-        if (_anim == null)
-        {
-            Debug.LogError("The Animator is NULL");
-        }
-        _anim = GetComponent<Animator>();
         if (_audioSource == null)
         {
             Debug.LogError("The Audio is NULL");
         }
-       
+
+        _anim = GetComponent<Animator>();
+        if (_anim == null)
+        {
+            Debug.LogError("The Animator is NULL");
+        }
     }
      
         
@@ -106,7 +106,6 @@ public class Enemy : MonoBehaviour
         if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
-
             if (player != null)
             {
                 player.Damage();
@@ -120,11 +119,9 @@ public class Enemy : MonoBehaviour
         }
 
         Laser laser = other.GetComponent<Laser>();  // **Retrieve Laser component**
-
         if (laser != null && !laser.IsEnemyLaser() && !laser.IsEnemyLaserUp())
         {
             Destroy(other.gameObject);
-
             if (_enemyShieldActive == true)
             {
                 _enemyShield.SetActive(false);
@@ -139,16 +136,9 @@ public class Enemy : MonoBehaviour
         }
 
         HomingProjectile projectile = other.GetComponent<HomingProjectile>();
-
         if (projectile != null)
         {
             Destroy(other.gameObject);
-            /* if (_enemyShieldActive == true)     ************SHIELDS********
-             {
-                 _enemyShield.SetActive(false);
-                 _enemyShieldActive = false;
-                 return;
-             }*///////////////////////////////////////////////////////////////
             if (_player != null)   //Player scores for hitting enemy with homing projectile
             {
                 _player.AddScore(10);
@@ -166,7 +156,6 @@ public class Enemy : MonoBehaviour
         Destroy(GetComponent<Collider2D>());
         Destroy(this.gameObject, 2.5f);
     }
-
 
     //public void EnemyDamage()   consider Damage method of enemy shield to take one hit instead of onTrigger
 }

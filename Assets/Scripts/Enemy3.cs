@@ -16,6 +16,7 @@ public class Enemy3 : MonoBehaviour
     private GameObject _explosionPrefab;
     private AudioSource _audioSource;
 
+
     private float _fireRate = 3.0f;
     private float _canFire = -1;
 
@@ -57,6 +58,7 @@ public class Enemy3 : MonoBehaviour
         {
             Debug.LogError("The Audio is NULL");
         }
+
     }
 
 
