@@ -12,8 +12,8 @@ public class Enemy2 : MonoBehaviour
 
     private Player _player;
 
-    private Animator _anim;
-
+    [SerializeField]
+    private GameObject _explosionPrefab;
     private AudioSource _audioSource;
 
     private float _fireRate = 3.0f;
@@ -53,11 +53,6 @@ public class Enemy2 : MonoBehaviour
         if (_audioSource == null)
         {
             Debug.LogError("The Audio is NULL");
-        }
-        _anim = GetComponent<Animator>();
-        if (_anim == null)
-        {
-            Debug.LogError("The Animator is NULL");
         }
     }
 
@@ -158,8 +153,8 @@ public class Enemy2 : MonoBehaviour
     private void EnemyDeath()
     {
         _speed = 0;
-        _anim.SetTrigger("OnEnemyDeath");
         _audioSource.Play();
+        Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
         Destroy(GetComponent<Collider2D>());
         Destroy(this.gameObject, 2.5f);
     }

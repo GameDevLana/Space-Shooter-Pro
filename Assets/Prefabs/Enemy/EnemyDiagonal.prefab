@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2753835417385416228}
   - component: {fileID: 233479499753800995}
   - component: {fileID: 8035317577193054292}
-  - component: {fileID: -1490730898703853480}
   - component: {fileID: 1253486838793019581}
   - component: {fileID: 7707898503028441224}
   m_Layer: 0
@@ -52,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 4
   _laserPrefab: {fileID: 6585060043216461956, guid: 7d1bdb8fd4eded7418e361996a0aca04, type: 3}
+  _explosionPrefab: {fileID: 285321134506117915, guid: 30e097b28f4812647a2159e4a57d3ef5, type: 3}
   _percentEnemyShield: 0.2
   _enemyShield: {fileID: 5382847966751673590}
   _enemyShieldActive: 0
@@ -102,26 +102,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &-1490730898703853480
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2273940226023643668}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 60ffea7eb89f0bb4baf2a801f8482706, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &1253486838793019581
 AudioSource:
   m_ObjectHideFlags: 0

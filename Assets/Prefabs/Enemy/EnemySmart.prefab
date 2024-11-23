@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8017661203441375427}
-  - component: {fileID: 5523952876087368011}
   - component: {fileID: 6640075423393778814}
   - component: {fileID: 3194195094021739484}
   - component: {fileID: 723085458487530663}
@@ -37,26 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &5523952876087368011
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 638028128087331088}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 60ffea7eb89f0bb4baf2a801f8482706, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &6640075423393778814
 AudioSource:
   m_ObjectHideFlags: 0
@@ -188,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 4
   _laserPrefab: {fileID: 6585060043216461956, guid: 7d1bdb8fd4eded7418e361996a0aca04, type: 3}
+  _explosionPrefab: {fileID: 285321134506117915, guid: 30e097b28f4812647a2159e4a57d3ef5, type: 3}
 --- !u!70 &983211482669259893
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

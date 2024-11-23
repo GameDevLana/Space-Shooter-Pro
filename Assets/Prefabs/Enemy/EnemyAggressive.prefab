@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4131816321716786640}
   - component: {fileID: 7941184979097698319}
   - component: {fileID: 7811684506781062046}
-  - component: {fileID: 3744989299107491695}
   - component: {fileID: 15934731751012039}
   m_Layer: 0
   m_Name: EnemyAggressive
@@ -104,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 4
   _laserPrefab: {fileID: 6585060043216461956, guid: 7d1bdb8fd4eded7418e361996a0aca04, type: 3}
+  _explosionPrefab: {fileID: 285321134506117915, guid: 30e097b28f4812647a2159e4a57d3ef5, type: 3}
   _enemyShield: {fileID: 4391221924834616859}
   _enemyShieldActive: 0
   _percentEnemyShield: 0.2
@@ -155,26 +155,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &3744989299107491695
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66505596153979131}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 60ffea7eb89f0bb4baf2a801f8482706, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &15934731751012039
 AudioSource:
   m_ObjectHideFlags: 0
