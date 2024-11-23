@@ -158,6 +158,7 @@ public class Enemy5 : MonoBehaviour
         _speed = 0;
         _audioSource.Play();
         Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+
         Destroy(GetComponent<Collider2D>());
         Destroy(this.gameObject, 2.5f);
     }

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 4
   _laserPrefab: {fileID: 6585060043216461956, guid: 7d1bdb8fd4eded7418e361996a0aca04, type: 3}
-  _explosionPrefab: {fileID: 285321134506117915, guid: 30e097b28f4812647a2159e4a57d3ef5, type: 3}
+  _explosionPrefab: {fileID: 5382774205381189582, guid: 02e402d0be7fd3a4fb42a882e4b15d6e, type: 3}
   _percentEnemyShield: 0.2
   _enemyShield: {fileID: 5382847966751673590}
   _enemyShieldActive: 0
