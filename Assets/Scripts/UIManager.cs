@@ -7,46 +7,38 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     private Text _scoreText;
-
     [SerializeField]
     private Image _livesImg;
-
+    
     [SerializeField]
     private Sprite[] _liveSprites;
-
+   
     [SerializeField]
     private Text _gameOverText;
-
     [SerializeField]
     private Text _restartText;
-
     [SerializeField]
     private Text _ammoText;
-
     [SerializeField]
     private Slider _thrustGauge;
 
-
     private GameManager _gameManager;
+
+
 
     void Start()
     {
         _scoreText.text = "Score: " + 0;
-
         _gameOverText.gameObject.SetActive(false);
-
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
-
         _ammoText.text = "Ammo Count: " + 15;
-
-
-
 
         if (_gameManager == null)
         {
             Debug.LogError("GameManager is NULL.");
         }
     }
+
 
     public void UpdateScore(int playerScore)
     {
@@ -87,7 +79,6 @@ public class UIManager : MonoBehaviour
         _restartText.gameObject.SetActive(true);
         StartCoroutine(GameOverFlickerRoutine());
     }
-
 
 
     IEnumerator GameOverFlickerRoutine()

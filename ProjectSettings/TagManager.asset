@@ -13,6 +13,8 @@ TagManager:
   - Projectile
   - Bullet
   - HomingProjectile
+  - Boss
+  - Station
   layers:
   - Default
   - TransparentFX

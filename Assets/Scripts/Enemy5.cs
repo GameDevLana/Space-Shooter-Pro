@@ -73,6 +73,7 @@ public class Enemy5 : MonoBehaviour
                                                         //*************************ENEMY LASERS OFFSET SHOULD BE CLOSER TO SHIP AND SMALLER/SHORTER************
         }*/
     }
+
     void CalculateMovement()
     {
         if (_isDodgeOn == true)
@@ -100,7 +101,7 @@ public class Enemy5 : MonoBehaviour
           _enemyShieldActive = false;
           _enemyShield.SetActive(false);
       }*////////////////////////////////////////////////////////////////
-
+    //                                 *************************************** ENEMY HAS NO WEAPON- DOESN'T FIRE ANYTHING***************
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")

@@ -22,9 +22,12 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject[] powerups;
 
+    [SerializeField]
+    private GameObject _bossPrefab;
+
     private bool _stopSpawning = false;
 
-    public int[] table =
+    public int[] enemyProb =
     {
         10,
         15,
@@ -48,6 +51,7 @@ public class SpawnManager : MonoBehaviour
         20,
         25,
     };
+
 
     /*
     {
@@ -80,7 +84,8 @@ public class SpawnManager : MonoBehaviour
            {
                     Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
                     int randomEnemy = Random.Range(0, enemyPrefabs.Length);
-                    Instantiate(enemyPrefabs[randomEnemy], posToSpawn, Quaternion.identity);
+                    GameObject newEnemy = Instantiate(enemyPrefabs[randomEnemy], posToSpawn, Quaternion.identity);
+                    newEnemy.transform.parent = _enemyContainer.transform;
                     yield return new WaitForSeconds(3.0f);
                     /* GameObject newEnemy;
                      float randomValue = Random.Range(0f, 1f);  //** Update generate random value for each enemy type probability**
@@ -98,13 +103,19 @@ public class SpawnManager : MonoBehaviour
                          newEnemy = Instantiate(_enemyAggPrefab, posToSpawn, Quaternion.identity);
                      }*/
 
+           }
+           while (GameObject.FindWithTag("Enemy") != null)
+                {
+                    yield return null;
                 }
            yield return new WaitForSeconds(5f);
         }
+        Debug.Log("All waves completed! Preparing for Boss");
+
+        Vector3 bossSpawnPos = new(-11, 13, 0);
+        Instantiate(_bossPrefab, bossSpawnPos, Quaternion.identity);
+        _stopSpawning = true;
     }
-
-      
-
         /*                     // ***OPTIONAL: Add a short delay between enemy spawns in the same wave:****
         yield return new WaitForSeconds(0.5f);
             
