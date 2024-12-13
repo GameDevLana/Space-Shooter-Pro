@@ -49,8 +49,8 @@ public class Boss : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        
-    }
+  //  void Update()
+    //{
+      //  transform.parent = null;
+   // }
 }
