@@ -72,7 +72,32 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(SpawnEnemyRoutine());    //***Randomized instantiation for enemysheildprefab to be childed to ALL enemy types?***
         StartCoroutine(SpawnPowerupRoutine());  //***Consider adding a mystery powerup that can be really special or negative = randomly.***
     }
+    //StartCoroutine(SpawnEnemyFleetRoutine()); //****Instantiate fleetwaves of miniships from SpaceStation.*****
 
+    /*                                  ********************Spawn MiniFleets**************
+     * IEnumerator SpawnEnemyFleetRoutine()
+     * {
+     *  yield return new WaitForSeconds(2.0f);
+     *  while (_stopSpawning == false)
+     *  for (int waveNumber = 0; waveNumber < _enemiesPerWave.Length; waveNumber++)
+     *  {
+     *      int totalEnemies = _enemiesPerWave[waveNumber];
+     *      for (int i = 0; i < totalEnemies; i++)
+     *      {
+     *          Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+     *          int randomEnemy = Random.Range(0, enemyPrefabs.Length);
+                GameObject newEnemy = Instantiate(ene3myPRefabs[randomEnemy], posToSpawn, Quaternion. identity
+                newEnemy.transform.parent = _enemyContainer.transform;
+                yield return new WaitForSeconds(3.0f);
+            }
+        }
+       } 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
     IEnumerator SpawnEnemyRoutine()
     {
         yield return new WaitForSeconds(2.0f);
@@ -101,9 +126,9 @@ public class SpawnManager : MonoBehaviour
                      else
                      {
                          newEnemy = Instantiate(_enemyAggPrefab, posToSpawn, Quaternion.identity);
-                     }*/
+                     }
 
-           }
+           }*/
            while (GameObject.FindWithTag("Enemy") != null)
                 {
                     yield return null;
@@ -148,6 +173,8 @@ public class SpawnManager : MonoBehaviour
     {
         int randomPowerUp = powerups[i];
     }*////////////////////////////////////////////////////////////////////////////
+
+
 
     public void OnPlayerDeath()
     { 
