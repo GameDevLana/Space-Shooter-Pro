@@ -91,6 +91,8 @@ public class Enemy5 : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
     }
+
+
     /*  public void EnemyShieldActivated()  ************SHIELDS********
       {
           _enemyShieldActive = true;
