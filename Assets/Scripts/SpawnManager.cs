@@ -17,7 +17,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyContainer;
 
-    [SerializeField]
+   /* [SerializeField]
     private GameObject _enemyFleetOne;
     [SerializeField]
     private GameObject _enemyFleetThree;
@@ -35,7 +35,7 @@ public class SpawnManager : MonoBehaviour
     private GameObject _enemyFleetNine;
     [SerializeField]
     private GameObject _enemyFleetTen;
-
+   */
     [SerializeField]
     private GameObject[] enemyFleet;
     [SerializeField]
@@ -73,6 +73,9 @@ public class SpawnManager : MonoBehaviour
         25,
     };
 
+    //[SerializeField]
+    //public int _totalEnemyFleet;
+
 
     public void StartSpawning()
     {
@@ -87,15 +90,16 @@ public class SpawnManager : MonoBehaviour
 
 
     /*                                           ********************Spawn MiniFleets**************
-     * IEnumerator SpawnEnemyFleetRoutine()
-     * {
+     *  IEnumerator SpawnEnemyFleetRoutine()
+     *  {
      *  yield return new WaitForSeconds(2.0f);
      *  while (_stopSpawning == false)
+     *      int totalEnemyFleet = _totalEnemyFleet;
+     *      for (int i = 0; i < totalEnemyFleet; i++)     
      *      {
      *          Vector3 posToSpawn = new Vector3(-9, 4, 0);
-                int randomEnemyFleet = Random.Range(0, enemyFleet.Length);
-                Instantiate(enemyFleet[randomEnemyFleet], posToSpawn, Quaternion.identity);
-                yield return new WaitForSeconds(Random.Range(3, 8));
+                Instantiate(enemyFleet, posToSpawn, Quaternion.identity);
+                yield return new WaitForSeconds(Random.Range(1, 3));
             }
        } */
 
