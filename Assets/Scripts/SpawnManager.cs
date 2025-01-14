@@ -42,6 +42,8 @@ public class SpawnManager : MonoBehaviour
     private GameObject[] enemyPrefabs;
     [SerializeField]
     private GameObject[] powerups;
+    [SerializeField]
+    public int _totalEnemyFleet;
 
     [SerializeField]
     private GameObject _bossPrefab;
@@ -81,27 +83,32 @@ public class SpawnManager : MonoBehaviour
     {
         StartCoroutine(SpawnEnemyRoutine());    //***Randomized instantiation for enemysheildprefab to be childed to ALL enemy types?***
         StartCoroutine(SpawnPowerupRoutine());  //***Consider adding a mystery powerup that can be really special or negative = randomly.***
+
     }
 
-    //StartCoroutine(SpawnEnemyFleetRoutine()); //****Instantiate fleetwaves of miniships from SpaceStation.*****
+    public void SpaceStationLaunch()            //****Instantiate fleetwaves of miniships from SpaceStation.*****
+    {
+    StartCoroutine(SpawnEnemyFleetRoutine()); 
+    }
 
 
 
 
-
-    /*                                           ********************Spawn MiniFleets**************
-     *  IEnumerator SpawnEnemyFleetRoutine()
-     *  {
-     *  yield return new WaitForSeconds(2.0f);
-     *  while (_stopSpawning == false)
-     *      int totalEnemyFleet = _totalEnemyFleet;
-     *      for (int i = 0; i < totalEnemyFleet; i++)     
-     *      {
-     *          Vector3 posToSpawn = new Vector3(-9, 4, 0);
-                Instantiate(enemyFleet, posToSpawn, Quaternion.identity);
+//                                          ********************Spawn MiniFleets**************
+IEnumerator SpawnEnemyFleetRoutine()
+    {
+    yield return new WaitForSeconds(2.0f);
+        while (_stopSpawning == false)
+        {
+            int totalEnemyFleet = _totalEnemyFleet;
+            for (int i = 0; i < totalEnemyFleet; i++)
+            {
+                Vector3 posToSpawn = new Vector3(-9, 4, 0);
+                Instantiate(enemyFleet[i % enemyFleet.Length], posToSpawn, Quaternion.identity);
                 yield return new WaitForSeconds(Random.Range(1, 3));
             }
-       } */
+        }
+    } 
 
 
     IEnumerator SpawnEnemyRoutine()

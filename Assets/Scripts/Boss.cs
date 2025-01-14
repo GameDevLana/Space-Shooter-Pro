@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed = 4f;
+    //[SerializeField]
+    //private float _speed = 4f;
 
     [SerializeField]
     private GameObject _laserPrefab;

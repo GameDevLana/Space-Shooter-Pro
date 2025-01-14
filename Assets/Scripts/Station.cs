@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Station : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed = 4f;
+   // [SerializeField]
+   // private float _speed = 4f;
 
     [SerializeField]
     private GameObject _laserPrefab;
