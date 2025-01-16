@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+
+    private Animator _anim;
+
     [SerializeField]
     private GameObject _enemyStraightPrefab;
     [SerializeField]
@@ -47,6 +50,8 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField]
     private GameObject _bossPrefab;
+    [SerializeField]
+    private GameObject _station;
 
     private bool _stopSpawning = false;
 
@@ -86,29 +91,21 @@ public class SpawnManager : MonoBehaviour
 
     }
 
-    public void SpaceStationLaunch()            //****Instantiate fleetwaves of miniships from SpaceStation.*****
+    public void StartSpaceStation()
+    {
+        StartCoroutine(SpawnSpaceStation());
+    }
+
+
+    public void EnemyFleetLaunch()            //****Instantiate fleetwaves of miniships from SpaceStation.*****
     {
     StartCoroutine(SpawnEnemyFleetRoutine()); 
     }
 
-
+    
 
 
 //                                          ********************Spawn MiniFleets**************
-IEnumerator SpawnEnemyFleetRoutine()
-    {
-    yield return new WaitForSeconds(2.0f);
-        while (_stopSpawning == false)
-        {
-            int totalEnemyFleet = _totalEnemyFleet;
-            for (int i = 0; i < totalEnemyFleet; i++)
-            {
-                Vector3 posToSpawn = new Vector3(-9, 4, 0);
-                Instantiate(enemyFleet[i % enemyFleet.Length], posToSpawn, Quaternion.identity);
-                yield return new WaitForSeconds(Random.Range(1, 3));
-            }
-        }
-    } 
 
 
     IEnumerator SpawnEnemyRoutine()
@@ -150,11 +147,7 @@ IEnumerator SpawnEnemyFleetRoutine()
                 }
                 Debug.Log("All waves completed! Preparing for Boss");
 
-
-
             }
-
-
 
         /*
       ////////////////////////////////////////////////////////////////////
@@ -188,8 +181,6 @@ IEnumerator SpawnEnemyFleetRoutine()
 
             /*       
 
-
-
       ///////////////////////////////////////////////////////////////
       
                                         //****OPTIONAL: Add a delay between waves:*******
@@ -200,8 +191,6 @@ IEnumerator SpawnEnemyFleetRoutine()
       *//////////////////////////////////////////////////////
 
     }
-
-
     IEnumerator SpawnPowerupRoutine()
     {
         yield return new WaitForSeconds(2.0f);
@@ -212,6 +201,30 @@ IEnumerator SpawnEnemyFleetRoutine()
             Instantiate(powerups[randomPowerUp], posToSpawn, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(3, 8));
         }
+    }
+
+    IEnumerator SpawnEnemyFleetRoutine()
+    {
+        yield return new WaitForSeconds(2.0f);
+        while (_stopSpawning == false)
+        {
+            int totalEnemyFleet = _totalEnemyFleet;
+            for (int i = 0; i < totalEnemyFleet; i++)
+            {
+                Vector3 posToSpawn = new Vector3(-9, 4, 0);
+                Instantiate(enemyFleet[i % enemyFleet.Length], posToSpawn, Quaternion.identity);
+                yield return new WaitForSeconds(Random.Range(1, 3));
+            }
+        }
+    }
+
+
+    IEnumerator SpawnSpaceStation()
+    {
+        yield return new WaitForSeconds(2.0f);
+        Vector3 posToSpawn = new Vector3(0, 4.5f, 0);
+        Instantiate(_station, posToSpawn, Quaternion.identity);
+        _anim.SetTrigger("Space_Station_Enter_anim 1");
     }
 
     public void OnPlayerDeath()

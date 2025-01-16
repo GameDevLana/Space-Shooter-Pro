@@ -864,29 +864,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49fd17a952dec8246bb71bab4176fe95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyStraightPrefab: {fileID: 443179875683155874, guid: 0da7a5d6b82ba7045bc20778a8b8e5c4, type: 3}
-  _enemyDiagPrefab: {fileID: 2273940226023643668, guid: 200b973484d08bb48bf4a13d1c47a838, type: 3}
-  _enemyAggPrefab: {fileID: 66505596153979131, guid: 2c6ae74279d8b5144a3335f5e74eac8a, type: 3}
-  _enemySmartPrefab: {fileID: 638028128087331088, guid: a62193e9c7cfa8649bd22f6eef7ae197, type: 3}
-  _enemyAvoidPrefab: {fileID: 5385112950070537227, guid: 6fb25646939c3084681e555114b6349e, type: 3}
+  _enemyStraightPrefab: {fileID: 443179875683155874, guid: 9fb4e90610c36f344bb86b0e8c076d95, type: 3}
+  _enemyDiagPrefab: {fileID: 2273940226023643668, guid: cae059bbdeac21141bb5f37a621a9319, type: 3}
+  _enemyAggPrefab: {fileID: 66505596153979131, guid: 76fa5a8b8274efc4282e26579c15db57, type: 3}
+  _enemySmartPrefab: {fileID: 638028128087331088, guid: 0543a79d507ce474aaad381bead6c285, type: 3}
+  _enemyAvoidPrefab: {fileID: 5385112950070537227, guid: e665d616527051845838f2c75e37888d, type: 3}
   _enemyContainer: {fileID: 176585478}
   enemyFleet:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2335175582668103526, guid: 2ae91b179ed8ba743b1bc99594ae699f, type: 3}
+  - {fileID: 5641429358292260109, guid: f3ec7a943d12b3d4fb0b389b302b460c, type: 3}
+  - {fileID: 1308315431566015419, guid: d9ec98dc80452b7449f194b921c721cc, type: 3}
+  - {fileID: 2703401653179632467, guid: 6f2f69426c5b92f4f82599165c0c0a5d, type: 3}
+  - {fileID: 7279937352977240847, guid: b5f8b583e7244fc4792305e35524f64f, type: 3}
+  - {fileID: 8427559485351174429, guid: 3b3fba2d9dbf76840bad2886971a0bb7, type: 3}
+  - {fileID: 3296084883303127305, guid: ae53fb1aaeeaf754d85c9711346f16ad, type: 3}
+  - {fileID: 4755008218412030785, guid: 85c9ded1fe0a4004f946e6b3168cd038, type: 3}
+  - {fileID: 8870017989152304351, guid: 7fee5cdf4ba15644e9b239b28897ffdc, type: 3}
+  - {fileID: 2653602281278483185, guid: d8afcd2d854ea384789b57a1bb7dc770, type: 3}
   enemyPrefabs:
-  - {fileID: 443179875683155874, guid: 0da7a5d6b82ba7045bc20778a8b8e5c4, type: 3}
-  - {fileID: 2273940226023643668, guid: 200b973484d08bb48bf4a13d1c47a838, type: 3}
-  - {fileID: 66505596153979131, guid: 2c6ae74279d8b5144a3335f5e74eac8a, type: 3}
-  - {fileID: 638028128087331088, guid: a62193e9c7cfa8649bd22f6eef7ae197, type: 3}
-  - {fileID: 5385112950070537227, guid: 6fb25646939c3084681e555114b6349e, type: 3}
+  - {fileID: 443179875683155874, guid: 9fb4e90610c36f344bb86b0e8c076d95, type: 3}
+  - {fileID: 2273940226023643668, guid: cae059bbdeac21141bb5f37a621a9319, type: 3}
+  - {fileID: 66505596153979131, guid: 76fa5a8b8274efc4282e26579c15db57, type: 3}
+  - {fileID: 638028128087331088, guid: 0543a79d507ce474aaad381bead6c285, type: 3}
+  - {fileID: 5385112950070537227, guid: e665d616527051845838f2c75e37888d, type: 3}
   powerups:
   - {fileID: 2337466045033826627, guid: ec9b728cf227d864995d6b3ec7572024, type: 3}
   - {fileID: 6222416863793497046, guid: dc3b8512f35afa34981ccf995a9d9738, type: 3}
@@ -896,6 +896,7 @@ MonoBehaviour:
   - {fileID: 4824065421104812852, guid: ac1c0dd56a30b38458867e06b3a024d9, type: 3}
   - {fileID: 9025481511787127458, guid: 5161c20d75e6aa742a5862c51c3745e6, type: 3}
   - {fileID: 6169602608917502713, guid: 15a8f97599c3a574fa0feaf3ac92e0b1, type: 3}
+  _totalEnemyFleet: 0
   _bossPrefab: {fileID: 0}
   enemyProb: 0a0000000f0000000f000000190000000f000000050000000a00000005000000
   total: 0
