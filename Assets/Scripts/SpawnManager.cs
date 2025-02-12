@@ -20,33 +20,15 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyContainer;
 
-   /* [SerializeField]
-    private GameObject _enemyFleetOne;
-    [SerializeField]
-    private GameObject _enemyFleetThree;
-    [SerializeField]
-    private GameObject _enemyFleetFour;
-    [SerializeField]
-    private GameObject _enemyFleetFive;
-    [SerializeField]
-    private GameObject _enemyFleetSix;
-    [SerializeField]
-    private GameObject _enemyFleetSeven;
-    [SerializeField]
-    private GameObject _enemyFleetEight;
-    [SerializeField]
-    private GameObject _enemyFleetNine;
-    [SerializeField]
-    private GameObject _enemyFleetTen;
-   */
     [SerializeField]
     private GameObject[] enemyFleet;
     [SerializeField]
     private GameObject[] enemyPrefabs;
     [SerializeField]
     private GameObject[] powerups;
+
     [SerializeField]
-    public int _totalEnemyFleet;
+    public int _totalEnemyFleet; //number of fleet ships
 
     [SerializeField]
     private GameObject _bossPrefab;
@@ -66,8 +48,8 @@ public class SpawnManager : MonoBehaviour
         10,
         5,
     };
-    public int total;
-    public int randomNumber;
+   // public int total;
+    //public int randomNumber;
 
     //*****Add text for each wave, final wave & Boss intro.*******
     [SerializeField]
@@ -122,23 +104,6 @@ public class SpawnManager : MonoBehaviour
                     GameObject newEnemy = Instantiate(enemyPrefabs[randomEnemy], posToSpawn, Quaternion.identity);
                     newEnemy.transform.parent = _enemyContainer.transform;
                     yield return new WaitForSeconds(3.0f);
-                    /* GameObject newEnemy;
-                     float randomValue = Random.Range(0f, 1f);  //** Update generate random value for each enemy type probability**
-
-                     if (randomValue > 0.66f)
-                     {
-                         newEnemy = Instantiate(_enemyStraightPrefab, posToSpawn, Quaternion.identity);
-                     }
-                     else if (randomValue > 0.33f)
-                     {
-                         newEnemy = Instantiate(_enemySmartPrefab, posToSpawn, Quaternion.identity);
-                     }
-                     else
-                     {
-                         newEnemy = Instantiate(_enemyAggPrefab, posToSpawn, Quaternion.identity);
-                     }
-
-                     }*/
                     while (GameObject.FindWithTag("Enemy") != null)
                     {
                         yield return null;

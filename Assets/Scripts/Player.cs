@@ -254,7 +254,7 @@ public class Player : MonoBehaviour
         }
         //take damage from enemy shield - Damage Method is called from enemy script already. 
 
-        _lives--;
+       /* _lives--;
 
        // if (_currentHealth )
         //call camera shake coroutines
@@ -276,7 +276,7 @@ public class Player : MonoBehaviour
             AudioSource.PlayClipAtPoint(_explodeSoundClip, transform.position);
             Destroy(this.gameObject);
         }
-        _uiManager.UpdateLives(_lives);
+        _uiManager.UpdateLives(_lives);*/
     }
 
 
@@ -386,7 +386,7 @@ public class Player : MonoBehaviour
 
     IEnumerator StopFireCooldownRoutine()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(1.0f);
         _isStopFireActive = false;
     }
 
