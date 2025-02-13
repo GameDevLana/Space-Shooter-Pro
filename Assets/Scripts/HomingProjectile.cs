@@ -12,7 +12,7 @@ public class HomingProjectile : MonoBehaviour
     private float _distance;
     private float _closestTarget = Mathf.Infinity;
     [SerializeField]
-    private float _projectileSpeed = 20.0f;
+    private float _projectileSpeed = 10.0f;
 
    // private bool _isEnemyLaser = false;
 

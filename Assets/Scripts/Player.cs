@@ -386,7 +386,7 @@ public class Player : MonoBehaviour
 
     IEnumerator StopFireCooldownRoutine()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(.25f);
         _isStopFireActive = false;
     }
 

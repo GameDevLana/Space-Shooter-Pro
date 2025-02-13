@@ -164,7 +164,7 @@ public class Enemy5 : MonoBehaviour
         Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
 
         Destroy(GetComponent<Collider2D>());
-        Destroy(this.gameObject, 2.5f);
+        Destroy(this.gameObject, .5f);
     }
 
     public void Dodge()
