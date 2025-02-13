@@ -627,7 +627,7 @@ MonoBehaviour:
   _maxThrust: 100
   _currentThrust: 0
   _laserPrefab: {fileID: 5525578116650863035, guid: 45b87e476bd17614c81b2f35c5de165a, type: 3}
-  _tripleShotPrefab: {fileID: 2554530824444112010, guid: 7a50a8d06d415264c8f017de9851dfd8, type: 3}
+  _tripleShotPrefab: {fileID: 39596591211554682, guid: a320fae81ca56a941b470510b28b2d2d, type: 3}
   _fireRate: 0.15
   _maxAmmo: 15
   _lives: 3
